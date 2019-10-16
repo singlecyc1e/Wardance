@@ -30,7 +30,7 @@ public class RoadManager : MonoBehaviour {
         }
     }
 
-    public void GenerateNewRoad() {
+    public void GenerateNewRoadSegment() {
         foreach (var roadInfo in RoadInfos) {
             var road = Instantiate(roads[Random.Range(0, roads.Length)], roadInfo.spawnPoint.position, Quaternion.identity);
             road.GetComponent<RoadController>().Init(roadInfo.endPoint.position, speed);
