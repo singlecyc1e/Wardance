@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+[Serializable]
+public struct RoadInfo {
+    public Transform spawnPoint;
+    public Transform endPoint;
+    public GameObject[] preBuild;
+}
 
 public class RoadManager : MonoBehaviour {
     public float speed;
-    public GameObject spawnPoint;
-    public Transform endPoint;
+    public RoadInfo[] RoadInfos;
     public GameObject[] roads;
 
     public static RoadManager instance;
@@ -14,9 +22,18 @@ public class RoadManager : MonoBehaviour {
         } else {
             Debug.LogError("Try to load two RoadManager.");
         }
+
+        foreach (var roadInfo in RoadInfos) {
+            foreach (var road in roadInfo.preBuild) {
+                road.GetComponent<RoadController>().Init(roadInfo.endPoint.position, speed);
+            }
+        }
     }
 
     public void GenerateNewRoad() {
-        Instantiate(roads[Random.Range(0, roads.Length)], spawnPoint.transform.position, Quaternion.identity);
+        foreach (var roadInfo in RoadInfos) {
+            var road = Instantiate(roads[Random.Range(0, roads.Length)], roadInfo.spawnPoint.position, Quaternion.identity);
+            road.GetComponent<RoadController>().Init(roadInfo.endPoint.position, speed);
+        }
     }
 }

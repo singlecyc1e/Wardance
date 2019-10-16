@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log(other.name);
         if (other.CompareTag("RoadTrigger")) {
             RoadManager.instance.GenerateNewRoad();
-            other.GetComponent<RoadDestructor>().Destruct(1f);
         }
     }
 }
