@@ -9,7 +9,13 @@ public class PlayerController : MonoBehaviour {
     private bool moving;
     private float startTime;
     private float targetZ;
-    
+    private Animator AnimeC;
+
+    private void Start()
+    {
+        AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("RoadTrigger")) {
             RoadManager.instance.GenerateNewRoadSegment();
@@ -19,12 +25,18 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
             if(moving) return;
+            AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("RS");
+            AnimeC.SetTrigger("LS");
 
             moving = true;
             startTime = Time.time;
             targetZ = transform.position.z + 2.5f;
         } else if (Input.GetKeyDown(KeyCode.D)) {
             if(moving) return;
+            AnimeC.ResetTrigger("RS");
+            AnimeC.ResetTrigger("LS");
+            AnimeC.SetTrigger("RS");
 
             moving = true;
             startTime = Time.time;
@@ -44,4 +56,6 @@ public class PlayerController : MonoBehaviour {
             moving = false;
         }
     }
+
+
 }
