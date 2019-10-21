@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoadTrigger
   - RoadDestructTrigger
+  - LevelArea
   layers:
   - Default
   - TransparentFX
