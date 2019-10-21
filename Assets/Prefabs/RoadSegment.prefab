@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5101459107484492762}
+  - component: {fileID: 5320484472425303613}
   - component: {fileID: 8922331499049784084}
   m_Layer: 0
-  m_Name: Road
+  m_Name: RoadSegment
   m_TagString: RoadTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,10 +30,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2944180268233439016}
-  - {fileID: 8709907311713146844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5320484472425303613
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592818069938744016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.019408, y: 0.0774765, z: 2.5173297}
+  m_Center: {x: 4.99007, y: 0.0043931007, z: 0.011441231}
 --- !u!114 &8922331499049784084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +69,6 @@ GameObject:
   - component: {fileID: 2944180268233439016}
   - component: {fileID: 6653120382032021914}
   - component: {fileID: 3197959917287497930}
-  - component: {fileID: 1367939027372837968}
   m_Layer: 0
   m_Name: RoadSurface
   m_TagString: Untagged
@@ -72,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5876604224351049635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.778, y: 0, z: 0}
+  m_LocalPosition: {x: 4.99, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 0.05, z: 2.5}
   m_Children: []
   m_Father: {fileID: 5101459107484492762}
@@ -124,74 +136,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1367939027372837968
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5876604224351049635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7682798795608588165
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8709907311713146844}
-  - component: {fileID: 1210858707015219218}
-  - component: {fileID: 3775412100378406790}
-  m_Layer: 0
-  m_Name: Trigger
-  m_TagString: RoadTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8709907311713146844
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682798795608588165}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.506, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5101459107484492762}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1210858707015219218
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682798795608588165}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01963973, y: 1.9967015, z: 3.152546}
-  m_Center: {x: 0.033491015, y: 0.49835074, z: -0.0041923523}
---- !u!114 &3775412100378406790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682798795608588165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21222a6c45f53f343820f541bdc49c61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  road: {fileID: 1592818069938744016}

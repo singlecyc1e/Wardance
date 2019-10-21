@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("RoadTrigger")) {
-            RoadManager.instance.GenerateNewRoadSegment();
-        }
+//        if (other.CompareTag("RoadTrigger")) {
+//            RoadManager.instance.GenerateNewRoadSegment();
+//        }
     }
 
     private void Update() {
