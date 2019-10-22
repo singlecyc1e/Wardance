@@ -1,93 +1,108 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//public class CameraShake : MonoBehaviour
-//{
-//    public float shakeAmount;//The amount to shake this frame.
-//    public float shakeDuration;//The duration this frame.
+public class CameraShake : MonoBehaviour
+{
+    public float RotateAngle = 5;
+    public float RotateSpeed = 10;
+    public float RotateBackSpeed = 15;
+    PlayerController Character;
 
-//    //Readonly values...
-//    float shakePercentage;//A percentage (0-1) representing the amount of shake to be applied when setting rotation.
-//    float startAmount;//The initial shake amount (to determine percentage), set when ShakeCamera is called.
-//    float startDuration;//The initial shake duration, set when ShakeCamera is called.
+    public float shakeAmount = 1;//The amount to shake this frame.
+    public float shakeDuration = 1;//The duration this frame.
 
-//    bool isRunning = false; //Is the coroutine running right now?
+    //Readonly values...
+    float shakePercentage;//A percentage (0-1) representing the amount of shake to be applied when setting rotation.
+    float startAmount;//The initial shake amount (to determine percentage), set when ShakeCamera is called.
+    float startDuration;//The initial shake duration, set when ShakeCamera is called.
 
-//    public bool smooth;//Smooth rotation?
-//    public float smoothAmount = 5f;//Amount to smooth
+    bool isRunning = false; //Is the coroutine running right now?
 
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        ShakeCamera();
-//    }
+    public bool smooth = true;//Smooth rotation?
+    public float smoothAmount = 5f;//Amount to smooth
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        while (true)
-//        {
-//            Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;//A Vector3 to add to the Local Rotation
-//            rotationAmount.z = 0;//Don't change the Z; it looks funny.
+    // Start is called before the first frame update
+    void Start()
+    {
+        Character = GameObject.Find("Character").GetComponent<PlayerController>();
+        ShakeCamera();
+    }
 
-//            shakePercentage = shakeDuration / startDuration;//Used to set the amount of shake (% * startAmount).
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && !Character.moving)
+        {
+            StopAllCoroutines();
+            isRunning = false;
 
-//            //shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
-//            shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(RotateAngle, RotateSpeed, RotateBackSpeed));
+        }
 
+        if (Input.GetKeyDown(KeyCode.D) && !Character.moving)
+        {
+            StopAllCoroutines();
+            isRunning = false;
 
-//            if (smooth)
-//                transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
-//            else
-//                transform.localRotation = Quaternion.Euler(rotationAmount);//Set the local rotation the be the rotation amount.
-//        }
-//    }
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(-RotateAngle, RotateSpeed, RotateBackSpeed));
+        }
 
-//    void ShakeCamera()
-//    {
+        ShakeCamera();
+    }
 
-//        startAmount = shakeAmount;//Set default (start) values
-//        startDuration = shakeDuration;//Set default (start) values
+    void ShakeCamera()
+    {
+        startAmount = shakeAmount;//Set default (start) values
+        startDuration = shakeDuration;//Set default (start) values
 
-//        //if (!isRunning) StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
-//    }
+        if (!isRunning)
+            StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+    }
 
-//    //public void ShakeCamera(float amount, float duration)
-//    //{
+    IEnumerator Shake()
+    {
+        isRunning = true;
 
-//    //    shakeAmount += amount;//Add to the current amount.
-//    //    startAmount = shakeAmount;//Reset the start amount, to determine percentage.
-//    //    shakeDuration += duration;//Add to the current time.
-//    //    startDuration = shakeDuration;//Reset the start time.
+        while (shakeDuration >= 0)
+        {
+            Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;
+            rotationAmount.z = 0;
 
-//    //    if (!isRunning) StartCoroutine(Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
-//    //}
+            shakePercentage = shakeDuration / startDuration;
 
-
-//    //IEnumerator Shake()
-//    //{
-//    //    isRunning = true;
-
-//    //    while (true)
-//    //    {
-//    //        Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;//A Vector3 to add to the Local Rotation
-//    //        rotationAmount.z = 0;//Don't change the Z; it looks funny.
-
-//    //        shakePercentage = shakeDuration / startDuration;//Used to set the amount of shake (% * startAmount).
-
-//    //        //shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
-//    //        shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+            shakeAmount = startAmount * shakePercentage;
+            shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);
 
 
-//    //        if (smooth)
-//    //            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
-//    //        else
-//    //            transform.localRotation = Quaternion.Euler(rotationAmount);//Set the local rotation the be the rotation amount.
+            if (smooth)
+                transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
+            else
+                transform.localRotation = Quaternion.Euler(rotationAmount);
 
-//    //        yield return null;
-//    //    }
-//    //    transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
-//    //    isRunning = false;
-//    //}
-//}
+            yield return null;
+        }
+        transform.localRotation = Quaternion.identity;
+        isRunning = false;
+    }
+
+    IEnumerator Rotate(float Angle, float RotateSpeed, float RotateBackSpeed)
+    {
+        while (gameObject.transform.rotation != Quaternion.Euler(0, 90, Angle))
+        {
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, Angle), 1 / RotateSpeed);
+        }
+        yield return new WaitForSeconds(1 / RotateSpeed);
+
+        while (gameObject.transform.rotation != Quaternion.Euler(0, 90, 0))
+        {
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, 0), 1 / RotateBackSpeed);
+            yield return null;
+        }
+
+        gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        yield return null;
+    }
+}
