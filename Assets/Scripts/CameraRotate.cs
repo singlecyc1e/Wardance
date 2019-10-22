@@ -7,24 +7,25 @@ public class CameraRotate : MonoBehaviour
     public float RotateAngle = 5;
     public float RotateSpeed = 10;
     public float RotateBackSpeed = 15;
+    PlayerController Character;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Character = GameObject.Find("Character").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A)&& !Character.moving)
         {
             StopAllCoroutines();
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             StartCoroutine(RotateImage(RotateAngle, RotateSpeed, RotateBackSpeed));
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D)&&!Character.moving)
         {
             StopAllCoroutines();
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);

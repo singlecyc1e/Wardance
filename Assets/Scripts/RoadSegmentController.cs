@@ -31,7 +31,7 @@ public class RoadSegmentController : MonoBehaviour {
 
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag("LevelArea")) {
-            Destroy(gameObject);
+            Destroy(gameObject,1);
         }
     }
 }

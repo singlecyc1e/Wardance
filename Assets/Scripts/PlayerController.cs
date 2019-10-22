@@ -6,10 +6,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public float duration;
 
-    private bool moving;
+    public bool moving;
     private float startTime;
     private float targetZ;
     private Animator AnimeC;
+    public float distance = 4f;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 
             moving = true;
             startTime = Time.time;
-            targetZ = transform.position.z + 2.5f;
+            targetZ = transform.position.z + distance;
         } else if (Input.GetKeyDown(KeyCode.D)) {
             if(moving) return;
             AnimeC.ResetTrigger("RS");
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
             moving = true;
             startTime = Time.time;
-            targetZ = transform.position.z - 2.5f;
+            targetZ = transform.position.z - distance;
         }
         
         if(!moving) return;

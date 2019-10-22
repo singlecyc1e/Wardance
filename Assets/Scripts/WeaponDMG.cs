@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class WeaponDMG : MonoBehaviour
 {
+    PlayerController Charac;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Charac = GameObject.Find("Character").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -19,11 +20,14 @@ public class WeaponDMG : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if "move" in playercontroller is True
-        if (other.gameObject.tag == "Enemy") {
-            Destroy(other.gameObject.GetComponent<MeshRenderer>());
-            other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
-            Destroy(other.gameObject,1);// destroy the Enemy and play destroy deconstruction animation;
 
+        if (Charac.moving) {
+            if (other.gameObject.tag == "Enemy")
+            {
+                Destroy(other.gameObject.GetComponent<MeshRenderer>());
+                other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
+            }       
         } 
         //if "move" in playercontroller is False
         //gameover, pause the game
