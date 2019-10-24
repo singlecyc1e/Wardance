@@ -28,7 +28,18 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
             }       
-        } 
+        }
+        else
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                //pause game
+                Time.timeScale = 0;
+                GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+            
+
+            }
+        }
         //if "move" in playercontroller is False
         //gameover, pause the game
     }
