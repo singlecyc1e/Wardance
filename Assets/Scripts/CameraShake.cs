@@ -26,7 +26,7 @@ public class CameraShake : MonoBehaviour
     void Start()
     {
         Character = GameObject.Find("Character").GetComponent<PlayerController>();
-        ShakeCamera();
+        //ShakeCamera();
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class CameraShake : MonoBehaviour
             StartCoroutine(Rotate(-RotateAngle, RotateSpeed, RotateBackSpeed));
         }
 
-        ShakeCamera();
+        //ShakeCamera();
     }
 
     void ShakeCamera()
@@ -93,8 +93,9 @@ public class CameraShake : MonoBehaviour
         while (gameObject.transform.rotation != Quaternion.Euler(0, 90, Angle))
         {
             gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, Angle), 1 / RotateSpeed);
+            yield return null;
         }
-        yield return new WaitForSeconds(1 / RotateSpeed);
+        //yield return new WaitForSeconds(1 / RotateSpeed);
 
         while (gameObject.transform.rotation != Quaternion.Euler(0, 90, 0))
         {
