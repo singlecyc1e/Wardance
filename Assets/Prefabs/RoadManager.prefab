@@ -43,24 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926bd82b3fa606e4c8b583f2548fd00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  RoadInfos:
-  - spawnPoint: {fileID: 0}
-    endPoint: {fileID: 0}
-    preBuild:
-    - {fileID: 0}
-    - {fileID: 0}
-  - spawnPoint: {fileID: 0}
-    endPoint: {fileID: 0}
-    preBuild:
-    - {fileID: 0}
-    - {fileID: 0}
-  - spawnPoint: {fileID: 0}
-    endPoint: {fileID: 0}
-    preBuild:
-    - {fileID: 0}
-    - {fileID: 0}
-  roads:
-  - {fileID: 1592818069938744016, guid: 686559e70b47fc84c8ef37585142f739, type: 3}
-  - {fileID: 5006154564484389067, guid: 3d5bea56bcd5d834b9091fbe303012f3, type: 3}
-  - {fileID: 8827198553519241677, guid: be2d9ad0abb47a24989be6df547d382c, type: 3}
+  speed: 6
+  emptyRoad: {fileID: 1592818069938744016, guid: 686559e70b47fc84c8ef37585142f739,
+    type: 3}
+  enemyMapping:
+    m_keys: 0000000001000000020000000300000004000000
+    m_values:
+    - {fileID: 1026639388978727837, guid: 00a8fab59471de74f809a17c9a8de923, type: 3}
+    - {fileID: 6001277561618216141, guid: 2c9a152258f266d4f8b2e068a437364f, type: 3}
+    - {fileID: 6001277561618216141, guid: 081e426685b4dc042be3f9eefa650815, type: 3}
+    - {fileID: 6001277561618216141, guid: 0dce32a7d0e4d40478efaa3fdfd4e65e, type: 3}
+    - {fileID: 4455434664106101992, guid: 88da3c9e3465dc64795b057fdfa4db41, type: 3}

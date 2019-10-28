@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+[Serializable]
+public class EnemyMappingDictionary : SerializableDictionary<EnemyType, GameObject> { }
 
 [Serializable]
 public struct RoadInfo {
@@ -12,8 +16,14 @@ public struct RoadInfo {
 public class RoadManager : MonoBehaviour {
     public float speed;
 //    public RoadInfo[] RoadInfos;
-    public GameObject[] roads;
+    public GameObject emptyRoad;
 
+    public EnemyMappingDictionary enemyMapping;
+
+    public static List<EnemyType> noEnemy;
+    public static List<RoadSegmentInfo> roadInfo;
+    
+    
     public static RoadManager instance;
 
     private void Awake() {
@@ -23,11 +33,8 @@ public class RoadManager : MonoBehaviour {
             Debug.LogError("Try to load two RoadManager.");
         }
 
-//        foreach (var roadInfo in RoadInfos) {
-//            foreach (var road in roadInfo.preBuild) {
-//                road.GetComponent<RoadSegmentController>().Init(roadInfo.endPoint.position, speed);
-//            }
-//        }
+        noEnemy = new List<EnemyType>() {EnemyType.None, EnemyType.None, EnemyType.None};
+        roadInfo = DataUtility.GetLevelInfo(6);
     }
 
 //    public void GenerateNewRoadSegment() {
