@@ -39,7 +39,9 @@ public static partial class DataUtility {
     }
 
     private static List<RoadSegmentInfo> ParseLevelInfo(TextAsset info) {
-        var lines = info.text.Split('\n').Where(l => !string.IsNullOrEmpty(l)).ToArray();
+        var lines = info.text.
+            Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).
+            Where(l => !string.IsNullOrEmpty(l)).ToArray();
         var result = new List<RoadSegmentInfo>();
         for (int i = 0; i < lines.Length; i += 3) {
 
