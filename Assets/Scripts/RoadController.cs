@@ -6,27 +6,35 @@ using Random = UnityEngine.Random;
 
 public class RoadController : MonoBehaviour {
     public RoadInfo roadInfo;
-
+    public int roadNum; 
+    
+    private int roadIndex;
     private RoadManager roadManager;
 
     private void Start() {
         roadManager = RoadManager.instance;
+        roadIndex = 0;
         
         for (var i = 0; i < roadInfo.preBuild.Length; ++i) {
             if (i == roadInfo.preBuild.Length - 1) {
                 roadInfo.preBuild[i].GetComponent<RoadSegmentController>().
-                    Init(roadInfo.endPoint.position, roadManager.speed, this);
+                    Init(roadInfo.endPoint.position, roadManager.speed, RoadManager.noEnemy, this);
             } else {
                 roadInfo.preBuild[i].GetComponent<RoadSegmentController>().
-                    Init(roadInfo.endPoint.position, roadManager.speed, this, true);
+                    Init(roadInfo.endPoint.position, roadManager.speed, RoadManager.noEnemy,this, true);
             }
         }
     }
     
     public void GenerateNewRoadSegment() {
-        var roads = roadManager.roads;
+//        var road = roadManager.emptyRoad;
         
-        var road = Instantiate(roads[Random.Range(0, roads.Length)], roadInfo.spawnPoint.position, Quaternion.identity, transform);
-        road.GetComponent<RoadSegmentController>().Init(roadInfo.endPoint.position, roadManager.speed, this);
+        var road = Instantiate(roadManager.emptyRoad, roadInfo.spawnPoint.position, Quaternion.identity, transform);
+        road.GetComponent<RoadSegmentController>().Init
+            (roadInfo.endPoint.position, 
+            roadManager.speed, 
+            RoadManager.roadInfo[roadIndex].GetEnemyTypesAt(roadNum), 
+            this);
+        ++roadIndex;
     }
 }

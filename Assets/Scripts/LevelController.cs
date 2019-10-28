@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start() {
-        var levelInfo = DataUtility.GetLevelInfo(1);
-        
-    }
+public class LevelController : MonoBehaviour {
+    
 
-    // Update is called once per frame
-    void Update()
-    {
+    public static LevelController instance;
+    
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Debug.LogError("Try to load two LevelManager.");
+        }
+        
         
     }
 }

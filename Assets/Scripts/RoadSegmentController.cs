@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class RoadSegmentController : MonoBehaviour {
+    public Transform[] spawnPoints;
 
     private float speed;
     private Vector3 target;
@@ -9,12 +12,27 @@ public class RoadSegmentController : MonoBehaviour {
     private bool prebuild;
     private RoadController roadController;
 
-    public void Init(Vector3 newTarget, float newSpeed, RoadController newRoadController, bool isPrebuild = false) {
+    public void Init(Vector3 newTarget, float newSpeed, List<EnemyType> enemy, RoadController newRoadController, bool isPrebuild = false) {
         roadController = newRoadController;
         target = newTarget;
         speed = newSpeed;
         prebuild = isPrebuild;
+        
+        SpawnEnemy(enemy);
+        
         initialized = true;
+    }
+
+    private void SpawnEnemy(List<EnemyType> enemy) {
+        if (spawnPoints.Length != enemy.Count) {
+            
+            return;
+        }
+
+        for (int i = 0; i < spawnPoints.Length; i++) {
+            var enemyObject = RoadManager.instance.enemyMapping[enemy[i]];
+            Instantiate(enemyObject, spawnPoints[i].position, Quaternion.identity, transform);
+        }
     }
     
     private void Update() {

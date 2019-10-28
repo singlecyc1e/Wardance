@@ -5,7 +5,11 @@ using System.Linq;
 using UnityEngine;
 
 public enum EnemyType {
-    None
+    None,
+    Regular,
+    Spear,
+    HeavyArmor,
+    Block
 }
 
 public struct RoadSegmentInfo {
@@ -28,14 +32,14 @@ public struct RoadSegmentInfo {
 }
 
 public static partial class DataUtility {
-    public const string levelResourcesPath = "Levels/";
+    public const string LevelResourcesPath = "Levels/";
 
     private static TextAsset ReadLevelResource(int level) {
-        return Resources.Load<TextAsset>(levelResourcesPath + "Level" + level);
+        return Resources.Load<TextAsset>(LevelResourcesPath + "Level" + level);
     }
 
     private static List<RoadSegmentInfo> ParseLevelInfo(TextAsset info) {
-        var lines = info.text.Split('\n').Where(l => l != "").ToArray();
+        var lines = info.text.Split('\n').Where(l => !string.IsNullOrEmpty(l)).ToArray();
         var result = new List<RoadSegmentInfo>();
         for (int i = 0; i < lines.Length; i += 3) {
 
