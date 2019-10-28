@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public float RotateAngle = 5;
-    public float RotateSpeed = 10;
-    public float RotateBackSpeed = 15;
+    public float ShakeAngle = 0.3f;
+    public float ShakeSpeed = 1;
+
+    public float SlashAngle = 10;
+    public float SlashSpeed = 1.5f;
+
     PlayerController Character;
 
-    public float shakeAmount = 1;//The amount to shake this frame.
-    public float shakeDuration = 1;//The duration this frame.
+    bool isRotating = false;
 
-    //Readonly values...
+    //Shake public variables
+    float shakeAmount = 1;//The amount to shake this frame.
+    float shakeDuration = 1;//The duration this frame.
+    bool smooth = true;//Smooth rotation?
+    float smoothAmount = 5f;//Amount to smooth
+
+    //Shake readonly values...
     float shakePercentage;//A percentage (0-1) representing the amount of shake to be applied when setting rotation.
     float startAmount;//The initial shake amount (to determine percentage), set when ShakeCamera is called.
     float startDuration;//The initial shake duration, set when ShakeCamera is called.
-
     bool isRunning = false; //Is the coroutine running right now?
-
-    public bool smooth = true;//Smooth rotation?
-    public float smoothAmount = 5f;//Amount to smooth
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +42,7 @@ public class CameraShake : MonoBehaviour
             isRunning = false;
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(RotateAngle, RotateSpeed, RotateBackSpeed));
+            StartCoroutine(Rotate(SlashAngle, SlashSpeed / 10, false));
         }
 
         if (Input.GetKeyDown(KeyCode.D) && !Character.moving)
@@ -47,10 +51,14 @@ public class CameraShake : MonoBehaviour
             isRunning = false;
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(-RotateAngle, RotateSpeed, RotateBackSpeed));
+            StartCoroutine(Rotate(-SlashAngle, SlashSpeed / 5, false));
         }
 
-        //ShakeCamera();
+        if(!isRotating)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(ShakeAngle, ShakeSpeed / 10, true));
+        }
     }
 
     void ShakeCamera()
@@ -88,22 +96,39 @@ public class CameraShake : MonoBehaviour
         isRunning = false;
     }
 
-    IEnumerator Rotate(float Angle, float RotateSpeed, float RotateBackSpeed)
+    IEnumerator Rotate(float Angle, float RotateSpeed, bool ShakeMode)
     {
+        isRotating = true;
         while (gameObject.transform.rotation != Quaternion.Euler(0, 90, Angle))
         {
-            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, Angle), 1 / RotateSpeed);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, Angle), RotateSpeed);
             yield return null;
         }
         //yield return new WaitForSeconds(1 / RotateSpeed);
 
         while (gameObject.transform.rotation != Quaternion.Euler(0, 90, 0))
         {
-            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, 0), 1 / RotateBackSpeed);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, 0), RotateSpeed);
             yield return null;
         }
 
+        if (ShakeMode)
+        {
+            while (gameObject.transform.rotation != Quaternion.Euler(0, 90, -Angle))
+            {
+                gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, -Angle), RotateSpeed);
+                yield return null;
+            }
+
+            while (gameObject.transform.rotation != Quaternion.Euler(0, 90, 0))
+            {
+                gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, 0), RotateSpeed);
+                yield return null;
+            }
+        }
+
         gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        isRotating = false;
         yield return null;
     }
 }

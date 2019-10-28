@@ -1124,13 +1124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85af6a6f76ec1924e81f48a2327c7505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateAngle: 10
-  RotateSpeed: 2
-  RotateBackSpeed: 5
-  shakeAmount: 2
-  shakeDuration: 1
-  smooth: 1
-  smoothAmount: 5
+  ShakeAngle: 0.3
+  ShakeSpeed: 1
+  SlashAngle: 10
+  SlashSpeed: 1.5
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
