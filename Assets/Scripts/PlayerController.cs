@@ -14,14 +14,9 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
-//        AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+        AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-//        if (other.CompareTag("RoadTrigger")) {
-//            RoadManager.instance.GenerateNewRoadSegment();
-//        }
-    }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
