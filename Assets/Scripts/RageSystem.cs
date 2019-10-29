@@ -10,12 +10,19 @@ public class RageSystem : MonoBehaviour
     public bool RageState = false;
     public float LastingTime = 10f;
     public Text RageText;
+    public static RageSystem instance;
 
     private GameObject Sword;
     private GameObject Sword2;
     private GameObject rageSowrd;
     private GameObject rageSowrd2;
-
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     private void Start()
     {
         Sword = GameObject.Find("normalsword").gameObject;

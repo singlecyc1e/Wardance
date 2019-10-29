@@ -16,6 +16,7 @@ public class DeathMenu : MonoBehaviour
         this.transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+        WeaponDMG.instance.killscore = 0;
     }
 
     public void Quit()

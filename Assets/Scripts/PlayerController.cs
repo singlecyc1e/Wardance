@@ -11,6 +11,15 @@ public class PlayerController : MonoBehaviour {
     private float targetZ;
     private Animator AnimeC;
     public float distance = 4f;
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
