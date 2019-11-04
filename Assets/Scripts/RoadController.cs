@@ -8,12 +8,12 @@ public class RoadController : MonoBehaviour {
     public RoadInfo roadInfo;
     public int roadNum; 
     
-    private int roadIndex;
+//    private int roadIndex;
     private RoadManager roadManager;
 
     private void Start() {
         roadManager = RoadManager.instance;
-        roadIndex = 0;
+//        roadIndex = 0;
         
         for (var i = 0; i < roadInfo.preBuild.Length; ++i) {
             if (i == roadInfo.preBuild.Length - 1) {
@@ -33,8 +33,8 @@ public class RoadController : MonoBehaviour {
         road.GetComponent<RoadSegmentController>().Init
             (roadInfo.endPoint.position, 
             roadManager.speed, 
-            RoadManager.roadInfo[roadIndex].GetEnemyTypesAt(roadNum), 
+            RoadManager.instance.GetRoadSegment().GetEnemyTypesAt(roadNum), 
             this);
-        ++roadIndex;
+//        ++roadIndex;
     }
 }
