@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-   
         if(!moving) return;
         
         var t = (Time.time - startTime) / duration;

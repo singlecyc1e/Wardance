@@ -61,6 +61,11 @@ public class CameraShake : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     void ShakeCamera()
     {
         startAmount = shakeAmount;//Set default (start) values
