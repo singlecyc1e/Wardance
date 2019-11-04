@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.A) && transform.position.z < distance) {
-            if(moving) return;
+            if (moving) return;
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("RS");
             AnimeC.SetTrigger("LS");
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
             startTime = Time.time;
             targetZ = transform.position.z + distance;
         } else if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -distance) {
-            if(moving) return;
+            if (moving) return;
             AnimeC.ResetTrigger("RS");
             AnimeC.ResetTrigger("LS");
             AnimeC.SetTrigger("RS");
@@ -47,7 +47,11 @@ public class PlayerController : MonoBehaviour {
             startTime = Time.time;
             targetZ = transform.position.z - distance;
         }
-        
+    }
+
+    private void FixedUpdate()
+    {
+   
         if(!moving) return;
         
         var t = (Time.time - startTime) / duration;
