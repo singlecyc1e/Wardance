@@ -28,30 +28,16 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.A) && transform.position.z < distance) {
-            if (moving) return;
-            AnimeC.ResetTrigger("LS");
-            AnimeC.ResetTrigger("RS");
-            AnimeC.SetTrigger("LS");
-
-            moving = true;
-            startTime = Time.time;
-            targetZ = transform.position.z + distance;
-        } else if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -distance) {
-            if (moving) return;
-            AnimeC.ResetTrigger("RS");
-            AnimeC.ResetTrigger("LS");
-            AnimeC.SetTrigger("RS");
-
-            moving = true;
-            startTime = Time.time;
-            targetZ = transform.position.z - distance;
+        
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A)) {
+            OnLeftSwipe();
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            OnRightSwipe();
         }
-    }
+#endif
 
-    private void FixedUpdate()
-    {
-        if(!moving) return;
+        if (!moving) return;
         
         var t = (Time.time - startTime) / duration;
         var position = transform.position;
@@ -65,5 +51,29 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void OnLeftSwipe() {
+        if (!(transform.position.z < distance)) return;
+        if(moving) return;
+        
+        AnimeC.ResetTrigger("LS");
+        AnimeC.ResetTrigger("RS");
+        AnimeC.SetTrigger("LS");
 
+        moving = true;
+        startTime = Time.time;
+        targetZ = transform.position.z + distance;
+    }
+    
+    public void OnRightSwipe() {
+        if (!(transform.position.z > -distance)) return;
+        if(moving) return;
+        
+        AnimeC.ResetTrigger("RS");
+        AnimeC.ResetTrigger("LS");
+        AnimeC.SetTrigger("RS");
+
+        moving = true;
+        startTime = Time.time;
+        targetZ = transform.position.z - distance;
+    }
 }

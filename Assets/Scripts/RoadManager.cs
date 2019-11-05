@@ -22,7 +22,8 @@ public class RoadManager : MonoBehaviour {
 
     public static List<EnemyType> noEnemy;
     public static List<RoadSegmentInfo> roadInfo;
-    
+
+    private int roadIndex;
     
     public static RoadManager instance;
 
@@ -35,6 +36,16 @@ public class RoadManager : MonoBehaviour {
 
         noEnemy = new List<EnemyType>() {EnemyType.None, EnemyType.None, EnemyType.None};
         roadInfo = DataUtility.GetLevelInfo(6);
+        roadIndex = 0;
+        InvokeRepeating(nameof(ShuffleIndex), 2f, 2f);
+    }
+
+    private void ShuffleIndex() {
+        roadIndex = Random.Range(0, roadInfo.Count);
+    }
+
+    public RoadSegmentInfo GetRoadSegment() {
+        return roadInfo[roadIndex];
     }
 
 //    public void GenerateNewRoadSegment() {
