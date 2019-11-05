@@ -28,7 +28,16 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
-        if(!moving) return;
+        
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A)) {
+            OnLeftSwipe();
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            OnRightSwipe();
+        }
+#endif
+
+        if (!moving) return;
         
         var t = (Time.time - startTime) / duration;
         var position = transform.position;
