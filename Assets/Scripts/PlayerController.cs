@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
-        
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A)) {
             OnLeftSwipe();
@@ -36,9 +35,11 @@ public class PlayerController : MonoBehaviour {
             OnRightSwipe();
         }
 #endif
+    }
 
+    private void FixedUpdate() {
         if (!moving) return;
-        
+
         var t = (Time.time - startTime) / duration;
         var position = transform.position;
         var newZ = Mathf.SmoothStep(position.z, targetZ, t);
