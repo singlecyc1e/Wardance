@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SwipeDirection {
+    None, Left, Right
+}
+
 public class PlayerController : MonoBehaviour {
     public float duration;
 
@@ -11,6 +15,10 @@ public class PlayerController : MonoBehaviour {
     private float targetZ;
     private Animator AnimeC;
     public float distance = 4f;
+
+//    private bool hasStashInput;
+    private SwipeDirection stashedDirection;
+    
     public static PlayerController instance;
 
     private void Awake()
@@ -49,12 +57,34 @@ public class PlayerController : MonoBehaviour {
         if (Mathf.Approximately(transform.position.z, targetZ)) {
             transform.position = new Vector3(position.x, position.y, targetZ);
             moving = false;
+            switch (stashedDirection) {
+                case SwipeDirection.None:
+                    return;
+                    break;
+                case SwipeDirection.Left:
+                    OnLeftSwipe();
+                    break;
+                case SwipeDirection.Right:
+                    OnRightSwipe();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
         }
+    }
+
+    private void ClearStash() {
+        stashedDirection = SwipeDirection.None;
     }
 
     public void OnLeftSwipe() {
         if (!(transform.position.z < distance)) return;
-        if(moving) return;
+        if (moving) {
+            stashedDirection = SwipeDirection.Left;
+            Invoke(nameof(ClearStash), 0.5f);
+            return;
+        }
         
         AnimeC.ResetTrigger("LS");
         AnimeC.ResetTrigger("RS");
@@ -67,7 +97,11 @@ public class PlayerController : MonoBehaviour {
     
     public void OnRightSwipe() {
         if (!(transform.position.z > -distance)) return;
-        if(moving) return;
+        if (moving) {
+            stashedDirection = SwipeDirection.Right;
+            Invoke(nameof(ClearStash), 0.5f);
+            return;
+        }
         
         AnimeC.ResetTrigger("RS");
         AnimeC.ResetTrigger("LS");
