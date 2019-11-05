@@ -2574,7 +2574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6605a2969f2732547a8d037708d6cb74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.6
+  duration: 0.4
   moving: 0
   distance: 5
 --- !u!4 &1699954459

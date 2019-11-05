@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         if (!(transform.position.z < distance)) return;
         if (moving) {
             stashedDirection = SwipeDirection.Left;
-            Invoke(nameof(ClearStash), 0.5f);
+            Invoke(nameof(ClearStash), 0.1f);
             return;
         }
         
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
         if (!(transform.position.z > -distance)) return;
         if (moving) {
             stashedDirection = SwipeDirection.Right;
-            Invoke(nameof(ClearStash), 0.5f);
+            Invoke(nameof(ClearStash), 0.1f);
             return;
         }
         
