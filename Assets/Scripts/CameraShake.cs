@@ -26,6 +26,8 @@ public class CameraShake : MonoBehaviour
     float startDuration;//The initial shake duration, set when ShakeCamera is called.
     bool isRunning = false; //Is the coroutine running right now?
 
+    private SwipeDirection stashedDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) && !Character.moving)
+        if ((Input.GetKeyDown(KeyCode.A) || stashedDirection == SwipeDirection.Left) && !Character.moving)
         {
             StopAllCoroutines();
             isRunning = false;
@@ -45,13 +47,13 @@ public class CameraShake : MonoBehaviour
             StartCoroutine(Rotate(SlashAngle, SlashSpeed / 10, false));
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && !Character.moving)
+        if ((Input.GetKeyDown(KeyCode.D) || stashedDirection == SwipeDirection.Right) && !Character.moving)
         {
             StopAllCoroutines();
             isRunning = false;
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(-SlashAngle, SlashSpeed / 5, false));
+            StartCoroutine(Rotate(-SlashAngle, SlashSpeed / 10, false));
         }
 
         if(!isRotating)
