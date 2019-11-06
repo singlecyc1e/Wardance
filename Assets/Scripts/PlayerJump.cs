@@ -12,10 +12,14 @@ public class PlayerJump : MonoBehaviour
     private float targetY;
     public float distance = 4f;
 
+    private Animator AnimeC;
+    private Vector3 OldPosition;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+        OldPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -28,6 +32,14 @@ public class PlayerJump : MonoBehaviour
             moving = true;
             startTime = Time.time;
             targetY = transform.position.y + distance;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            moving = false;
+            falling = false;
+
+            gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
         }
     }
 

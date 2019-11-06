@@ -10,6 +10,8 @@ public class CameraShake : MonoBehaviour
     public float SlashAngle = 10;
     public float SlashSpeed = 1.5f;
 
+    Quaternion TargetRotation;
+
     PlayerController Character;
 
     bool isRotating = false;
@@ -42,24 +44,37 @@ public class CameraShake : MonoBehaviour
         {
             StopAllCoroutines();
             isRunning = false;
+            TargetRotation = Quaternion.Euler(0, 90, SlashAngle);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(SlashAngle, SlashSpeed / 10, false));
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
         }
 
         if ((Input.GetKeyDown(KeyCode.D) || stashedDirection == SwipeDirection.Right) && !Character.moving)
         {
             StopAllCoroutines();
             isRunning = false;
+            TargetRotation = Quaternion.Euler(0, 90, -SlashAngle);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(-SlashAngle, SlashSpeed / 10, false));
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
         }
 
-        if(!isRotating)
+        if (Input.GetKeyDown(KeyCode.S) && !Character.moving && Character.transform.position.y > 1)
         {
+            StopAllCoroutines();
+            isRunning = false;
+            TargetRotation = Quaternion.Euler(30, 90, 0);
+
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(ShakeAngle, ShakeSpeed / 10, true));
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+        }
+
+        if (!isRotating)
+        {
+            TargetRotation = Quaternion.Euler(0, 90, ShakeAngle);
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(TargetRotation, ShakeSpeed / 10, true));
         }
     }
 
@@ -103,12 +118,13 @@ public class CameraShake : MonoBehaviour
         isRunning = false;
     }
 
-    IEnumerator Rotate(float Angle, float RotateSpeed, bool ShakeMode)
+    IEnumerator Rotate(Quaternion Rotation, float RotateSpeed, bool ShakeMode)
     {
         isRotating = true;
-        while (gameObject.transform.rotation != Quaternion.Euler(0, 90, Angle))
+        float Angle = Rotation.z;
+        while (gameObject.transform.rotation != Rotation)
         {
-            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(0, 90, Angle), RotateSpeed);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Rotation, RotateSpeed);
             yield return null;
         }
         //yield return new WaitForSeconds(1 / RotateSpeed);

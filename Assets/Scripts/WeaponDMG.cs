@@ -34,6 +34,18 @@ public class WeaponDMG : MonoBehaviour
                 RageSystem.instance.AddRageValue();
             }       
         }
+        else if (PlayerController.instance.slashing | RageSystem.instance.RageState)
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                killscore += 1;
+                UI_killscore.text = killscore.ToString() + "人斩";
+                Destroy(other.gameObject.GetComponent<MeshRenderer>());
+                other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
+                RageSystem.instance.AddRageValue();
+            }
+        }
         else
         {
             if (other.gameObject.tag == "Enemy")
