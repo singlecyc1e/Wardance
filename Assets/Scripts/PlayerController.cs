@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SwipeDirection {
+public enum SwipeDirection
+{
     None, Left, Right
 }
 enum PlayerCommand
@@ -12,7 +13,8 @@ enum PlayerCommand
     Leftswing = 1,
     Rightswing = 2
 }
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     public float duration;
 
     public bool moving;
@@ -28,9 +30,9 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 OldPosition;
 
-//    private bool hasStashInput;
+    //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
-    
+
     public static PlayerController instance;
 
     private void Awake()
@@ -48,57 +50,28 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    private void Update() {
+    private void Update()
+    {
 #if UNITY_EDITOR
 
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
             OnLeftSwipe();
-            
-        } else if (Input.GetKeyDown(KeyCode.D)) {
+
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
             OnRightSwipe();
-            
+
         }
 
-<<<<<<< Updated upstream
-        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-        {
-            OnDownSwipe();
-        }
-=======
->>>>>>> Stashed changes
+
 #endif
     }
 
-    private void FixedUpdate() {
-<<<<<<< Updated upstream
-        if (moving)
-        {
-            var t = (Time.time - startTime) / duration;
-            var position = transform.position;
-            var newZ = Mathf.SmoothStep(position.z, targetZ, t);
-            position = new Vector3(position.x, position.y, newZ);
-            transform.position = position;
+    private void FixedUpdate()
+    {
 
-            if (Mathf.Approximately(transform.position.z, targetZ))
-            {
-                transform.position = new Vector3(position.x, position.y, targetZ);
-                moving = false;
-                switch (stashedDirection)
-                {
-                    case SwipeDirection.None:
-                        return;
-                        break;
-                    case SwipeDirection.Left:
-                        OnLeftSwipe();
-                        break;
-                    case SwipeDirection.Right:
-                        OnRightSwipe();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-=======
         if (LastCommand != PlayerCommand.idle)
         {
             if (Time.time - LastCommandTime > 1f)
@@ -135,21 +108,23 @@ public class PlayerController : MonoBehaviour {
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
->>>>>>> Stashed changes
             }
         }
 
 
     }
 
-    private void ClearStash() {
+    private void ClearStash()
+    {
         stashedDirection = SwipeDirection.None;
     }
 
-    public void OnLeftSwipe() {
+    public void OnLeftSwipe()
+    {
         if (!(transform.position.z < distance)) return;
-        
-        if (moving) {
+
+        if (moving)
+        {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.1f);
             //StopCoroutine(IdleStateTimer());
@@ -172,7 +147,7 @@ public class PlayerController : MonoBehaviour {
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("RS");
             AnimeC.SetTrigger("LS");
-            
+
         }
 
         LastCommand = PlayerCommand.Leftswing;
@@ -182,11 +157,13 @@ public class PlayerController : MonoBehaviour {
         targetZ = transform.position.z + distance;
         //StartCoroutine(IdleStateTimer());
     }
-    
-    public void OnRightSwipe() {
+
+    public void OnRightSwipe()
+    {
         if (!(transform.position.z > -distance)) return;
 
-        if (moving) {
+        if (moving)
+        {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.1f);
             //StopCoroutine(IdleStateTimer());
@@ -201,7 +178,7 @@ public class PlayerController : MonoBehaviour {
             AnimeC.SetTrigger("Left to Right");
             //Debug.Log("R TO L");
         }
-        else 
+        else
         {
             AnimeC.SetBool("idle", false);
             AnimeC.ResetTrigger("Left to Right");
@@ -217,33 +194,28 @@ public class PlayerController : MonoBehaviour {
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
-<<<<<<< Updated upstream
 
-    public void OnDownSwipe()
-    {
-        if (slashing)
-            return;
+    //public void OnDownSwipe()
+    //{
+    //    if (slashing)
+    //        return;
 
-        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
+    //    gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
-        AnimeC.ResetTrigger("RS");
-        AnimeC.ResetTrigger("LS");
-        AnimeC.SetTrigger("DS");
+    //    AnimeC.ResetTrigger("RS");
+    //    AnimeC.ResetTrigger("LS");
+    //    AnimeC.SetTrigger("DS");
 
-        slashing = true;
-        startTime = Time.time;
-        targetZ = transform.position.z;
+    //    slashing = true;
+    //    startTime = Time.time;
+    //    targetZ = transform.position.z;
 
-        StartCoroutine(WaitForSlash());
-    }
+    //    StartCoroutine(WaitForSlash());
+    //}
 
-    IEnumerator WaitForSlash()
-    {
-        yield return new WaitForSeconds(0.25f);
-        slashing = false;
-    }
-=======
-    
-    
->>>>>>> Stashed changes
+    //IEnumerator WaitForSlash()
+    //{
+    //    yield return new WaitForSeconds(0.25f);
+    //    slashing = false;
+    //}
 }
