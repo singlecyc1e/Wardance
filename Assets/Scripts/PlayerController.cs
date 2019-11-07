@@ -6,7 +6,12 @@ using UnityEngine;
 public enum SwipeDirection {
     None, Left, Right
 }
-
+enum PlayerCommand
+{
+    idle = 0,
+    Leftswing = 1,
+    Rightswing = 2
+}
 public class PlayerController : MonoBehaviour {
     public float duration;
 
@@ -16,6 +21,10 @@ public class PlayerController : MonoBehaviour {
     private float targetZ;
     private Animator AnimeC;
     public float distance = 4f;
+    public bool idleTimeup;
+
+    private PlayerCommand LastCommand = PlayerCommand.idle;
+    private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
 
@@ -41,20 +50,27 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
 #if UNITY_EDITOR
+
         if (Input.GetKeyDown(KeyCode.A)) {
             OnLeftSwipe();
+            
         } else if (Input.GetKeyDown(KeyCode.D)) {
             OnRightSwipe();
+            
         }
 
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
         {
             OnDownSwipe();
         }
+=======
+>>>>>>> Stashed changes
 #endif
     }
 
     private void FixedUpdate() {
+<<<<<<< Updated upstream
         if (moving)
         {
             var t = (Time.time - startTime) / duration;
@@ -82,6 +98,44 @@ public class PlayerController : MonoBehaviour {
                         throw new ArgumentOutOfRangeException();
                 }
 
+=======
+        if (LastCommand != PlayerCommand.idle)
+        {
+            if (Time.time - LastCommandTime > 1f)
+            {
+                AnimeC.ResetTrigger("Left to Right");
+                AnimeC.ResetTrigger("Right to Left");
+                AnimeC.ResetTrigger("LS");
+                AnimeC.ResetTrigger("RS");
+                AnimeC.SetBool("idle", true);
+                LastCommand = PlayerCommand.idle;
+            }
+        }
+
+        if (!moving) return;
+
+        var t = (Time.time - startTime) / duration;
+        var position = transform.position;
+        var newZ = Mathf.SmoothStep(position.z, targetZ, t);
+        position = new Vector3(position.x, position.y, newZ);
+        transform.position = position;
+
+        if (Mathf.Approximately(transform.position.z, targetZ)) {
+            transform.position = new Vector3(position.x, position.y, targetZ);
+            moving = false;
+            switch (stashedDirection) {
+                case SwipeDirection.None:
+                    return;
+                    break;
+                case SwipeDirection.Left:
+                    OnLeftSwipe();
+                    break;
+                case SwipeDirection.Right:
+                    OnRightSwipe();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+>>>>>>> Stashed changes
             }
         }
 
@@ -94,37 +148,76 @@ public class PlayerController : MonoBehaviour {
 
     public void OnLeftSwipe() {
         if (!(transform.position.z < distance)) return;
+        
         if (moving) {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.1f);
+            //StopCoroutine(IdleStateTimer());
             return;
         }
-        
-        AnimeC.ResetTrigger("LS");
-        AnimeC.ResetTrigger("RS");
-        AnimeC.SetTrigger("LS");
 
+        //StopCoroutine(IdleStateTimer());
+        if (LastCommand == PlayerCommand.Rightswing)
+        {
+            AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("RS");
+            AnimeC.ResetTrigger("Left to Right");
+            AnimeC.SetTrigger("Right to Left");
+            //Debug.Log("R TO L");
+        }
+        else
+        {
+            AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("Right to Left");
+            AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("RS");
+            AnimeC.SetTrigger("LS");
+            
+        }
+
+        LastCommand = PlayerCommand.Leftswing;
+        LastCommandTime = Time.time;
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
+        //StartCoroutine(IdleStateTimer());
     }
     
     public void OnRightSwipe() {
         if (!(transform.position.z > -distance)) return;
+
         if (moving) {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.1f);
+            //StopCoroutine(IdleStateTimer());
             return;
         }
-        
-        AnimeC.ResetTrigger("RS");
-        AnimeC.ResetTrigger("LS");
-        AnimeC.SetTrigger("RS");
+        //StopCoroutine(IdleStateTimer());
+        if (LastCommand == PlayerCommand.Leftswing)
+        {
+            AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("Right to Left");
+            AnimeC.SetTrigger("Left to Right");
+            //Debug.Log("R TO L");
+        }
+        else 
+        {
+            AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("Left to Right");
+            AnimeC.ResetTrigger("RS");
+            AnimeC.ResetTrigger("LS");
+            AnimeC.SetTrigger("RS");
 
+        }
+
+        LastCommand = PlayerCommand.Rightswing;
+        LastCommandTime = Time.time;
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
+<<<<<<< Updated upstream
 
     public void OnDownSwipe()
     {
@@ -149,4 +242,8 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         slashing = false;
     }
+=======
+    
+    
+>>>>>>> Stashed changes
 }
