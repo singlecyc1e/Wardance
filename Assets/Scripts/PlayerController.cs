@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
+        if (Input.GetKeyDown(KeyCode.S))
         {
             OnDownSwipe();
         }
@@ -163,6 +163,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
+
+
         if (!(transform.position.z > -distance)) return;
 
         if (moving)
