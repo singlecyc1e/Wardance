@@ -7,6 +7,7 @@ public enum SwipeDirection
 {
     None, Left, Right
 }
+<<<<<<< HEAD
 enum PlayerCommand
 {
     idle = 0,
@@ -15,6 +16,10 @@ enum PlayerCommand
 }
 public class PlayerController : MonoBehaviour
 {
+=======
+
+public class PlayerController : MonoBehaviour {
+>>>>>>> brian_move
     public float duration;
 
     public bool moving;
@@ -23,10 +28,6 @@ public class PlayerController : MonoBehaviour
     private float targetZ;
     private Animator AnimeC;
     public float distance = 4f;
-    public bool idleTimeup;
-
-    private PlayerCommand LastCommand = PlayerCommand.idle;
-    private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
 
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
+<<<<<<< HEAD
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -60,10 +62,20 @@ public class PlayerController : MonoBehaviour
 
         }
         else if (Input.GetKeyDown(KeyCode.D))
+=======
+        if (Input.GetKeyDown(KeyCode.A)) {
+            OnLeftSwipe();
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            OnRightSwipe();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
+>>>>>>> brian_move
         {
             OnRightSwipe();
 
         }
+<<<<<<< HEAD
 
 
 #endif
@@ -108,6 +120,39 @@ public class PlayerController : MonoBehaviour
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+=======
+#endif
+    }
+
+    private void FixedUpdate() {
+        if (moving)
+        {
+            var t = (Time.time - startTime) / duration;
+            var position = transform.position;
+            var newZ = Mathf.SmoothStep(position.z, targetZ, t);
+            position = new Vector3(position.x, position.y, newZ);
+            transform.position = position;
+
+            if (Mathf.Approximately(transform.position.z, targetZ))
+            {
+                transform.position = new Vector3(position.x, position.y, targetZ);
+                moving = false;
+                switch (stashedDirection)
+                {
+                    case SwipeDirection.None:
+                        return;
+                        break;
+                    case SwipeDirection.Left:
+                        OnLeftSwipe();
+                        break;
+                    case SwipeDirection.Right:
+                        OnRightSwipe();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+>>>>>>> brian_move
             }
         }
 
@@ -122,15 +167,23 @@ public class PlayerController : MonoBehaviour
     public void OnLeftSwipe()
     {
         if (!(transform.position.z < distance)) return;
+<<<<<<< HEAD
 
         if (moving)
         {
+=======
+        if (moving) {
+>>>>>>> brian_move
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.1f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
+        
+        AnimeC.ResetTrigger("LS");
+        AnimeC.ResetTrigger("RS");
+        AnimeC.SetTrigger("LS");
 
+<<<<<<< HEAD
         //StopCoroutine(IdleStateTimer());
         if (LastCommand == PlayerCommand.Rightswing)
         {
@@ -152,23 +205,28 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Leftswing;
         LastCommandTime = Time.time;
+=======
+>>>>>>> brian_move
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
-        //StartCoroutine(IdleStateTimer());
     }
 
     public void OnRightSwipe()
     {
         if (!(transform.position.z > -distance)) return;
+<<<<<<< HEAD
 
         if (moving)
         {
+=======
+        if (moving) {
+>>>>>>> brian_move
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.1f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
+<<<<<<< HEAD
         //StopCoroutine(IdleStateTimer());
         if (LastCommand == PlayerCommand.Leftswing)
         {
@@ -187,9 +245,13 @@ public class PlayerController : MonoBehaviour
             AnimeC.SetTrigger("RS");
 
         }
+=======
+        
+        AnimeC.ResetTrigger("RS");
+        AnimeC.ResetTrigger("LS");
+        AnimeC.SetTrigger("RS");
+>>>>>>> brian_move
 
-        LastCommand = PlayerCommand.Rightswing;
-        LastCommandTime = Time.time;
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z - distance;
@@ -213,9 +275,17 @@ public class PlayerController : MonoBehaviour
     //    StartCoroutine(WaitForSlash());
     //}
 
+<<<<<<< HEAD
     //IEnumerator WaitForSlash()
     //{
     //    yield return new WaitForSeconds(0.25f);
     //    slashing = false;
     //}
+=======
+    IEnumerator WaitForSlash()
+    {
+        yield return new WaitForSeconds(0.25f);
+        slashing = false;
+    }
+>>>>>>> brian_move
 }
