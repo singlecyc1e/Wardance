@@ -13,7 +13,8 @@ public class LevelController : MonoBehaviour {
         } else {
             Debug.LogError("Try to load two LevelManager.");
         }
-        
-        
+
+        Application.targetFrameRate = 60;
+
     }
 }
