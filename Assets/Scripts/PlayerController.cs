@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
-            Invoke(nameof(ClearStash), 0.1f);
+            Invoke(nameof(ClearStash), 0.5f);
             //StopCoroutine(IdleStateTimer());
             return;
         }
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
         if (moving)
         {
             stashedDirection = SwipeDirection.Right;
-            Invoke(nameof(ClearStash), 0.1f);
+            Invoke(nameof(ClearStash), 0.5f);
             //StopCoroutine(IdleStateTimer());
             return;
         }

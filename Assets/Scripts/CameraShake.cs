@@ -44,7 +44,7 @@ public class CameraShake : MonoBehaviour
         {
             StopAllCoroutines();
             isRunning = false;
-            TargetRotation = Quaternion.Euler(0, 90, SlashAngle);
+            TargetRotation = Quaternion.Euler(0, 90, -SlashAngle);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
@@ -54,7 +54,7 @@ public class CameraShake : MonoBehaviour
         {
             StopAllCoroutines();
             isRunning = false;
-            TargetRotation = Quaternion.Euler(0, 90, -SlashAngle);
+            TargetRotation = Quaternion.Euler(0, 90, SlashAngle);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));

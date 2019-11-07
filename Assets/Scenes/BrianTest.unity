@@ -2626,7 +2626,7 @@ MonoBehaviour:
         m_CallState: 2
   Modify: 0
   Coordinate: 0
-  Multiplier: 1
+  Multiplier: 2
   onDelta:
     m_PersistentCalls:
       m_Calls: []
@@ -2686,7 +2686,7 @@ MonoBehaviour:
         m_CallState: 2
   Modify: 0
   Coordinate: 0
-  Multiplier: 1
+  Multiplier: 2
   onDelta:
     m_PersistentCalls:
       m_Calls: []
