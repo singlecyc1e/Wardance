@@ -65,13 +65,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
-//<<<<<<< Updated upstream
-//        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-//        {
-//            OnDownSwipe();
-//        }
-//=======
-//>>>>>>> Stashed changes
+        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
+        {
+            OnDownSwipe();
+        }
 #endif
     }
 
@@ -200,30 +197,29 @@ public class PlayerController : MonoBehaviour
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
-//<<<<<<< Updated upstream
 
-//    public void OnDownSwipe()
-//    {
-//        if (slashing)
-//            return;
+    public void OnDownSwipe()
+    {
+        if (slashing)
+            return;
 
-//        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
+        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
-//        AnimeC.ResetTrigger("RS");
-//        AnimeC.ResetTrigger("LS");
-//        AnimeC.SetTrigger("DS");
+        AnimeC.ResetTrigger("RS");
+        AnimeC.ResetTrigger("LS");
+        AnimeC.SetTrigger("DS");
 
-//        slashing = true;
-//        startTime = Time.time;
-//        targetZ = transform.position.z;
+        slashing = true;
+        startTime = Time.time;
+        targetZ = transform.position.z;
 
-//        StartCoroutine(WaitForSlash());
-//    }
+        StartCoroutine(WaitForSlash());
+    }
 
-//    IEnumerator WaitForSlash()
-//    {
-//        yield return new WaitForSeconds(0.25f);
-//        slashing = false;
-//    }
+    IEnumerator WaitForSlash()
+    {
+        yield return new WaitForSeconds(0.25f);
+        slashing = false;
+    }
 
 }
