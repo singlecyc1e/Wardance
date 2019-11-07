@@ -10,6 +10,8 @@ public class CameraShake : MonoBehaviour
     public float SlashAngle = 10;
     public float SlashSpeed = 1.5f;
 
+    public float AirAttackAngle = 30;
+
     Quaternion TargetRotation;
 
     PlayerController Character;
@@ -64,7 +66,7 @@ public class CameraShake : MonoBehaviour
         {
             StopAllCoroutines();
             isRunning = false;
-            TargetRotation = Quaternion.Euler(30, 90, 0);
+            TargetRotation = Quaternion.Euler(AirAttackAngle, 90, 0);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));

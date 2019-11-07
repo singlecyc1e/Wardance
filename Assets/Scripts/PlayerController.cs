@@ -207,8 +207,6 @@ public class PlayerController : MonoBehaviour
 
         gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
-        AnimeC.ResetTrigger("RS");
-        AnimeC.ResetTrigger("LS");
         AnimeC.SetTrigger("DS");
 
         slashing = true;
