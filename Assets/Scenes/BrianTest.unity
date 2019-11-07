@@ -2102,7 +2102,7 @@ Animator:
   m_GameObject: {fileID: 1392957558}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4b6b1a944dd2b14a819e1451a648213, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6f8409cd6de82ad448b95518ab0ba968, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2576,6 +2576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.5
   moving: 0
+  slashing: 0
   distance: 5
   idleTimeup: 0
 --- !u!4 &1699954459
@@ -2819,7 +2820,7 @@ Transform:
   m_GameObject: {fileID: 1704018280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.148, z: -1.19}
-  m_LocalScale: {x: 4.3, y: 1.22, z: 5.86}
+  m_LocalScale: {x: 4.3, y: 1.67, z: 5.86}
   m_Children: []
   m_Father: {fileID: 1392957559}
   m_RootOrder: 2
