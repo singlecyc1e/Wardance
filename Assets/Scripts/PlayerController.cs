@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public bool moving;
     public bool slashing;
+
     private float startTime;
     private float targetZ;
     private Animator AnimeC;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
 
+    public TimeController TimeManager;
     public static PlayerController instance;
 
     private void Awake()
@@ -65,13 +67,18 @@ public class PlayerController : MonoBehaviour
 
         }
 
-//<<<<<<< Updated upstream
-//        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-//        {
-//            OnDownSwipe();
-//        }
-//=======
-//>>>>>>> Stashed changes
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            TimeManager.BulletTime();
+
+        }
+        //<<<<<<< Updated upstream
+        //        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
+        //        {
+        //            OnDownSwipe();
+        //        }
+        //=======
+        //>>>>>>> Stashed changes
 #endif
     }
 
