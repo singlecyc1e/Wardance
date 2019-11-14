@@ -69,7 +69,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
+            if (WeaponDMG.instance.BulletTime)
+            {
+                WeaponDMG.instance.BulletTime = false;
+            }
+            else
+            {
+                WeaponDMG.instance.BulletTime = true;
+            }
             TimeManager.BulletTime();
+            
 
         }
         //<<<<<<< Updated upstream
