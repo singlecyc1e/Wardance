@@ -42,34 +42,19 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.A) || stashedDirection == SwipeDirection.Left) && !Character.moving)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            StopAllCoroutines();
-            isRunning = false;
-            TargetRotation = Quaternion.Euler(0, 90, -SlashAngle);
-
-            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+            CameraLeftSwipt();
         }
 
-        if ((Input.GetKeyDown(KeyCode.D) || stashedDirection == SwipeDirection.Right) && !Character.moving)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            StopAllCoroutines();
-            isRunning = false;
-            TargetRotation = Quaternion.Euler(0, 90, SlashAngle);
-
-            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+            CameraRightSwipe();
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && !Character.moving && Character.transform.position.y > 1)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            StopAllCoroutines();
-            isRunning = false;
-            TargetRotation = Quaternion.Euler(AirAttackAngle, 90, 0);
-
-            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+            CameraDownSwipe(); 
         }
 
         if (!isRotating)
@@ -83,6 +68,45 @@ public class CameraShake : MonoBehaviour
     private void FixedUpdate()
     {
         
+    }
+
+    public void CameraLeftSwipt()
+    {
+        if (!Character.moving)
+        {
+            StopAllCoroutines();
+            isRunning = false;
+            TargetRotation = Quaternion.Euler(0, 90, -SlashAngle);
+
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+        }
+    }
+
+    public void CameraRightSwipe()
+    {
+        if (!Character.moving)
+        {
+            StopAllCoroutines();
+            isRunning = false;
+            TargetRotation = Quaternion.Euler(0, 90, SlashAngle);
+
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+        }
+    }
+
+    public void CameraDownSwipe()
+    {
+        if (!Character.moving && Character.transform.position.y > 1)
+        {
+            StopAllCoroutines();
+            isRunning = false;
+            TargetRotation = Quaternion.Euler(AirAttackAngle, 90, 0);
+
+            gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+        }
     }
 
     void ShakeCamera()
