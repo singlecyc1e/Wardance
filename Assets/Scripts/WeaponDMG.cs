@@ -8,6 +8,7 @@ public class WeaponDMG : MonoBehaviour
     public Text UI_killscore; 
     public float killscore = 0;
     public static WeaponDMG instance;
+    public bool Alive = true;
     //public TimeController Timemanager;
     // Start is called before the first frame update
 
@@ -53,6 +54,7 @@ public class WeaponDMG : MonoBehaviour
                 //pause game
                 Time.timeScale = 0;
                 GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+                Alive = false;
                 
 
             }

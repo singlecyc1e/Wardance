@@ -9,8 +9,15 @@ public class TimeController : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale += (1/slowduration) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale,0f,1f);
+        if (WeaponDMG.instance.Alive)
+        {
+            Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     public void BulletTime()
