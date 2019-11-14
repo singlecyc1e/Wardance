@@ -23,6 +23,6 @@ public class TimeController : MonoBehaviour
     public void BulletTime()
     {
         Time.timeScale = slowfactor;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
+        Time.fixedDeltaTime = Time.timeScale * .01f;
     }
 }
