@@ -13,9 +13,10 @@ public class DeathMenu : MonoBehaviour
 
     public void Reset()
     {
+
         this.transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadScene(0);
-        Time.timeScale = 1f;
+        WeaponDMG.instance.Alive = true;
         WeaponDMG.instance.killscore = 0;
     }
 

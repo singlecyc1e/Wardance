@@ -8,6 +8,9 @@ public class WeaponDMG : MonoBehaviour
     public Text UI_killscore; 
     public float killscore = 0;
     public static WeaponDMG instance;
+    public bool Alive = true;
+    public TimeController timeManager;
+    //public TimeController Timemanager;
     // Start is called before the first frame update
 
     private void Awake()
@@ -18,11 +21,13 @@ public class WeaponDMG : MonoBehaviour
         }
     }
 
-
+    private void Start()
+    {
+        Alive = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         //if "move" in playercontroller is True
-
         if (PlayerController.instance.moving|RageSystem.instance.RageState) {
             if (other.gameObject.tag == "Enemy")
             {
@@ -32,6 +37,7 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
+                timeManager.BulletTime();
             }       
         }
         else if (PlayerController.instance.slashing | RageSystem.instance.RageState)
@@ -44,6 +50,7 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
+                timeManager.BulletTime();
             }
         }
         else
@@ -53,6 +60,7 @@ public class WeaponDMG : MonoBehaviour
                 //pause game
                 Time.timeScale = 0;
                 GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+                Alive = false;
                 
 
             }
