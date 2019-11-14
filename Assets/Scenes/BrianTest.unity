@@ -2885,6 +2885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_killscore: {fileID: 992915129}
   killscore: 0
+  Alive: 1
+  timeManager: {fileID: 770220704}
 --- !u!65 &1704018283
 BoxCollider:
   m_ObjectHideFlags: 0
