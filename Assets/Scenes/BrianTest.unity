@@ -2050,6 +2050,7 @@ MonoBehaviour:
   ShakeSpeed: 1
   SlashAngle: 10
   SlashSpeed: 1.5
+  AirAttackAngle: 30
 --- !u!81 &1168166141
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2778,7 +2779,7 @@ MonoBehaviour:
   duration: 0.65
   moving: 0
   falling: 0
-  distance: 4
+  distance: 3
 --- !u!1 &1700890416
 GameObject:
   m_ObjectHideFlags: 0
