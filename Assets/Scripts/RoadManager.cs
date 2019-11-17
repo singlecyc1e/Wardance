@@ -15,14 +15,13 @@ public struct RoadInfo {
 
 public class RoadManager : MonoBehaviour {
     public float speed;
-//    public RoadInfo[] RoadInfos;
     public GameObject emptyRoad;
-
     public EnemyMappingDictionary enemyMapping;
+    public bool willSpawnBoss;
 
     public static List<EnemyType> noEnemy;
-    public static List<RoadSegmentInfo> roadInfo;
-
+    
+    private static List<RoadSegmentInfo> roadInfo;
     private int roadIndex;
     
     public static RoadManager instance;
@@ -35,7 +34,7 @@ public class RoadManager : MonoBehaviour {
         }
 
         noEnemy = new List<EnemyType>() {EnemyType.None, EnemyType.None, EnemyType.None};
-        roadInfo = DataUtility.GetLevelInfo(6);
+        roadInfo = DataUtility.GetLevelInfo(1);
         roadIndex = 0;
         InvokeRepeating(nameof(ShuffleIndex), 2f, 2f);
     }
