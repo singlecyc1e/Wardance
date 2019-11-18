@@ -15,6 +15,7 @@ public class LevelController : MonoBehaviour {
         }
 
         Application.targetFrameRate = 60;
-
     }
+    
+    
 }

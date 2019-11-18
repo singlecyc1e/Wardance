@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,8 @@ public class RoadManager : MonoBehaviour {
     public GameObject emptyRoad;
     public EnemyMappingDictionary enemyMapping;
     public bool willSpawnBoss;
+    public float speedReduceDuration;
+    public float speedReduceDelay;
 
     public static List<EnemyType> noEnemy;
     
@@ -44,7 +47,29 @@ public class RoadManager : MonoBehaviour {
     }
 
     public RoadSegmentInfo GetRoadSegment() {
+        var result = roadInfo[roadIndex];
+        if (result.GetEnemyTypesAt(1)[1] == EnemyType.Boss) {
+            StartCoroutine(ReduceSpeed(speedReduceDelay));
+        }
         return roadInfo[roadIndex];
+    }
+
+    public IEnumerator ReduceSpeed(float delay) {
+        yield return new WaitForSeconds(delay);
+        float fadeSpeed = speed / speedReduceDuration;
+//        float audioFadeSpeed = Mathf.Abs (AudioListener.volume - (PlayerPrefs.GetFloat ("volume") - finalAlpha)) / fadeDuration;
+
+        while (!Mathf.Approximately (speed, 0f))
+        {
+            speed = Mathf.MoveTowards (speed, 0f, fadeSpeed * Time.deltaTime);
+//            AudioListener.volume = Mathf.MoveTowards (AudioListener.volume, (PlayerPrefs.GetFloat ("volume") - finalAlpha), audioFadeSpeed * Time.deltaTime);
+//			Debug.Log (faderCanvasGroup.alpha);
+
+            yield return null;
+        }
+//		Debug.Log ("fade end" + Time.time);
+
+//        isFading = false;
     }
 
 //    public void GenerateNewRoadSegment() {
