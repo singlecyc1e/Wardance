@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeCounter : MonoBehaviour {
+public class SwipeKillController : MonoBehaviour {
     private bool willCount = false;
     private int counter;
     

@@ -7,6 +7,7 @@ TagManager:
   - RoadTrigger
   - Enemy
   - LevelArea
+  - SwipeTrigger
   layers:
   - Default
   - TransparentFX
