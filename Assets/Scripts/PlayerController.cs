@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             OnDownSwipe();
         }
-#endif
+//#endif
     }
 
     private void FixedUpdate()

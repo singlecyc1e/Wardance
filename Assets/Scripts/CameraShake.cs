@@ -72,7 +72,12 @@ public class CameraShake : MonoBehaviour
 
     public void CameraLeftSwipt()
     {
-        if (!Character.moving)
+        if (Character.moving || Character.transform.position.z >= 5)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
@@ -85,7 +90,12 @@ public class CameraShake : MonoBehaviour
 
     public void CameraRightSwipe()
     {
-        if (!Character.moving)
+        if (Character.moving || Character.transform.position.z <= -5)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
@@ -98,7 +108,12 @@ public class CameraShake : MonoBehaviour
 
     public void CameraDownSwipe()
     {
-        if (!Character.moving && Character.transform.position.y > 1)
+        if (Character.moving || Character.transform.position.y < 1)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
