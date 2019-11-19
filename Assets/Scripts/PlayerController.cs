@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDownSwipe()
     {
-        if (slashing)
+        if (slashing || gameObject.transform.position.y < 1.0f)
             return;
 
         gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
