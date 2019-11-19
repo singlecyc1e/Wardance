@@ -38,7 +38,7 @@ public class PlayerJump : MonoBehaviour
 
     public void JumpUpSwipe()
     {
-        if (moving) return;
+        if (moving || transform.position.y > 1) return;
 
         moving = true;
         startTime = Time.time;
