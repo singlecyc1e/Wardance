@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             TimeManager.BulletTime();
-
         }
 
         
