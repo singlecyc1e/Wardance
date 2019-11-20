@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!(transform.position.z < distance)) return;
 
-        if (movinginput)
+        if (moving)
         {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.5f);
@@ -176,8 +176,8 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Leftswing;
         LastCommandTime = Time.time;
-        StartCoroutine(Inputdelay());
-        movinginput = true;
+        //StartCoroutine(Inputdelay());
+        moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
         //StartCoroutine(IdleStateTimer());
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!(transform.position.z > -distance)) return;
 
-        if (movinginput)
+        if (moving)
         {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.5f);
@@ -215,17 +215,17 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Rightswing;
         LastCommandTime = Time.time;
-        StartCoroutine(Inputdelay());
-        movinginput = true;
+        //StartCoroutine(Inputdelay());
+        moving = true;
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
 
-    IEnumerator Inputdelay()
-    {
-        yield return new WaitForSeconds(.1f);
-        moving = true;
-    }
+    //IEnumerator Inputdelay()
+    //{
+    //    yield return new WaitForSeconds(.1f);
+    //    moving = true;
+    //}
 //<<<<<<< Updated upstream
 
 //    public void OnDownSwipe()
