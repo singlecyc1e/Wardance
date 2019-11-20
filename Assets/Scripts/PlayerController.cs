@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public bool moving;
     public bool slashing;
+    public bool movinginput = false;
 
     private float startTime;
     private float targetZ;
@@ -118,6 +119,7 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Approximately(transform.position.z, targetZ)) {
             transform.position = new Vector3(position.x, position.y, targetZ);
             moving = false;
+            movinginput = false;
             switch (stashedDirection) {
                 case SwipeDirection.None:
                     return;
@@ -145,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!(transform.position.z < distance)) return;
 
-        if (moving)
+        if (movinginput)
         {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.5f);
@@ -174,7 +176,8 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Leftswing;
         LastCommandTime = Time.time;
-        moving = true;
+        StartCoroutine(Inputdelay());
+        movinginput = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
         //StartCoroutine(IdleStateTimer());
@@ -184,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!(transform.position.z > -distance)) return;
 
-        if (moving)
+        if (movinginput)
         {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.5f);
@@ -212,9 +215,16 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Rightswing;
         LastCommandTime = Time.time;
-        moving = true;
+        StartCoroutine(Inputdelay());
+        movinginput = true;
         startTime = Time.time;
         targetZ = transform.position.z - distance;
+    }
+
+    IEnumerator Inputdelay()
+    {
+        yield return new WaitForSeconds(.1f);
+        moving = true;
     }
 //<<<<<<< Updated upstream
 
