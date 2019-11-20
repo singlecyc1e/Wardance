@@ -25,15 +25,15 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    JumpUpSwipe();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            JumpUpSwipe();
+        }
 
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    JumpDownSwipe();
-        //}
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            JumpDownSwipe();
+        }
     }
 
     public void JumpUpSwipe()

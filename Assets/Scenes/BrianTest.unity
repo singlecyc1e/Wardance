@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3016,6 +3016,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1168166140}
+        m_MethodName: CameraLeftSwipt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Modify: 0
   Coordinate: 0
   Multiplier: 2
@@ -3067,6 +3078,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1699954458}
         m_MethodName: OnRightSwipe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1168166140}
+        m_MethodName: CameraRightSwipe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3141,6 +3163,28 @@ MonoBehaviour:
   onFinger:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1699954462}
+        m_MethodName: JumpDownSwipe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1168166140}
+        m_MethodName: CameraDownSwipe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1699954458}
         m_MethodName: OnDownSwipe
         m_Mode: 1
@@ -3201,8 +3245,8 @@ MonoBehaviour:
   onFinger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1699954458}
-        m_MethodName: OnUpSwipe
+      - m_Target: {fileID: 1699954462}
+        m_MethodName: JumpUpSwipe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

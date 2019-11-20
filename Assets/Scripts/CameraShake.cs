@@ -42,20 +42,20 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    CameraLeftSwipt();
-        //}
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            CameraLeftSwipt();
+        }
 
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    CameraRightSwipe();
-        //}
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            CameraRightSwipe();
+        }
 
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    CameraDownSwipe(); 
-        //}
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            CameraDownSwipe(); 
+        }
 
         if (!isRotating)
         {
