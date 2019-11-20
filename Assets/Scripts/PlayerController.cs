@@ -145,8 +145,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftSwipe()
     {
-        if (!(transform.position.z < distance)) return;
-
+        if ((transform.position.z > OldPosition.z)) return;
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
@@ -185,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        if (!(transform.position.z > -distance)) return;
+        if (!(transform.position.z > OldPosition.z-distance)) return;
 
         if (moving)
         {
