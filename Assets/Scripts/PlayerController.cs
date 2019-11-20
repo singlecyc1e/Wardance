@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -89,7 +89,11 @@ public class PlayerController : MonoBehaviour
         //        }
         //=======
         //>>>>>>> Stashed changes
-#endif
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnDownSwipe();
+        }
+//#endif
     }
 
     private void FixedUpdate()
@@ -184,7 +188,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
+<<<<<<< HEAD
         if (!(transform.position.z > OldPosition.z-distance)) return;
+=======
+
+
+        if (!(transform.position.z > -distance)) return;
+>>>>>>> Sicilia_Test
 
         if (moving)
         {
@@ -219,6 +229,7 @@ public class PlayerController : MonoBehaviour
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
+<<<<<<< HEAD
 
     //IEnumerator Inputdelay()
     //{
@@ -226,29 +237,29 @@ public class PlayerController : MonoBehaviour
     //    moving = true;
     //}
 //<<<<<<< Updated upstream
+=======
+>>>>>>> Sicilia_Test
 
-//    public void OnDownSwipe()
-//    {
-//        if (slashing)
-//            return;
+    public void OnDownSwipe()
+    {
+        if (slashing || gameObject.transform.position.y < 1.0f)
+            return;
 
-//        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
+        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
-//        AnimeC.ResetTrigger("RS");
-//        AnimeC.ResetTrigger("LS");
-//        AnimeC.SetTrigger("DS");
+        AnimeC.SetTrigger("DS");
 
-//        slashing = true;
-//        startTime = Time.time;
-//        targetZ = transform.position.z;
+        slashing = true;
+        startTime = Time.time;
+        targetZ = transform.position.z;
 
-//        StartCoroutine(WaitForSlash());
-//    }
+        StartCoroutine(WaitForSlash());
+    }
 
-//    IEnumerator WaitForSlash()
-//    {
-//        yield return new WaitForSeconds(0.25f);
-//        slashing = false;
-//    }
+    IEnumerator WaitForSlash()
+    {
+        yield return new WaitForSeconds(0.25f);
+        slashing = false;
+    }
 
 }

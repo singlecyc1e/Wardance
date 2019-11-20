@@ -27,20 +27,30 @@ public class PlayerJump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (moving) return;
-
-            moving = true;
-            startTime = Time.time;
-            targetY = transform.position.y + distance;
+            JumpUpSwipe();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            moving = false;
-            falling = false;
-
-            gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
+            JumpDownSwipe();
         }
+    }
+
+    public void JumpUpSwipe()
+    {
+        if (moving || transform.position.y > 1) return;
+
+        moving = true;
+        startTime = Time.time;
+        targetY = transform.position.y + distance;
+    }
+
+    public void JumpDownSwipe()
+    {
+        moving = false;
+        falling = false;
+
+        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
     }
 
     private void FixedUpdate()
