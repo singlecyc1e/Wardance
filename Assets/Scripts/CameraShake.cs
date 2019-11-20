@@ -120,7 +120,7 @@ public class CameraShake : MonoBehaviour
             TargetRotation = Quaternion.Euler(AirAttackAngle, 90, 0);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 5, false));
         }
     }
 
