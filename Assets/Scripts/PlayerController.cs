@@ -82,13 +82,7 @@ public class PlayerController : MonoBehaviour
             
 
         }
-        //<<<<<<< Updated upstream
-        //        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-        //        {
-        //            OnDownSwipe();
-        //        }
-        //=======
-        //>>>>>>> Stashed changes
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             OnDownSwipe();
@@ -154,11 +148,10 @@ public class PlayerController : MonoBehaviour
         {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
 
-        //StopCoroutine(IdleStateTimer());
+
         if (LastCommand == PlayerCommand.Rightswing)
         {
             AnimeC.SetBool("idle", false);
@@ -179,38 +172,28 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Leftswing;
         LastCommandTime = Time.time;
-        //StartCoroutine(Inputdelay());
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
-        //StartCoroutine(IdleStateTimer());
+        
     }
 
     public void OnRightSwipe()
     {
-<<<<<<< HEAD
-        if (!(transform.position.z > OldPosition.z-distance)) return;
-=======
-
-
         if (!(transform.position.z > -distance)) return;
->>>>>>> Sicilia_Test
 
         if (moving)
         {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
-        //StopCoroutine(IdleStateTimer());
         if (LastCommand == PlayerCommand.Leftswing)
         {
             AnimeC.SetBool("idle", false);
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("Right to Left");
             AnimeC.SetTrigger("Left to Right");
-            //Debug.Log("R TO L");
         }
         else
         {
@@ -224,21 +207,10 @@ public class PlayerController : MonoBehaviour
 
         LastCommand = PlayerCommand.Rightswing;
         LastCommandTime = Time.time;
-        //StartCoroutine(Inputdelay());
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z - distance;
     }
-<<<<<<< HEAD
-
-    //IEnumerator Inputdelay()
-    //{
-    //    yield return new WaitForSeconds(.1f);
-    //    moving = true;
-    //}
-//<<<<<<< Updated upstream
-=======
->>>>>>> Sicilia_Test
 
     public void OnDownSwipe()
     {
