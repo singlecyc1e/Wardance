@@ -37,7 +37,7 @@ public class RoadManager : MonoBehaviour {
         }
 
         noEnemy = new List<EnemyType>() {EnemyType.None, EnemyType.None, EnemyType.None};
-        roadInfo = DataUtility.GetLevelInfo(1);
+        roadInfo = DataUtility.GetLevelInfo(6);
         roadIndex = 0;
         InvokeRepeating(nameof(ShuffleIndex), 2f, 2f);
     }
