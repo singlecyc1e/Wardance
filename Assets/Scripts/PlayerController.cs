@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
+    private GameObject PlayerCamera;
 
     //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+        PlayerCamera = GameObject.Find("Main Camera");
         OldPosition = gameObject.transform.position;
     }
 
@@ -68,8 +70,9 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.S))
         {
+<<<<<<< HEAD
             if (WeaponDMG.instance.BulletTime)
             {
                 WeaponDMG.instance.BulletTime = false;
@@ -80,13 +83,26 @@ public class PlayerController : MonoBehaviour
             }
             TimeManager.BulletTime();
             
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
+=======
             OnDownSwipe();
         }
+>>>>>>> Sicilia_Test
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnUpSwipe();
+        }
+
+<<<<<<< HEAD
+        if (Input.GetKeyDown(KeyCode.S))
+=======
+        if (Input.GetKeyDown(KeyCode.B))
+>>>>>>> Sicilia_Test
+        {
+            TimeManager.BulletTime();
+        }
+
+        
 //#endif
     }
 
@@ -143,7 +159,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftSwipe()
     {
+<<<<<<< HEAD
         if ((transform.position.z > OldPosition.z)) return;
+=======
+        if (!(transform.position.z < distance)) return;
+
+        PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
+
+>>>>>>> Sicilia_Test
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
@@ -182,6 +205,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!(transform.position.z > -distance)) return;
 
+        PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
+
         if (moving)
         {
             stashedDirection = SwipeDirection.Right;
@@ -217,6 +242,9 @@ public class PlayerController : MonoBehaviour
         if (slashing || gameObject.transform.position.y < 1.0f)
             return;
 
+        PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
+        gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
+
         gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
         AnimeC.SetTrigger("DS");
@@ -226,6 +254,11 @@ public class PlayerController : MonoBehaviour
         targetZ = transform.position.z;
 
         StartCoroutine(WaitForSlash());
+    }
+
+    public void OnUpSwipe()
+    {
+        gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
     }
 
     IEnumerator WaitForSlash()
