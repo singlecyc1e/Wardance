@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     public bool moving;
     public bool slashing;
-    public bool movinginput = false;
 
     private float startTime;
     private float targetZ;
@@ -70,9 +69,9 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-<<<<<<< HEAD
+
             if (WeaponDMG.instance.BulletTime)
             {
                 WeaponDMG.instance.BulletTime = false;
@@ -82,25 +81,21 @@ public class PlayerController : MonoBehaviour
                 WeaponDMG.instance.BulletTime = true;
             }
             TimeManager.BulletTime();
-            
-=======
-            OnDownSwipe();
+                       
         }
->>>>>>> Sicilia_Test
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnUpSwipe();
         }
 
-<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.S))
-=======
-        if (Input.GetKeyDown(KeyCode.B))
->>>>>>> Sicilia_Test
         {
-            TimeManager.BulletTime();
+            OnDownSwipe();
         }
+
+
 
         
 //#endif
@@ -133,7 +128,6 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Approximately(transform.position.z, targetZ)) {
             transform.position = new Vector3(position.x, position.y, targetZ);
             moving = false;
-            movinginput = false;
             switch (stashedDirection) {
                 case SwipeDirection.None:
                     return;
@@ -159,14 +153,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftSwipe()
     {
-<<<<<<< HEAD
+
         if ((transform.position.z > OldPosition.z)) return;
-=======
-        if (!(transform.position.z < distance)) return;
 
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
 
->>>>>>> Sicilia_Test
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
@@ -203,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        if (!(transform.position.z > -distance)) return;
+        if (transform.position.z < OldPosition.z) return;
 
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
