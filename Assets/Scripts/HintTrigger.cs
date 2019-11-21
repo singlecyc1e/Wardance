@@ -27,7 +27,7 @@ public class HintTrigger : MonoBehaviour
                 HintEffectParticle.Play();
             }
 
-            Debug.Log(other.gameObject.transform.GetChild(1).name);
+            //Debug.Log(other.gameObject.transform.GetChild(1).name);
         }
     }
 }

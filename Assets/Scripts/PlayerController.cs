@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
     {
 
         if ((transform.position.z > OldPosition.z)) return;
+        
 
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
 
@@ -194,8 +195,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        if (transform.position.z < OldPosition.z) return;
-
+        Debug.Log(transform.position.z);
+        if (transform.position.z < -distance) return;
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
         if (moving)
