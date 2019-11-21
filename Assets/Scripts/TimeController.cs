@@ -14,15 +14,12 @@ public class TimeController : MonoBehaviour
             Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
         }
-        else
-        {
-            Time.timeScale = 0f;
-        }
+
     }
 
     public void BulletTime()
     {
         Time.timeScale = slowfactor;
-        Time.fixedDeltaTime = Time.timeScale * .01f;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
     }
 }

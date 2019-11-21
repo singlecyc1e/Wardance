@@ -42,20 +42,20 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            CameraLeftSwipt();
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    CameraLeftSwipt();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            CameraRightSwipe();
-        }
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    CameraRightSwipe();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            CameraDownSwipe(); 
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    CameraDownSwipe(); 
+        //}
 
         if (!isRotating)
         {
@@ -72,7 +72,12 @@ public class CameraShake : MonoBehaviour
 
     public void CameraLeftSwipt()
     {
-        if (!Character.moving)
+        if (Character.moving || Character.transform.position.z >= 5)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
@@ -85,7 +90,12 @@ public class CameraShake : MonoBehaviour
 
     public void CameraRightSwipe()
     {
-        if (!Character.moving)
+        if (Character.moving || Character.transform.position.z <= -5)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
@@ -98,14 +108,19 @@ public class CameraShake : MonoBehaviour
 
     public void CameraDownSwipe()
     {
-        if (!Character.moving && Character.transform.position.y > 1)
+        if (Character.moving || Character.transform.position.y < 1)
+        {
+            return;
+        }
+
+        else
         {
             StopAllCoroutines();
             isRunning = false;
             TargetRotation = Quaternion.Euler(AirAttackAngle, 90, 0);
 
             gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 10, false));
+            StartCoroutine(Rotate(TargetRotation, SlashSpeed / 5, false));
         }
     }
 

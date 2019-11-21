@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
+    private GameObject PlayerCamera;
 
     //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
@@ -48,13 +49,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+        PlayerCamera = GameObject.Find("Main Camera");
         OldPosition = gameObject.transform.position;
     }
 
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -69,21 +71,34 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            TimeManager.BulletTime();
 
+            if (WeaponDMG.instance.BulletTime)
+            {
+                WeaponDMG.instance.BulletTime = false;
+            }
+            else
+            {
+                WeaponDMG.instance.BulletTime = true;
+            }
+            TimeManager.BulletTime();
+                       
         }
-        //<<<<<<< Updated upstream
-        //        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-        //        {
-        //            OnDownSwipe();
-        //        }
-        //=======
-        //>>>>>>> Stashed changes
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnUpSwipe();
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             OnDownSwipe();
         }
-#endif
+
+
+
+        
+//#endif
     }
 
     private void FixedUpdate()
@@ -138,17 +153,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftSwipe()
     {
-        if (!(transform.position.z < distance)) return;
+
+        if ((transform.position.z > OldPosition.z)) return;
+        
+
+        PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
 
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
 
-        //StopCoroutine(IdleStateTimer());
+
         if (LastCommand == PlayerCommand.Rightswing)
         {
             AnimeC.SetBool("idle", false);
@@ -172,30 +190,27 @@ public class PlayerController : MonoBehaviour
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
-        //StartCoroutine(IdleStateTimer());
+        
     }
 
     public void OnRightSwipe()
     {
-
-
-        if (!(transform.position.z > -distance)) return;
+        Debug.Log(transform.position.z);
+        if (transform.position.z < -distance) return;
+        PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
         if (moving)
         {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
-        //StopCoroutine(IdleStateTimer());
         if (LastCommand == PlayerCommand.Leftswing)
         {
             AnimeC.SetBool("idle", false);
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("Right to Left");
             AnimeC.SetTrigger("Left to Right");
-            //Debug.Log("R TO L");
         }
         else
         {
@@ -219,6 +234,9 @@ public class PlayerController : MonoBehaviour
         if (slashing || gameObject.transform.position.y < 1.0f)
             return;
 
+        PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
+        gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
+
         gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
         AnimeC.SetTrigger("DS");
@@ -228,6 +246,11 @@ public class PlayerController : MonoBehaviour
         targetZ = transform.position.z;
 
         StartCoroutine(WaitForSlash());
+    }
+
+    public void OnUpSwipe()
+    {
+        gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
     }
 
     IEnumerator WaitForSlash()

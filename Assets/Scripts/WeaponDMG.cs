@@ -10,6 +10,7 @@ public class WeaponDMG : MonoBehaviour
     public static WeaponDMG instance;
     public bool Alive = true;
     public TimeController timeManager;
+    public bool BulletTime = false;
     //public TimeController Timemanager;
     // Start is called before the first frame update
 
@@ -37,7 +38,10 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
-                timeManager.BulletTime();
+                if (BulletTime)
+                {
+                    timeManager.BulletTime();
+                }
             }       
         }
         else if (PlayerController.instance.slashing | RageSystem.instance.RageState)
@@ -50,7 +54,11 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
-                timeManager.BulletTime();
+                if (BulletTime)
+                {
+                    timeManager.BulletTime();
+                }
+                
             }
         }
         else
