@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        Debug.Log(transform.position.z);
+        //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
