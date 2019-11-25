@@ -2874,6 +2874,7 @@ MonoBehaviour:
   killscore: 0
   Alive: 1
   timeManager: {fileID: 0}
+  BulletTime: 0
 --- !u!65 &1704018283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3261,7 +3262,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912301077}
-  - component: {fileID: 1912301076}
   - component: {fileID: 1912301075}
   m_Layer: 0
   m_Name: SwipeCounter
@@ -3287,7 +3287,7 @@ MonoBehaviour:
   onFinger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1912301076}
+      - m_Target: {fileID: 0}
         m_MethodName: OnSwipeDetected
         m_Mode: 1
         m_Arguments:
@@ -3330,18 +3330,6 @@ MonoBehaviour:
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
   RequiredSelectable: {fileID: 0}
---- !u!114 &1912301076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912301074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5d3b7668163f4b16a0a28f83dd90ff2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1912301077
 Transform:
   m_ObjectHideFlags: 0

@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
             switch (stashedDirection) {
                 case SwipeDirection.None:
                     return;
-                    break;
                 case SwipeDirection.Left:
                     OnLeftSwipe();
                     break;
