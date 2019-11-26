@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         if (LastCommand != PlayerCommand.idle)
         {
-            if (Time.time - LastCommandTime > 1f)
+            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f )
             {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        Debug.Log(transform.position.z);
+        //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 

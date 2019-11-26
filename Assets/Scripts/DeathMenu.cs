@@ -13,11 +13,16 @@ public class DeathMenu : MonoBehaviour
 
     public void Reset()
     {
-
         this.transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadScene(0);
         WeaponDMG.instance.Alive = true;
         WeaponDMG.instance.killscore = 0;
+    }
+
+    public void SubmitScore()
+    {
+        int Score = (int)GameObject.Find("SwordCollider").GetComponent<WeaponDMG>().killscore;
+        GameObject.Find("UI_Leaderboard").GetComponent<LeaderboardScript>().AddScore(Score);
     }
 
     public void Quit()
