@@ -21,7 +21,8 @@ public class DeathMenu : MonoBehaviour
 
     public void SubmitScore()
     {
-        GameObject.Find("UI_Leaderboard").GetComponent<LeaderboardScript>().Refresh();
+        int Score = (int)GameObject.Find("SwordCollider").GetComponent<WeaponDMG>().killscore;
+        GameObject.Find("UI_Leaderboard").GetComponent<LeaderboardScript>().AddScore(Score);
     }
 
     public void Quit()

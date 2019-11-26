@@ -7,7 +7,7 @@ public class LeaderboardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("bestscore_9", 0);
+        Init();
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
 
@@ -19,7 +19,14 @@ public class LeaderboardScript : MonoBehaviour
 
     void Init()
     {
-        
+        for (int i = 0; i < 10; i++)
+        {
+            if (!PlayerPrefs.HasKey(string.Format($"bestscore_{i}")))
+            {
+                PlayerPrefs.SetInt(string.Format($"bestscore_{i}"), 0);
+                Debug.Log(PlayerPrefs.GetInt(string.Format($"bestscore_{i}")));
+            }
+        }
     }
 
     void SetScore()
@@ -31,7 +38,7 @@ public class LeaderboardScript : MonoBehaviour
         //}
     }
 
-    public void Refresh()
+    public void AddScore(int score)
     {
 
     }
