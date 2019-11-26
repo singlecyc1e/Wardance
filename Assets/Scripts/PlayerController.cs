@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
             switch (stashedDirection) {
                 case SwipeDirection.None:
                     return;
-                    break;
                 case SwipeDirection.Left:
                     OnLeftSwipe();
                     break;
@@ -195,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightSwipe()
     {
-        Debug.Log(transform.position.z);
+        //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 

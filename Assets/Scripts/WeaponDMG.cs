@@ -28,25 +28,20 @@ public class WeaponDMG : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //if "move" in playercontroller is True
-        if (PlayerController.instance.moving|RageSystem.instance.RageState) {
-            if (other.gameObject.tag == "Enemy")
-            {
-                killscore += 1;
-                UI_killscore.text = killscore.ToString()+"人斩";
-                Destroy(other.gameObject.GetComponent<MeshRenderer>());
-                other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
-                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
-                RageSystem.instance.AddRageValue();
-                if (BulletTime)
-                {
-                    timeManager.BulletTime();
-                }
-            }       
-        }
-        else if (PlayerController.instance.slashing | RageSystem.instance.RageState)
+        
+        if (other.gameObject.tag == "Block")
         {
-            if (other.gameObject.tag == "Enemy")
+            //pause game
+            Time.timeScale = 0;
+            GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+            Alive = false;
+        }
+
+        if (other.gameObject.tag == "Regular")
+        {
+            
+            //if "move" in playercontroller is True
+            if (PlayerController.instance.moving | RageSystem.instance.RageState | PlayerController.instance.slashing)
             {
                 killscore += 1;
                 UI_killscore.text = killscore.ToString() + "人斩";
@@ -58,19 +53,40 @@ public class WeaponDMG : MonoBehaviour
                 {
                     timeManager.BulletTime();
                 }
+            }
+            else
+            {
+                //pause game
                 
+                Time.timeScale = 0;
+                GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+                Alive = false;
             }
         }
-        else
+
+        if (other.gameObject.tag == "HeavyArmor")
         {
-            if (other.gameObject.tag == "Enemy")
+
+            //if "move" in playercontroller is True
+            if (RageSystem.instance.RageState)
+            {
+                killscore += 1;
+                UI_killscore.text = killscore.ToString() + "人斩";
+                Destroy(other.gameObject.GetComponent<MeshRenderer>());
+                other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
+                RageSystem.instance.AddRageValue();
+                if (BulletTime)
+                {
+                    timeManager.BulletTime();
+                }
+            }
+            else
             {
                 //pause game
                 Time.timeScale = 0;
                 GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
                 Alive = false;
-                
-
             }
         }
         //if "move" in playercontroller is False

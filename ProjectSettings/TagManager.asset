@@ -7,6 +7,9 @@ TagManager:
   - RoadTrigger
   - Enemy
   - LevelArea
+  - Block
+  - HeavyArmor
+  - Regular
   layers:
   - Default
   - TransparentFX
