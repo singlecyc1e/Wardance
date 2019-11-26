@@ -15,7 +15,7 @@ public class SwipeKillController : MonoBehaviour {
         willCount = true;
     }
 
-    public void OnSwipeDetected() {
+    private void SwipeDetected() {
         if(!willCount) return;
         
         ++counter;
@@ -29,6 +29,8 @@ public class SwipeKillController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if(!willCount) return;
+        
         var fingers = LeanTouch.Fingers;
         foreach (var finger in fingers) {
             if (finger.ScreenDelta.magnitude / Time.deltaTime > minimumSwipeSpeed) {
@@ -37,7 +39,7 @@ public class SwipeKillController : MonoBehaviour {
         }
 
         if (frameCounter >= 20) {
-            ++counter;
+            SwipeDetected();
             Debug.Log(counter);
             frameCounter = 0;
         }

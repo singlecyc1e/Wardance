@@ -22,6 +22,8 @@ public class RoadManager : MonoBehaviour {
     public float speedReduceDuration;
     public float speedReduceDelay;
 
+    public int minimumSwipeCount;
+
     public static List<EnemyType> noEnemy;
     
     private static List<RoadSegmentInfo> roadInfo;
@@ -37,7 +39,7 @@ public class RoadManager : MonoBehaviour {
         }
 
         noEnemy = new List<EnemyType>() {EnemyType.None, EnemyType.None, EnemyType.None};
-        roadInfo = DataUtility.GetLevelInfo(6);
+        roadInfo = DataUtility.GetLevelInfo(1);
         roadIndex = 0;
         InvokeRepeating(nameof(ShuffleIndex), 2f, 2f);
     }
@@ -51,7 +53,9 @@ public class RoadManager : MonoBehaviour {
         if (result.GetEnemyTypesAt(1)[1] == EnemyType.Boss) {
             StartCoroutine(ReduceSpeed(speedReduceDelay));
         }
-        return roadInfo[roadIndex];
+//        TimeController.instance.BulletTime();
+//        Invoke(nameof(TimeController.instance.BulletTime), speedReduceDelay);
+        return result;
     }
 
     public IEnumerator ReduceSpeed(float delay) {
@@ -67,9 +71,19 @@ public class RoadManager : MonoBehaviour {
 
             yield return null;
         }
-//		Debug.Log ("fade end" + Time.time);
+        
+        // TODO Start counting
+        LevelController.instance.StartSwipeCounting();
+        
+    }
 
-//        isFading = false;
+    public IEnumerator ContinueGame() {
+        yield return new WaitForSeconds(3f);
+
+        var swipes = LevelController.instance.GetSwipeResultAndClear();
+        if (swipes < minimumSwipeCount) {
+//            WeaponDMG.instance.
+        }
     }
 
 //    public void GenerateNewRoadSegment() {
