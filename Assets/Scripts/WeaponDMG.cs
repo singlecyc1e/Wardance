@@ -27,7 +27,7 @@ public class WeaponDMG : MonoBehaviour
         Alive = true;
     }
 
-    private void SetupDeathMenu() {
+    public void SetupDeathMenu() {
         //pause game
         Time.timeScale = 0;
 

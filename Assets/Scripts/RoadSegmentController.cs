@@ -38,7 +38,7 @@ public class RoadSegmentController : MonoBehaviour {
     private void Update() {
         if(!initialized) return;
         
-        transform.position = Vector3.MoveTowards(transform.position, target, RoadManager.instance.speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, RoadManager.instance.currentSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other) {

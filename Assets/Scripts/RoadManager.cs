@@ -25,6 +25,8 @@ public class RoadManager : MonoBehaviour {
     public int minimumSwipeCount;
 
     public static List<EnemyType> noEnemy;
+    [NonSerialized]
+    public float currentSpeed;
     
     private static List<RoadSegmentInfo> roadInfo;
     private int roadIndex;
@@ -42,6 +44,7 @@ public class RoadManager : MonoBehaviour {
         roadInfo = DataUtility.GetLevelInfo(1);
         roadIndex = 0;
         InvokeRepeating(nameof(ShuffleIndex), 2f, 2f);
+        currentSpeed = speed;
     }
 
     private void ShuffleIndex() {
@@ -60,36 +63,42 @@ public class RoadManager : MonoBehaviour {
 
     public IEnumerator ReduceSpeed(float delay) {
         yield return new WaitForSeconds(delay);
-        float fadeSpeed = speed / speedReduceDuration;
-//        float audioFadeSpeed = Mathf.Abs (AudioListener.volume - (PlayerPrefs.GetFloat ("volume") - finalAlpha)) / fadeDuration;
+        float fadeSpeed = currentSpeed / speedReduceDuration;
 
-        while (!Mathf.Approximately (speed, 0f))
+        while (!Mathf.Approximately (currentSpeed, 0f))
         {
-            speed = Mathf.MoveTowards (speed, 0f, fadeSpeed * Time.deltaTime);
+            currentSpeed = Mathf.MoveTowards (currentSpeed, 0f, fadeSpeed * Time.deltaTime);
 //            AudioListener.volume = Mathf.MoveTowards (AudioListener.volume, (PlayerPrefs.GetFloat ("volume") - finalAlpha), audioFadeSpeed * Time.deltaTime);
 //			Debug.Log (faderCanvasGroup.alpha);
 
             yield return null;
         }
         
-        // TODO Start counting
         LevelController.instance.StartSwipeCounting();
-        
+        yield return StartCoroutine(ContinueGame());
     }
 
     public IEnumerator ContinueGame() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
 
         var swipes = LevelController.instance.GetSwipeResultAndClear();
         if (swipes < minimumSwipeCount) {
-//            WeaponDMG.instance.
+            WeaponDMG.instance.SetupDeathMenu();
+            yield break;
+        }
+        
+        float fadeSpeed = currentSpeed / speedReduceDuration;
+        while (!Mathf.Approximately (currentSpeed, speed))
+        {
+            currentSpeed = Mathf.MoveTowards (currentSpeed, speed, fadeSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 
 //    public void GenerateNewRoadSegment() {
 //        foreach (var roadInfo in RoadInfos) {
 //            var road = Instantiate(roads[Random.Range(0, roads.Length)], roadInfo.spawnPoint.position, Quaternion.identity);
-//            road.GetComponent<RoadSegmentController>().Init(roadInfo.endPoint.position, speed);
+//            road.GetComponent<RoadSegmentController>().Init(roadInfo.endPoint.position, currentSpeed);
 //        }
 //    }
 }
