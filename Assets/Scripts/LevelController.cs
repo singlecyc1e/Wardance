@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ public class LevelController : MonoBehaviour {
         }
 
         Application.targetFrameRate = 60;
+    }
+
+    private void Start() {
+        RoadManager.instance.Init(5);
     }
 
     public void StartSwipeCounting() {

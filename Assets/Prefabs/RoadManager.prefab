@@ -55,6 +55,6 @@ MonoBehaviour:
     - {fileID: 2419786701724519609, guid: b4767c5af7430df41931f8a0bbdf8d62, type: 3}
     - {fileID: 4455434664106101992, guid: 88da3c9e3465dc64795b057fdfa4db41, type: 3}
     - {fileID: 3444061598419698989, guid: f52b696f14f04634e804451d79969183, type: 3}
-  willSpawnBoss: 0
-  speedReduceDuration: 15
+  speedReduceDuration: 4
   speedReduceDelay: 5
+  minimumSwipeCount: 3
