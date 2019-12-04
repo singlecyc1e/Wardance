@@ -10,6 +10,8 @@ TagManager:
   - Block
   - HeavyArmor
   - Regular
+  - Start Menu
+  - Death Menu
   layers:
   - Default
   - TransparentFX
