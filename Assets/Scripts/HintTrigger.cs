@@ -18,7 +18,8 @@ public class HintTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+
+        if(other.gameObject.tag == "Regular" || other.gameObject.tag == "HeavyArmor")
         {
             var HintEffectParticle = other.gameObject.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
 

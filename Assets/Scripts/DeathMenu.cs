@@ -26,6 +26,11 @@ public class DeathMenu : MonoBehaviour
         StartMenu.instance.MyStart();
     }
 
+    public void BackMain()
+    {
+        this.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
     public void SubmitScore()
     {
         int Score = (int)GameObject.Find("SwordCollider").GetComponent<WeaponDMG>().killscore;
