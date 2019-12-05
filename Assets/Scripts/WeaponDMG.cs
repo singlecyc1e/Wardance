@@ -26,15 +26,37 @@ public class WeaponDMG : MonoBehaviour
     {
         Alive = true;
     }
+
+    public void SetupDeathMenu() {
+        //pause game
+        Time.timeScale = 0;
+        Alive = false;
+
+        GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(true);
+
+        if (PlayerPrefs.HasKey("bestscore_9"))
+        {
+            if (PlayerPrefs.GetInt("bestscore_9") < killscore)
+            {
+                GameObject.Find("SubmitScore").SetActive(true);
+                GameObject.Find("LeaderboardInput").SetActive(true);
+            }
+            else
+            {
+                GameObject.Find("SubmitScore").SetActive(false);
+                GameObject.Find("LeaderboardInput").SetActive(false);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         
         if (other.gameObject.tag == "Block")
         {
             //pause game
-            Time.timeScale = 0;
-            GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
-            Alive = false;
+            SetupDeathMenu();
         }
 
         if (other.gameObject.tag == "Regular")
@@ -56,11 +78,7 @@ public class WeaponDMG : MonoBehaviour
             }
             else
             {
-                //pause game
-                
-                Time.timeScale = 0;
-                GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
-                Alive = false;
+                SetupDeathMenu();
             }
         }
 
@@ -83,27 +101,7 @@ public class WeaponDMG : MonoBehaviour
             }
             else
             {
-                //pause game
-                Time.timeScale = 0;
-
-                GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
-                GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(true);
-                Alive = false;
-
-                if (PlayerPrefs.HasKey("bestscore_9"))
-                {
-                    if (PlayerPrefs.GetInt("bestscore_9") < killscore)
-                    {
-                        GameObject.Find("SubmitScore").SetActive(true);
-                        GameObject.Find("LeaderboardInput").SetActive(true);
-                    }
-                    else
-                    {
-                        GameObject.Find("SubmitScore").SetActive(false);
-                        GameObject.Find("LeaderboardInput").SetActive(false);
-                    }
-                }
-
+                SetupDeathMenu();
             }
         }
         //if "move" in playercontroller is False

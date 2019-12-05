@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,14 @@ public class TimeController : MonoBehaviour
 {
     public float slowfactor = .05f;
     public float slowduration = 2f;
+
+    public static TimeController instance;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     private void Update()
     {
@@ -22,5 +31,10 @@ public class TimeController : MonoBehaviour
     {
         Time.timeScale = slowfactor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
+    }
+
+    public void ResetTime() {
+        Time.fixedDeltaTime = Time.timeScale / .02f;
+        Time.timeScale = 1f;
     }
 }
