@@ -88,6 +88,7 @@ public class WeaponDMG : MonoBehaviour
 
                 GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
                 GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(true);
+                Alive = false;
 
                 if (PlayerPrefs.HasKey("bestscore_9"))
                 {
@@ -103,8 +104,6 @@ public class WeaponDMG : MonoBehaviour
                     }
                 }
 
-
-                Alive = false;
             }
         }
         //if "move" in playercontroller is False

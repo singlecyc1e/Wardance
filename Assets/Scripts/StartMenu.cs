@@ -22,11 +22,12 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    private void BackToMenu()
+    public void BackToMenu()
     {
         STARTmenu = true;
         this.transform.GetChild(0).gameObject.SetActive(true);
         Time.timeScale = 0;
+        SceneManager.LoadScene(0);
     }
     public void MyStart()
     {
