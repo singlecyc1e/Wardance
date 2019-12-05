@@ -31,7 +31,6 @@ public class StartMenu : MonoBehaviour
     }
     public void MyStart()
     {
-        Debug.Log("mystart!");
         STARTmenu = false;
         this.transform.GetChild(0).gameObject.SetActive(false);
         Time.timeScale = 1;
