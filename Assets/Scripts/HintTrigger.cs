@@ -18,12 +18,14 @@ public class HintTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        Debug.Log("hit1");
+        if(other.gameObject.tag == "Regular" || other.gameObject.tag == "HeavyArmor")
         {
             var HintEffectParticle = other.gameObject.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
 
             if (!HintEffectParticle.isPlaying)
             {
+                Debug.Log("hit successfully");
                 HintEffectParticle.Play();
             }
 
