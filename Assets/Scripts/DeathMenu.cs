@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DeathMenu : MonoBehaviour
 {
@@ -34,7 +35,11 @@ public class DeathMenu : MonoBehaviour
     public void SubmitScore()
     {
         int Score = (int)GameObject.Find("SwordCollider").GetComponent<WeaponDMG>().killscore;
-        GameObject.Find("UI_Leaderboard").GetComponent<LeaderboardScript>().AddScore(Score);
+        //string Player = GameObject.Find("LeaderboardInputText").GetComponent<Text>().text;
+        
+        GameObject.Find("UI_Leaderboard").GetComponent<LeaderboardScript>().AddScore(Score, "NoName");
+
+        GameObject.Find("SubmitScore").transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void Quit()
