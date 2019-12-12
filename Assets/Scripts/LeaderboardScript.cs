@@ -34,7 +34,7 @@ public class LeaderboardScript : MonoBehaviour
 
         UpdateLeaderboardText();
 
-        //this.transform.GetChild(0).gameObject.SetActive(false);
+        this.transform.GetChild(0).gameObject.SetActive(false);
 
         //for (int i = 0; i < 10; i++)
         //{
