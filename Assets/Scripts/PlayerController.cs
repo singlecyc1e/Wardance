@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
     private Animator AnimeC;
     public float distance = 4f;
     public bool idleTimeup;
+    
+    public AudioClip[] SwipeSound;
 
+    private AudioSource audiosource;
     private PlayerCommand LastCommand = PlayerCommand.idle;
     private float LastCommandTime = 0f;
 
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
         PlayerCamera = GameObject.Find("Main Camera");
         OldPosition = gameObject.transform.position;
+        audiosource = GetComponent<AudioSource>();
     }
 
 
@@ -154,8 +158,9 @@ public class PlayerController : MonoBehaviour
     {
 
         if ((transform.position.z > OldPosition.z)) return;
-        
 
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
 
         if (moving)
@@ -196,6 +201,9 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
+
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
         if (moving)
