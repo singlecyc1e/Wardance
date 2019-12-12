@@ -22,6 +22,7 @@ public class DeathMenu : MonoBehaviour
     public void Reset()
     {
         this.transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadScene(0);  
         StartMenu.instance.STARTmenu = false;
         StartMenu.instance.MyStart();
