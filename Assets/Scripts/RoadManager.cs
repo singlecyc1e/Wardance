@@ -77,7 +77,7 @@ public class RoadManager : MonoBehaviour {
 
         if (result.GetEnemyTypesAt(1)[1] == EnemyType.Boss && !willSpawnBoss) {
             willSpawnBoss = true;
-            ++roadIndex;
+            // ++roadIndex;
             StartCoroutine(ReduceSpeed(speedReduceDelay));
         }
 //        TimeController.instance.BulletTime();
