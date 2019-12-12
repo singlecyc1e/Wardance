@@ -49,7 +49,7 @@ public class RoadManager : MonoBehaviour {
     }
 
     public void Init(int level) {
-        roadInfo = DataUtility.GetLevelInfo(level);
+        roadInfo = DataUtility.GetLevelInfo();
         if (level >= 6) {
             randomRoadSpawn = true;
         } else {
@@ -68,10 +68,16 @@ public class RoadManager : MonoBehaviour {
     }
 
     public RoadSegmentInfo GetRoadSegment() {
+        if (roadIndex >= roadInfo.Count) {
+            roadInfo = DataUtility.GetLevelInfo(6);
+            roadIndex = 0;
+        }
+        
         var result = roadInfo[roadIndex];
 
         if (result.GetEnemyTypesAt(1)[1] == EnemyType.Boss && !willSpawnBoss) {
             willSpawnBoss = true;
+            ++roadIndex;
             StartCoroutine(ReduceSpeed(speedReduceDelay));
         }
 //        TimeController.instance.BulletTime();

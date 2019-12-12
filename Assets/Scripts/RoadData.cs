@@ -35,12 +35,12 @@ public struct RoadSegmentInfo {
 public static partial class DataUtility {
     public const string LevelResourcesPath = "Levels/";
 
-    private static TextAsset ReadLevelResource(int level) {
-        return Resources.Load<TextAsset>(LevelResourcesPath + "Level" + level);
+    private static string ReadLevelResource(int level) {
+        return Resources.Load<TextAsset>(LevelResourcesPath + "Level" + level).text;
     }
 
-    private static List<RoadSegmentInfo> ParseLevelInfo(TextAsset info) {
-        var lines = info.text.
+    private static List<RoadSegmentInfo> ParseLevelInfo(string info) {
+        var lines = info.
             Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).
             Where(l => !string.IsNullOrEmpty(l)).ToArray();
         var result = new List<RoadSegmentInfo>();
@@ -60,8 +60,16 @@ public static partial class DataUtility {
         return result;
     }
 
-    public static List<RoadSegmentInfo> GetLevelInfo(int level) {
-        return ParseLevelInfo(ReadLevelResource(level));
+    public static List<RoadSegmentInfo> GetLevelInfo(int level = -1) {
+        if (level == 6) {
+            return ParseLevelInfo(ReadLevelResource(6));
+        }
+        
+        var result = "";
+        for (var i = 0; i < 5; i++) {
+            result += ReadLevelResource(i + 1) + "\n";
+        }
+        return ParseLevelInfo(result);
     }
 
     public static EnemyType GetEnemyByString(string num) {
