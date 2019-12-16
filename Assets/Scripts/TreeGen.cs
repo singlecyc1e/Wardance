@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class TreeGen : MonoBehaviour
 {
-    private bool created = false;
+    public Transform treelocation;
+    public GameObject treeobj;
     private void OnTriggerEnter(Collider other)
     {
-        if (created == false)
+        Debug.Log(other.tag);
+        if (other.tag == "TreeGen")
         {
-            Debug.Log(other.tag);
-            if (other.tag == "TreeGen")
-            {
-
-                created = true;
-
-                Instantiate(transform.parent, transform.parent.position + new Vector3(50, 0, 0), Quaternion.identity);
-                Debug.Log(transform.parent.name);
-            }
+                Destroy(Instantiate(treeobj, other.gameObject.transform.position + new Vector3(83f, 0,  0), Quaternion.identity),18f);
         }
     }
 }
