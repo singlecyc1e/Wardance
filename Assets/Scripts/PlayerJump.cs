@@ -11,7 +11,10 @@ public class PlayerJump : MonoBehaviour
     private float startTime;
     private float targetY;
     public float distance = 4f;
+    public bool grounded= false;
 
+    private Ray ray;
+    private float DistanceToGround;
     private Animator AnimeC;
     private Vector3 OldPosition;
 
@@ -20,11 +23,23 @@ public class PlayerJump : MonoBehaviour
     {
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
         OldPosition = gameObject.transform.position;
+        DistanceToGround = GetComponent<Collider>().bounds.extents.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position - new Vector3(0, .55f, 0), Vector3.down * (DistanceToGround+.1f), Color.black, 1);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            grounded = Physics.Raycast(transform.position- new Vector3(0,.55f,0), Vector3.down, .1f, LayerMask.NameToLayer("Ground"));
+            Debug.Log(grounded);
+            if (grounded)
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.up * 6f;
+            }
+      
+        }
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    JumpUpSwipe();
@@ -55,34 +70,34 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (moving)
-        {
-            var position = transform.position;
-            MoveToTarget();
+        //if (moving)
+        //{
+        //    var position = transform.position;
+        //    MoveToTarget();
 
-            if (Mathf.Approximately(transform.position.y, targetY))
-            {
-                //transform.position = new Vector3(position.x, targetY, position.z);
+        //    if (Mathf.Approximately(transform.position.y, targetY))
+        //    {
+        //        //transform.position = new Vector3(position.x, targetY, position.z);
 
-                targetY = position.y - distance;
-                startTime = Time.time;
-                moving = false;
-                falling = true;
-            }
-        }
+        //        targetY = position.y - distance;
+        //        startTime = Time.time;
+        //        moving = false;
+        //        falling = true;
+        //    }
+        //}
 
-        if (falling)
-        {
-            var position = transform.position;
-            MoveToTarget();
+        //if (falling)
+        //{
+        //    var position = transform.position;
+        //    MoveToTarget();
 
-            if (Mathf.Approximately(transform.position.y, targetY))
-            {
-                transform.position = new Vector3(position.x, targetY, position.z);
+        //    if (Mathf.Approximately(transform.position.y, targetY))
+        //    {
+        //        transform.position = new Vector3(position.x, targetY, position.z);
 
-                falling = false;
-            }
-        }
+        //        falling = false;
+        //    }
+        //}
     }
 
     void MoveToTarget()
