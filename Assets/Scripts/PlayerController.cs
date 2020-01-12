@@ -266,4 +266,20 @@ public class PlayerController : MonoBehaviour
         slashing = false;
     }
 
+    public IEnumerator ShakeBody(float duration, float magnitude)
+    {
+        Debug.Log("shake");
+        Vector3 originalPos = transform.position;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float z = UnityEngine.Random.Range(-1f, 1f) * magnitude;
+            float y = UnityEngine.Random.Range(0, 1f) * magnitude;
+            transform.localPosition = new Vector3(originalPos.x, y, z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = originalPos;
+    }
+
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EZCameraShake;
 
 public class WeaponDMG : MonoBehaviour
 {
@@ -61,7 +62,9 @@ public class WeaponDMG : MonoBehaviour
 
         if (other.gameObject.tag == "Regular")
         {
-            
+            CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f);
+
+           
             //if "move" in playercontroller is True
             if (PlayerController.instance.moving | RageSystem.instance.RageState | PlayerController.instance.slashing)
             {
