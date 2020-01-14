@@ -489,6 +489,26 @@ PrefabInstance:
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 54707976}
+    - target: {fileID: 5499454258714494897, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499454258714494896, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499454258714494910, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499454258714494909, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d303b357ad391492cba4a001572d45e5, type: 3}
 --- !u!1 &227415541

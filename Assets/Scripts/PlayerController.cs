@@ -13,6 +13,29 @@ enum PlayerCommand
     Leftswing = 1,
     Rightswing = 2
 }
+
+public enum Direction {
+    None, Up, Left, Down, Right
+}
+
+public struct FingerStorage {
+    public Direction direction;
+    public int counter;
+
+    public FingerStorage(Direction direction, int counter) {
+        this.direction = direction;
+        this.counter = counter;
+    }
+
+    public void DecreaseCounter() {
+        --counter;
+    }
+
+    public void ResetCounter() {
+        counter = 5;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     public float duration;
@@ -38,6 +61,8 @@ public class PlayerController : MonoBehaviour
     //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
 
+    private Dictionary<int, FingerStorage> storedTouches;
+
     public TimeController TimeManager;
     public static PlayerController instance;
 
@@ -60,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-//#if UNITY_EDITOR
+#if UNITY_STANDALONE
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -94,15 +119,77 @@ public class PlayerController : MonoBehaviour
             OnUpSwipe();
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
+        if (Input.GetKeyDown(KeyCode.S)) {
             OnDownSwipe();
         }
+#endif
 
+        foreach (var touch in Input.touches) {
+            switch (touch.phase) {
+                case TouchPhase.Began:
+                    storedTouches[touch.fingerId] = new FingerStorage(Direction.None, 5);
+                    break;
+                case TouchPhase.Moved:
+                    var deltaPosition = touch.deltaPosition;
+                    var angle = Vector2.SignedAngle(Vector2.up, deltaPosition);
+                    var directionDetected = Direction.None;
+                    if (angle >= -45 && angle < 45) {
+                        directionDetected = Direction.Up;
+                    } else if (angle >= 45 && angle < 135) {
+                        directionDetected = Direction.Right;
+                    } else if (angle >= 135 || angle < -135) {
+                        directionDetected = Direction.Down;
+                    } else if (angle >= -135 && angle < -45) {
+                        directionDetected = Direction.Down;
+                    }
 
+                    switch (directionDetected == storedTouches[touch.fingerId].direction) {
+                        case true:
+                            // var newStorage = new FingerStorage(storedTouches[touch.fingerId]);
+                            storedTouches[touch.fingerId].DecreaseCounter();
+                            break;
+                        default:
+                            storedTouches[touch.fingerId] = new FingerStorage(directionDetected, 5);
+                            break;
+                    }
 
-        
-//#endif
+                    foreach (var storedTouch in storedTouches) {
+                        if (storedTouch.Value.counter <= 0) {
+                            switch (storedTouch.Value.direction) {
+                                case Direction.None:
+                                    break;
+                                case Direction.Up:
+                                    OnUpSwipe();
+                                    break;
+                                case Direction.Left:
+                                    OnLeftSwipe();
+                                    break;
+                                case Direction.Down:
+                                    OnDownSwipe();
+                                    break;
+                                case Direction.Right:
+                                    OnRightSwipe();
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            
+                            storedTouch.Value.ResetCounter();
+                        }
+                    }
+                    break;
+                case TouchPhase.Stationary:
+                    break;
+                case TouchPhase.Ended:
+                    storedTouches.Remove(touch.fingerId);
+                    break;
+                case TouchPhase.Canceled:
+                    storedTouches.Remove(touch.fingerId);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 
     private void FixedUpdate()
