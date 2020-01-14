@@ -4,9 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - RoadTrigger
-  - Enemy
+  - Start Menu
+  - Death Menu
   - LevelArea
+  - RoadTrigger
+  - Block
+  - Regular
+  - HeavyArmor
+  - TreeGen
   layers:
   - Default
   - TransparentFX
@@ -16,9 +21,9 @@ TagManager:
   - UI
   - 
   - 
-  - Road
-  - 
-  - 
+  - PostP
+  - Ground
+  - Enemies
   - 
   - 
   - 

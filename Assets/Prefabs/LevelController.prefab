@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062120693a3d0ee4ba4be5f6c31fc35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swipeKillController: {fileID: 0}

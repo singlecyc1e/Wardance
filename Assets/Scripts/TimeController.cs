@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +8,33 @@ public class TimeController : MonoBehaviour
     public float slowfactor = .05f;
     public float slowduration = 2f;
 
+    public static TimeController instance;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
+
     private void Update()
     {
-        if (WeaponDMG.instance.Alive)
+        
+        if (WeaponDMG.instance.Alive && !StartMenu.instance.STARTmenu)
         {
             Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
         }
-        else
-        {
-            Time.timeScale = 0f;
-        }
+
     }
 
     public void BulletTime()
     {
         Time.timeScale = slowfactor;
-        Time.fixedDeltaTime = Time.timeScale * .01f;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+    }
+
+    public void ResetTime() {
+        Time.fixedDeltaTime = Time.timeScale / .02f;
+        Time.timeScale = 1f;
     }
 }

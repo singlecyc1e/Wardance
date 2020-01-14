@@ -25,11 +25,15 @@ public class PlayerController : MonoBehaviour
     private Animator AnimeC;
     public float distance = 4f;
     public bool idleTimeup;
+    
+    public AudioClip[] SwipeSound;
 
+    private AudioSource audiosource;
     private PlayerCommand LastCommand = PlayerCommand.idle;
     private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
+    private GameObject PlayerCamera;
 
     //    private bool hasStashInput;
     private SwipeDirection stashedDirection;
@@ -48,13 +52,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
+        PlayerCamera = GameObject.Find("Main Camera");
         OldPosition = gameObject.transform.position;
+        audiosource = GetComponent<AudioSource>();
     }
 
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -69,21 +75,34 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            TimeManager.BulletTime();
 
+            if (WeaponDMG.instance.BulletTime)
+            {
+                WeaponDMG.instance.BulletTime = false;
+            }
+            else
+            {
+                WeaponDMG.instance.BulletTime = true;
+            }
+            TimeManager.BulletTime();
+                       
         }
-        //<<<<<<< Updated upstream
-        //        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > 1)
-        //        {
-        //            OnDownSwipe();
-        //        }
-        //=======
-        //>>>>>>> Stashed changes
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnUpSwipe();
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             OnDownSwipe();
         }
-#endif
+
+
+
+        
+//#endif
     }
 
     private void FixedUpdate()
@@ -91,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
         if (LastCommand != PlayerCommand.idle)
         {
-            if (Time.time - LastCommandTime > 1f)
+            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f )
             {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
@@ -116,7 +135,6 @@ public class PlayerController : MonoBehaviour
             switch (stashedDirection) {
                 case SwipeDirection.None:
                     return;
-                    break;
                 case SwipeDirection.Left:
                     OnLeftSwipe();
                     break;
@@ -138,17 +156,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftSwipe()
     {
-        if (!(transform.position.z < distance)) return;
+
+        if ((transform.position.z > OldPosition.z)) return;
+
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
+        PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
 
         if (moving)
         {
             stashedDirection = SwipeDirection.Left;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
 
-        //StopCoroutine(IdleStateTimer());
+
         if (LastCommand == PlayerCommand.Rightswing)
         {
             AnimeC.SetBool("idle", false);
@@ -172,30 +194,30 @@ public class PlayerController : MonoBehaviour
         moving = true;
         startTime = Time.time;
         targetZ = transform.position.z + distance;
-        //StartCoroutine(IdleStateTimer());
+        
     }
 
     public void OnRightSwipe()
     {
+        //Debug.Log(transform.position.z);
+        if (transform.position.z < -distance) return;
 
-
-        if (!(transform.position.z > -distance)) return;
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
+        PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
 
         if (moving)
         {
             stashedDirection = SwipeDirection.Right;
             Invoke(nameof(ClearStash), 0.5f);
-            //StopCoroutine(IdleStateTimer());
             return;
         }
-        //StopCoroutine(IdleStateTimer());
         if (LastCommand == PlayerCommand.Leftswing)
         {
             AnimeC.SetBool("idle", false);
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("Right to Left");
             AnimeC.SetTrigger("Left to Right");
-            //Debug.Log("R TO L");
         }
         else
         {
@@ -216,8 +238,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnDownSwipe()
     {
-        if (slashing)
+        if (slashing || gameObject.transform.position.y < 1.0f)
             return;
+
+        PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
+        gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
 
         gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
 
@@ -230,10 +255,31 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(WaitForSlash());
     }
 
+    public void OnUpSwipe()
+    {
+        gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
+    }
+
     IEnumerator WaitForSlash()
     {
         yield return new WaitForSeconds(0.25f);
         slashing = false;
+    }
+
+    public IEnumerator ShakeBody(float duration, float magnitude)
+    {
+        Debug.Log("shake");
+        Vector3 originalPos = transform.position;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float z = UnityEngine.Random.Range(-1f, 1f) * magnitude;
+            float y = UnityEngine.Random.Range(0, 1f) * magnitude;
+            transform.localPosition = new Vector3(originalPos.x, y, z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = originalPos;
     }
 
 }
