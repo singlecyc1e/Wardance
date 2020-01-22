@@ -26,19 +26,27 @@ public enum Direction {
 
 public struct FingerStorage {
     public Direction direction;
-    public int counter;
+    // public int counter;
+    public float startTime;
+    public float threshold;
 
-    public FingerStorage(Direction direction, int counter) {
+    public FingerStorage(Direction direction, float newThreshold) {
         this.direction = direction;
-        this.counter = counter;
+        // this.counter = counter;
+        startTime = Time.time * 1000;
+        threshold = newThreshold;
     }
 
-    public void DecreaseCounter() {
-        --counter;
+    // public void DecreaseCounter() {
+    //     --counter;
+    // }
+
+    public bool Check() {
+        return Time.time * 1000 - startTime > threshold;
     }
 
-    public void ResetCounter() {
-        counter = 5;
+    public void Reset() {
+        startTime = Time.time;
     }
 }
 
@@ -68,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 
     // private Dictionary<int, FingerStorage> storedTouches;
     private FingerStorage fingerStorage;
+    private const float fingerThreshold = 100;
 
     public TimeController TimeManager;
     public static PlayerController instance;
@@ -84,7 +93,7 @@ public class PlayerController : MonoBehaviour {
         OldPosition = gameObject.transform.position;
         audiosource = GetComponent<AudioSource>();
         
-        fingerStorage = new FingerStorage(Direction.None, 5);
+        fingerStorage = new FingerStorage(Direction.None, fingerThreshold);
     }
 
     private void UpdateTouch() {
@@ -105,16 +114,20 @@ public class PlayerController : MonoBehaviour {
         
         Debug.Log("Detect: " + directionDetected);
 
-        switch (directionDetected == fingerStorage.direction) {
-            case true:
-                fingerStorage.DecreaseCounter();
-                break;
-            default:
-                fingerStorage = new FingerStorage(directionDetected, 5);
-                break;
+        // switch (directionDetected == fingerStorage.direction) {
+        //     case true:
+        //         fingerStorage.DecreaseCounter();
+        //         break;
+        //     default:
+        //         fingerStorage = new FingerStorage(directionDetected, 5);
+        //         break;
+        // }
+
+        if (directionDetected != fingerStorage.direction) {
+            fingerStorage = new FingerStorage(directionDetected, fingerThreshold);
         }
 
-        if (fingerStorage.counter <= 0) {
+        if (fingerStorage.Check()) {
             switch (fingerStorage.direction) {
                 case Direction.None:
                     break;
@@ -134,7 +147,7 @@ public class PlayerController : MonoBehaviour {
                     throw new ArgumentOutOfRangeException();
             }
 
-            fingerStorage.ResetCounter();
+            fingerStorage.Reset();
         }
     }
 
