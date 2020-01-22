@@ -12,6 +12,8 @@ TagManager:
   - Regular
   - HeavyArmor
   - TreeGen
+  - Enemy
+  - swordeffect
   layers:
   - Default
   - TransparentFX

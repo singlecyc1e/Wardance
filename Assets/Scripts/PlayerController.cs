@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Animator AnimeC;
     public float distance = 4f;
     public bool idleTimeup;
-    
+    public ParticleSystem SE;
     public AudioClip[] SwipeSound;
 
     private AudioSource audiosource;
@@ -99,18 +99,9 @@ public class PlayerController : MonoBehaviour
             OnDownSwipe();
         }
 
-
-
-        
-//#endif
-    }
-
-    private void FixedUpdate()
-    {
-
         if (LastCommand != PlayerCommand.idle)
         {
-            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f )
+            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f)
             {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
@@ -120,6 +111,26 @@ public class PlayerController : MonoBehaviour
                 LastCommand = PlayerCommand.idle;
             }
         }
+
+
+        //#endif
+    }
+
+    private void FixedUpdate()
+    {
+
+        //if (LastCommand != PlayerCommand.idle)
+        //{
+        //    if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f )
+        //    {
+        //        AnimeC.ResetTrigger("Left to Right");
+        //        AnimeC.ResetTrigger("Right to Left");
+        //        AnimeC.ResetTrigger("LS");
+        //        AnimeC.ResetTrigger("RS");
+        //        AnimeC.SetBool("idle", true);
+        //        LastCommand = PlayerCommand.idle;
+        //    }
+        //}
 
         if (!moving) return;
 
@@ -159,9 +170,15 @@ public class PlayerController : MonoBehaviour
 
         if ((transform.position.z > OldPosition.z)) return;
 
+
+
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
+        SE.Play();
+        StartCoroutine(Turnoff(SE));
+
+
 
         if (moving)
         {
@@ -205,6 +222,8 @@ public class PlayerController : MonoBehaviour
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
+        SE.Play();
+        StartCoroutine(Turnoff(SE));
 
         if (moving)
         {
@@ -280,6 +299,20 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.localPosition = originalPos;
+    }
+
+    IEnumerator Turnoff(ParticleSystem effect)
+    {
+        if (effect)
+        {
+            yield return new WaitForSeconds(.3f);
+            effect.Stop();
+        }
+
+        else {
+            Debug.Log("error: no effect find");
+        }
+        
     }
 
 }

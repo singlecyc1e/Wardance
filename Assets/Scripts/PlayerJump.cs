@@ -33,7 +33,7 @@ public class PlayerJump : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             grounded = Physics.Raycast(transform.position- new Vector3(0,.55f,0), Vector3.down, .1f, LayerMask.NameToLayer("Ground"));
-            Debug.Log(grounded);
+            //Debug.Log(grounded);
             if (grounded)
             {
                 GetComponent<Rigidbody>().velocity = Vector3.up * 6f;

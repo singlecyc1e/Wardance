@@ -5253,6 +5253,16 @@ PrefabInstance:
       propertyPath: TimeManager
       value: 
       objectReference: {fileID: 54707976}
+    - target: {fileID: 5499454258714494901, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: distance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499454258714494901, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: SE
+      value: 
+      objectReference: {fileID: 2107208565}
     - target: {fileID: 5499454259080792812, guid: d303b357ad391492cba4a001572d45e5,
         type: 3}
       propertyPath: m_IsActive
@@ -5285,7 +5295,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772606201, guid: d303b357ad391492cba4a001572d45e5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601394853595633271, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601394852782388103, guid: d303b357ad391492cba4a001572d45e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d303b357ad391492cba4a001572d45e5, type: 3}
@@ -5578,7 +5598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198817138, guid: 6f0bc94f4e2fe44abad7f38541ed3d8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198817139, guid: 6f0bc94f4e2fe44abad7f38541ed3d8f, type: 3}
       propertyPath: m_Enabled
@@ -18039,7 +18059,7 @@ GameObject:
   - component: {fileID: 2107208564}
   m_Layer: 0
   m_Name: light effect
-  m_TagString: Untagged
+  m_TagString: swordeffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
