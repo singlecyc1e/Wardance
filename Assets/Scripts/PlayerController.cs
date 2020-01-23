@@ -25,24 +25,24 @@ public enum Direction {
 }
 
 public struct FingerStorage {
-    public Direction direction;
-    // public int counter;
-    public float startTime;
-    public float threshold;
+    public readonly Direction direction;
+    private float startTime;
+    private readonly float timeThreshold;
+    private Vector2 startPosition;
+    private float distanceThreshold;
 
-    public FingerStorage(Direction direction, float newThreshold) {
+    public FingerStorage(Direction direction, Vector2 newStartPosition, 
+                         float newTimeThreshold, float newDistanceThreshold) {
         this.direction = direction;
-        // this.counter = counter;
         startTime = Time.time * 1000;
-        threshold = newThreshold;
+        timeThreshold = newTimeThreshold;
+        startPosition = newStartPosition;
+        distanceThreshold = newDistanceThreshold;
     }
 
-    // public void DecreaseCounter() {
-    //     --counter;
-    // }
-
-    public bool Check() {
-        return Time.time * 1000 - startTime > threshold;
+    public bool Check(Vector2 position) {
+        return Time.time * 1000 - startTime > timeThreshold &&
+            Vector2.Distance(startPosition, position) > distanceThreshold;
     }
 
     public void Reset() {
@@ -76,7 +76,8 @@ public class PlayerController : MonoBehaviour {
 
     // private Dictionary<int, FingerStorage> storedTouches;
     private FingerStorage fingerStorage;
-    private const float fingerThreshold = 100;
+    private const float fingerTimeThreshold = 100f;
+    private const float fingerDistanceThreshold = 2f;
 
     public TimeController TimeManager;
     public static PlayerController instance;
@@ -93,13 +94,14 @@ public class PlayerController : MonoBehaviour {
         OldPosition = gameObject.transform.position;
         audiosource = GetComponent<AudioSource>();
         
-        fingerStorage = new FingerStorage(Direction.None, fingerThreshold);
+        fingerStorage = new FingerStorage
+            (Direction.None, Vector2.zero, fingerTimeThreshold, fingerDistanceThreshold);
     }
 
     private void UpdateTouch() {
         if(LeanTouch.Fingers.Count == 0) return;
         
-        var deltaPosition = Lean.Touch.LeanGesture.GetScreenDelta();
+        var deltaPosition = LeanGesture.GetScreenDelta();
         var angle = Vector2.SignedAngle(Vector2.up, deltaPosition);
         var directionDetected = Direction.None;
         if (angle >= -45 && angle < 45) {
@@ -123,11 +125,14 @@ public class PlayerController : MonoBehaviour {
         //         break;
         // }
 
+        var lastCenter = LeanGesture.GetLastScreenCenter();
+
         if (directionDetected != fingerStorage.direction) {
-            fingerStorage = new FingerStorage(directionDetected, fingerThreshold);
+            fingerStorage = new FingerStorage
+                (directionDetected, lastCenter, fingerTimeThreshold, fingerDistanceThreshold);
         }
 
-        if (fingerStorage.Check()) {
+        if (fingerStorage.Check(LeanGesture.GetScreenCenter())) {
             switch (fingerStorage.direction) {
                 case Direction.None:
                     break;
