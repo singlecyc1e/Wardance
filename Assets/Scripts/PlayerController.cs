@@ -159,6 +159,17 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
+        if (LastCommand != PlayerCommand.idle) {
+            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f) {
+                AnimeC.ResetTrigger("Left to Right");
+                AnimeC.ResetTrigger("Right to Left");
+                AnimeC.ResetTrigger("LS");
+                AnimeC.ResetTrigger("RS");
+                AnimeC.SetBool("idle", true);
+                LastCommand = PlayerCommand.idle;
+            }
+        }
+        
 #if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A)) {
             OnLeftSwipe();
@@ -190,17 +201,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (LastCommand != PlayerCommand.idle) {
-            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f) {
-                AnimeC.ResetTrigger("Left to Right");
-                AnimeC.ResetTrigger("Right to Left");
-                AnimeC.ResetTrigger("LS");
-                AnimeC.ResetTrigger("RS");
-                AnimeC.SetBool("idle", true);
-                LastCommand = PlayerCommand.idle;
-            }
-        }
-
         if (!moving) return;
 
         var t = (Time.time - startTime) / duration;
