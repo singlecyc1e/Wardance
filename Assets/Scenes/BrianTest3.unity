@@ -16748,6 +16748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treelocation: {fileID: 227415542}
   treeobj: {fileID: 3775459518793357955, guid: f041244e101003a40aa9d77c36f9188d, type: 3}
+  grass: {fileID: 4223045098565484786, guid: 87ebb366499234e4abe51e6fb1003b0b, type: 3}
 --- !u!1 &1299685092
 GameObject:
   m_ObjectHideFlags: 0
@@ -36237,6 +36238,7 @@ MonoBehaviour:
   slashing: 0
   distance: 4
   idleTimeup: 0
+  SE: {fileID: 2107208565}
   SwipeSound:
   - {fileID: 8300000, guid: 4c4c4deb7ddcf4581a9c51d0345f5938, type: 3}
   - {fileID: 8300000, guid: 3c97410a0cabb4bee91255b8e8e88110, type: 3}
