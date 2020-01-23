@@ -8,6 +8,7 @@ public class TreeMove : MonoBehaviour
     public float speed = 8f;
     private void Start()
     {
+        speed = RoadManager.instance.currentSpeed;
         Transform tree1 = transform.GetChild(0);
         Transform tree2 = transform.GetChild(1);
         Transform tree3 = transform.GetChild(2);
@@ -48,7 +49,7 @@ public class TreeMove : MonoBehaviour
         localp6.localPosition = temp1;
     }
     void Update() {
-        speed = RoadManager.instance.currentSpeed;
+        
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x-1 , transform.position.y, transform.position.z ), speed * Time.deltaTime);
     }
 

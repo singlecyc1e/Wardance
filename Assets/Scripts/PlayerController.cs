@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour {
     private Animator AnimeC;
     public float distance = 4f;
     public bool idleTimeup;
+    public ParticleSystem SE;
 
     public AudioClip[] SwipeSound;
 
@@ -236,6 +237,10 @@ public class PlayerController : MonoBehaviour {
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
+        SE.Play();
+        StartCoroutine(Turnoff(SE));
+
+
 
         if (moving) {
             stashedDirection = SwipeDirection.Left;
@@ -272,6 +277,8 @@ public class PlayerController : MonoBehaviour {
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
+        SE.Play();
+        StartCoroutine(Turnoff(SE));
 
         if (moving) {
             stashedDirection = SwipeDirection.Right;
@@ -340,4 +347,19 @@ public class PlayerController : MonoBehaviour {
 
         transform.localPosition = originalPos;
     }
+
+    IEnumerator Turnoff(ParticleSystem effect)
+    {
+        if (effect)
+        {
+            yield return new WaitForSeconds(.3f);
+            effect.Stop();
+        }
+
+        else {
+            Debug.Log("error: no effect find");
+        }
+        
+    }
+
 }
