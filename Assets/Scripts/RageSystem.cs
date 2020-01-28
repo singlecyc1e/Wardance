@@ -50,7 +50,7 @@ public class RageSystem : MonoBehaviour
         if (!RageState)
         {
             RageValue += 1;
-            RageText.text = RageValue.ToString()+"/" + RageMaxValue.ToString();
+            RageText.text = RageValue.ToString()+"/" + RageMaxValue.ToString() + "(only for debug)";
         } 
     }
 

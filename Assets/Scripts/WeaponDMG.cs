@@ -69,7 +69,7 @@ public class WeaponDMG : MonoBehaviour
             if (PlayerController.instance.moving | RageSystem.instance.RageState | PlayerController.instance.slashing)
             {
                 killscore += 1;
-                UI_killscore.text = killscore.ToString() + "人斩";
+                UI_killscore.text = "x " + killscore.ToString();
                 Destroy(other.gameObject.GetComponent<MeshRenderer>());
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
@@ -92,7 +92,7 @@ public class WeaponDMG : MonoBehaviour
             if (RageSystem.instance.RageState)
             {
                 killscore += 1;
-                UI_killscore.text = killscore.ToString() + "人斩";
+                UI_killscore.text = "x " + killscore.ToString();
                 Destroy(other.gameObject.GetComponent<MeshRenderer>());
                 other.gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
