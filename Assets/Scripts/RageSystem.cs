@@ -11,6 +11,7 @@ public class RageSystem : MonoBehaviour
     public float LastingTime = 10f;
     public Text RageText;
     public static RageSystem instance;
+    public Image RageBar;
 
     private GameObject Sword;
     private GameObject Sword2;
@@ -25,6 +26,7 @@ public class RageSystem : MonoBehaviour
     }
     private void Start()
     {
+        RageBar.fillAmount = 0f;
         Sword = GameObject.Find("normalsword").gameObject;
         Sword2 = GameObject.Find("normalsword_2").gameObject;
         rageSowrd = GameObject.Find("RageSword").gameObject;
@@ -51,6 +53,7 @@ public class RageSystem : MonoBehaviour
         {
             RageValue += 1;
             RageText.text = RageValue.ToString()+"/" + RageMaxValue.ToString() + "(only for debug)";
+            RageBar.fillAmount += .1f;
         } 
     }
 
@@ -62,6 +65,7 @@ public class RageSystem : MonoBehaviour
     public void Reset()
     {
         RageValue = 0;
+        RageBar.fillAmount = 0f;
     } 
 
     IEnumerator RageMode()
