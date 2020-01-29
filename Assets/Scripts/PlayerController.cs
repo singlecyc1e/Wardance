@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
             directionDetected = Direction.Left;
         }
         
-        Debug.Log("Detect: " + directionDetected);
+        //Debug.Log("Detect: " + directionDetected);
 
         // switch (directionDetected == fingerStorage.direction) {
         //     case true:

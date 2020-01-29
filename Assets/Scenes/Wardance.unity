@@ -10676,7 +10676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &640075635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16414,7 +16414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: x 0
 --- !u!222 &1032584459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17280,7 +17280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.19320267, b: 0, a: 0.9019608}
+  m_Color: {r: 0.898, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -17290,7 +17290,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.383
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -36618,6 +36618,8 @@ MonoBehaviour:
   LastingTime: 6
   RageText: {fileID: 1154836772}
   RageBar: {fileID: 1373153633}
+  decreasing_rate_normal: 0.0007
+  decreasing_rate_rage: 0.0033
 --- !u!114 &5499454258496671564
 MonoBehaviour:
   m_ObjectHideFlags: 0
