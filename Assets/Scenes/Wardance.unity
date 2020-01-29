@@ -37484,7 +37484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShakeAngle: 0.3
   ShakeSpeed: 1
-  SlashAngle: 10
+  SlashAngle: 12.5
   SlashSpeed: 1.5
   AirAttackAngle: 30
 --- !u!20 &5499454259527328037
