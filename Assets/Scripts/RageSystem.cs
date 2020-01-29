@@ -40,7 +40,7 @@ public class RageSystem : MonoBehaviour
     {
         if (!RageState)
         {
-            Debug.Log(RageBar.fillAmount);
+            //Debug.Log(RageBar.fillAmount);
             RageBar.color = Color.HSVToRGB(0, RageBar.fillAmount/1.5f + 0.4f, .9f);
             //RageBar.color = Color.HSVToRGB(0, RageBar.fillAmount * 100, 100);
             if (RageBar.fillAmount >= 0.95)
