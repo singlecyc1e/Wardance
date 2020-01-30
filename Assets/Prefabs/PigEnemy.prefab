@@ -2179,6 +2179,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5441607969173831264}
     m_Modifications:
+    - target: {fileID: 1543887307750395243, guid: de973f05fdb9f364981074f3e4cd77d3,
+        type: 3}
+      propertyPath: m_Name
+      value: Hint Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543887307750395243, guid: de973f05fdb9f364981074f3e4cd77d3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1543887307750395240, guid: de973f05fdb9f364981074f3e4cd77d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2249,16 +2259,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1543887307750395243, guid: de973f05fdb9f364981074f3e4cd77d3,
-        type: 3}
-      propertyPath: m_Name
-      value: Hint Effect
-      objectReference: {fileID: 0}
-    - target: {fileID: 1543887307750395243, guid: de973f05fdb9f364981074f3e4cd77d3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de973f05fdb9f364981074f3e4cd77d3, type: 3}
 --- !u!4 &654594537141192076 stripped
@@ -2274,20 +2274,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5441607969173831264}
     m_Modifications:
+    - target: {fileID: 1267501492719536431, guid: f02cea58ba3501c43a688ea873ea7312,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyDyingEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267501492719536431, guid: f02cea58ba3501c43a688ea873ea7312,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1267501492719536418, guid: f02cea58ba3501c43a688ea873ea7312,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1267501492719536418, guid: f02cea58ba3501c43a688ea873ea7312,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 1267501492719536418, guid: f02cea58ba3501c43a688ea873ea7312,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.7060034
+      value: -1.26
       objectReference: {fileID: 0}
     - target: {fileID: 1267501492719536418, guid: f02cea58ba3501c43a688ea873ea7312,
         type: 3}
@@ -2343,16 +2353,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267501492719536431, guid: f02cea58ba3501c43a688ea873ea7312,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyDyingEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267501492719536431, guid: f02cea58ba3501c43a688ea873ea7312,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02cea58ba3501c43a688ea873ea7312, type: 3}
