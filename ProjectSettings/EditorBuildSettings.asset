@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Wardance.unity
+    guid: 3882b18d116bbd945866f10f858cec76
+  - enabled: 0
     path: Assets/Scenes/BrianTest3.unity
     guid: 807572537745848dfa09362ee8f53a65
   - enabled: 0
