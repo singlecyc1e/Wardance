@@ -7,20 +7,40 @@ public class StartMenu : MonoBehaviour
 {
     public static StartMenu instance;
     public bool STARTmenu = true;
+    public Animator myAnimationController;
 
     private void Awake()
+    {
+       
+    }
+    private void Start()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Start Menu");
         if (objs.Length > 1) { Destroy(this.gameObject); }
         DontDestroyOnLoad(this.gameObject);
 
         if (instance == null) { instance = this; }
-        
-        if (STARTmenu) {
+        if (STARTmenu)
+        {
             this.transform.GetChild(0).gameObject.SetActive(true);
-            Time.timeScale = 0;
+            StartCoroutine(ExampleCoroutine());
+
+
         }
     }
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 0;
+    }
+
+    IEnumerator Fogstart()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        this.transform.GetChild(0).gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
 
     public void BackToMenu()
     {
@@ -32,9 +52,11 @@ public class StartMenu : MonoBehaviour
     public void MyStart()
     {
         STARTmenu = false;
+        myAnimationController.SetBool("move", true);
+        StartCoroutine(Fogstart());
         this.transform.GetChild(0).gameObject.SetActive(false);
-        Time.timeScale = 1;
     }
+
 
     public void Credits()
     {
