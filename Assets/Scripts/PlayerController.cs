@@ -51,6 +51,7 @@ public struct FingerStorage {
 }
 
 public class PlayerController : MonoBehaviour {
+
     public float duration;
 
     public bool moving;
@@ -234,6 +235,9 @@ public class PlayerController : MonoBehaviour {
     public void OnLeftSwipe() {
         if ((transform.position.z > OldPosition.z)) return;
 
+        this.GetComponent<Animator>().enabled = false;
+        //StartCoroutine(TurnOnCameraAnimation());
+
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
@@ -273,6 +277,9 @@ public class PlayerController : MonoBehaviour {
     public void OnRightSwipe() {
         //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
+
+        this.GetComponent<Animator>().enabled = false;
+        //StartCoroutine(TurnOnCameraAnimation());
 
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
@@ -360,6 +367,12 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("error: no effect find");
         }
         
+    }
+
+    IEnumerator TurnOnCameraAnimation()
+    {
+        yield return new WaitForSeconds(0.25f);
+        this.GetComponent<Animator>().enabled = true;
     }
 
 }
