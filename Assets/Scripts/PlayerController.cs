@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 
     public TimeController TimeManager;
     public static PlayerController instance;
+    public Animator RunningCamera;
 
     private void Awake() {
         if (instance == null) {
@@ -235,8 +236,6 @@ public class PlayerController : MonoBehaviour {
     public void OnLeftSwipe() {
         if ((transform.position.z > OldPosition.z)) return;
 
-        this.GetComponent<Animator>().enabled = false;
-        //StartCoroutine(TurnOnCameraAnimation());
 
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
@@ -278,9 +277,6 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
 
-        this.GetComponent<Animator>().enabled = false;
-        //StartCoroutine(TurnOnCameraAnimation());
-
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
         audiosource.Play();
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
@@ -314,8 +310,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnDownSwipe() {
-        if (slashing || gameObject.transform.position.y < 1.0f)
-            return;
+        //if (slashing || gameObject.transform.position.y < 1.0f)
+        return;
 
         PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
         gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
@@ -333,6 +329,8 @@ public class PlayerController : MonoBehaviour {
 
     public void OnUpSwipe() {
         gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
+        RunningCamera.enabled = false;
+            
     }
 
     IEnumerator WaitForSlash() {
@@ -368,11 +366,4 @@ public class PlayerController : MonoBehaviour {
         }
         
     }
-
-    IEnumerator TurnOnCameraAnimation()
-    {
-        yield return new WaitForSeconds(0.25f);
-        this.GetComponent<Animator>().enabled = true;
-    }
-
 }

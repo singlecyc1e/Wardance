@@ -26,9 +26,15 @@ public class PlayerJump : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // Debug.DrawRay(transform.position - new Vector3(0, .55f, 0), Vector3.down * (DistanceToGround+.1f), Color.black, 1);
+        grounded = Physics.Raycast(transform.position - new Vector3(0, .55f, 0), Vector3.down, .1f,
+            LayerMask.NameToLayer("Ground"));
+        if (grounded)
+        {
+            PlayerController.instance.RunningCamera.enabled = true;
+        }
+            // Debug.DrawRay(transform.position - new Vector3(0, .55f, 0), Vector3.down * (DistanceToGround+.1f), Color.black, 1);
 #if UNITY_STANDALONE || UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
             Jump();
         }
 #endif
@@ -44,10 +50,9 @@ public class PlayerJump : MonoBehaviour {
     }
 
     private void Jump() {
-        grounded = Physics.Raycast(transform.position - new Vector3(0, .55f, 0), Vector3.down, .1f,
-            LayerMask.NameToLayer("Ground"));
-        // Debug.Log(grounded);
+
         if (grounded) {
+            PlayerController.instance.RunningCamera.enabled = true;
             GetComponent<Rigidbody>().velocity = Vector3.up * 6f;
         }
     }
