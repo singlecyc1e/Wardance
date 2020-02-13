@@ -52,7 +52,11 @@ public class StartMenu : MonoBehaviour
     public void MyStart()
     {
         STARTmenu = false;
-        myAnimationController.SetBool("move", true);
+        if (myAnimationController)
+        {
+            myAnimationController.SetBool("move", true);
+        }
+            
         StartCoroutine(Fogstart());
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
