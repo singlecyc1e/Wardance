@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour {
                 AnimeC.ResetTrigger("Right to Left");
                 AnimeC.ResetTrigger("LS");
                 AnimeC.ResetTrigger("RS");
+                
                 AnimeC.SetBool("idle", true);
                 LastCommand = PlayerCommand.idle;
             }
@@ -328,6 +329,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnUpSwipe() {
+        AnimeC.ResetTrigger("Jump");
         gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
         RunningCamera.enabled = false;
             
@@ -336,6 +338,7 @@ public class PlayerController : MonoBehaviour {
     IEnumerator WaitForSlash() {
         yield return new WaitForSeconds(0.25f);
         slashing = false;
+
     }
 
     public IEnumerator ShakeBody(float duration, float magnitude) {

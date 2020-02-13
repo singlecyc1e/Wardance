@@ -30,6 +30,7 @@ public class PlayerJump : MonoBehaviour {
             LayerMask.NameToLayer("Ground"));
         if (grounded)
         {
+            AnimeC.ResetTrigger("Jump");
             PlayerController.instance.RunningCamera.enabled = true;
         }
             // Debug.DrawRay(transform.position - new Vector3(0, .55f, 0), Vector3.down * (DistanceToGround+.1f), Color.black, 1);
@@ -52,6 +53,8 @@ public class PlayerJump : MonoBehaviour {
     private void Jump() {
 
         if (grounded) {
+            AnimeC.ResetTrigger("Jump");
+            AnimeC.SetTrigger("Jump");
             PlayerController.instance.RunningCamera.enabled = true;
             GetComponent<Rigidbody>().velocity = Vector3.up * 6f;
         }
