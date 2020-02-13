@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FogConfig : MonoBehaviour
 {
-    public float FogDensity = 0.1f;
+    public float FogDensity = 0.2f;
 
     // Start is called before the first frame update
     void Start()

@@ -176,10 +176,13 @@ public class PlayerController : MonoBehaviour {
 #if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A)) {
             OnLeftSwipe();
-        } else if (Input.GetKeyDown(KeyCode.D)) {
+        } 
+
+        if (Input.GetKeyDown(KeyCode.D)) {
             OnRightSwipe();
         }
 
+        //bullet time trigger 
         if (Input.GetKeyDown(KeyCode.B)) {
             if (WeaponDMG.instance.BulletTime) {
                 WeaponDMG.instance.BulletTime = false;
@@ -235,7 +238,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnLeftSwipe() {
-        if ((transform.position.z > OldPosition.z)) return;
+        //Debug.Log(OldPosition.z.ToString());
+
+        if ((transform.position.z > (OldPosition.z + 0.1f))) return;
+        //Debug.Log("OnLeftSwipe");
 
 
         audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
