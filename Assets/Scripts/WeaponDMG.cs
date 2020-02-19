@@ -59,6 +59,8 @@ public class WeaponDMG : MonoBehaviour
         //        GameObject.Find("LeaderboardInput").SetActive(false);
         //    }
         //}
+        GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
+
     }
 
     private void OnTriggerEnter(Collider other)
