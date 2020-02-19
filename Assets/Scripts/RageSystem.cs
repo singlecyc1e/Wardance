@@ -14,6 +14,7 @@ public class RageSystem : MonoBehaviour
     public Image RageBar;
     public float decreasing_rate_normal = .0005f;
     public float decreasing_rate_rage = .0025f;
+    public Animator sword;
     private GameObject Sword;
     private GameObject Sword2;
     private GameObject rageSowrd;
@@ -48,6 +49,8 @@ public class RageSystem : MonoBehaviour
                 RageBar.color = Color.HSVToRGB(0, 1, .9f);
                 //StartCoroutine(RageMode());
                 RageState = true;
+                sword.SetBool("rageMode", true);
+
                 Sword.SetActive(false);
                 //Sword2.SetActive(false);
                 rageSowrd.SetActive(true);
@@ -59,11 +62,13 @@ public class RageSystem : MonoBehaviour
         {
             if (RageBar.fillAmount <= 0)
             {
+                sword.SetBool("rageMode", false);
                 rageSowrd.SetActive(false);
                 //rageSowrd2.SetActive(false);
                 Sword.SetActive(true);
                 //Sword2.SetActive(true);
                 RageState = false;
+                
             }
         }
     }
