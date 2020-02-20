@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5683,11 +5683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198817138, guid: 6f0bc94f4e2fe44abad7f38541ed3d8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198817139, guid: 6f0bc94f4e2fe44abad7f38541ed3d8f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f0bc94f4e2fe44abad7f38541ed3d8f, type: 3}
@@ -24051,7 +24051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499454259527328095}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -24104,20 +24104,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1690049027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499454259527328095}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
-  DefaultRotInfluence: {x: 1, y: 1, z: 1}
 --- !u!1 &1711355007
 GameObject:
   m_ObjectHideFlags: 0
@@ -43163,7 +43149,7 @@ MonoBehaviour:
   LastingTime: 6
   RageText: {fileID: 1154836772}
   RageBar: {fileID: 1373153633}
-  decreasing_rate_normal: 0.0007
+  decreasing_rate_normal: 0.0003
   decreasing_rate_rage: 0.0033
   sword: {fileID: 5499454259019667738}
 --- !u!114 &5499454258496671564
@@ -44319,7 +44305,6 @@ GameObject:
   - component: {fileID: 5499454259527328032}
   - component: {fileID: 5499454259527328033}
   - component: {fileID: 1690049024}
-  - component: {fileID: 1690049027}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
