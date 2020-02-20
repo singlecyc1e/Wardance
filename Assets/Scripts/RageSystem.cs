@@ -12,7 +12,7 @@ public class RageSystem : MonoBehaviour
     public Text RageText;
     public static RageSystem instance;
     public Image RageBar;
-    public float decreasing_rate_normal = .0005f;
+    public float decreasing_rate_normal = .0002f;
     public float decreasing_rate_rage = .0025f;
     public Animator sword;
     private GameObject Sword;
