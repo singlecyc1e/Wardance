@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: speed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2529368537360387778, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e227ce26bb94b4b4780c7b8dad2b2c64, type: 3}
 --- !u!114 &54707976 stripped
@@ -30030,6 +30035,7 @@ MonoBehaviour:
   CrossfadeTransition: {fileID: 1233148864}
   DoorTransition: {fileID: 1006134425}
   TransitionTime: 1
+  TimeManager: {fileID: 54707976}
 --- !u!1 &2105124436
 GameObject:
   m_ObjectHideFlags: 0
