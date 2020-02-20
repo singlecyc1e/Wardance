@@ -77,7 +77,7 @@ public class WeaponDMG : MonoBehaviour
 
            
             //if "move" in playercontroller is True
-            if (PlayerController.instance.moving | RageSystem.instance.RageState | PlayerController.instance.slashing)
+            if (PlayerController.instance.moving | RageSystem.instance.inRageMode | PlayerController.instance.slashing)
             {
                 WordDisplay();
                 killtime = Time.time;
@@ -102,7 +102,7 @@ public class WeaponDMG : MonoBehaviour
         {
 
             //if "move" in playercontroller is True
-            if (RageSystem.instance.RageState)
+            if (RageSystem.instance.inRageMode)
             {
                 WordDisplay();
                 killtime = Time.time;
