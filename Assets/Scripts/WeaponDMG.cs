@@ -38,11 +38,11 @@ public class WeaponDMG : MonoBehaviour
 
     public void SetupDeathMenu() {
         //pause game
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         Alive = false;
 
-        GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("BestScores").GetComponent<BestScores>().UpdateScoreDisplay();
+        //GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
+        //GameObject.Find("BestScores").GetComponent<BestScores>().UpdateScoreDisplay();
 
         //GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(true);
 
