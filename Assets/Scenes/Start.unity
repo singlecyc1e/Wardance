@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43144,14 +43144,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37208b661d40d0458908f13cb8c73b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RageMaxValue: 10
-  RageState: 0
+  maxRageValue: 2
+  inRageMode: 0
   LastingTime: 6
-  RageText: {fileID: 1154836772}
-  RageBar: {fileID: 1373153633}
+  rageText: {fileID: 1154836772}
+  rageBarFill: {fileID: 1373153633}
   decreasing_rate_normal: 0.0003
   decreasing_rate_rage: 0.0033
-  sword: {fileID: 5499454259019667738}
+  swordAnimator: {fileID: 5499454259019667738}
 --- !u!114 &5499454258496671564
 MonoBehaviour:
   m_ObjectHideFlags: 0
