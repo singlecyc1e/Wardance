@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     public Animator CrossfadeTransition;
     public Animator DoorTransition;
     public float TransitionTime = 1.0f;
+    public TimeController TimeManager;
 
     // Update is called once per frame
     void Update()
@@ -21,10 +22,14 @@ public class MenuManager : MonoBehaviour
     public void LoadMenu()
     {
         StartCoroutine(CoroutineLoadMenu());
+
+        GameObject.Find("SwordCollider").GetComponent<WeaponDMG>().Alive = true;
     }
 
     IEnumerator CoroutineLoadMenu()
     {
+        //Time.timeScale = 0;
+
         CrossfadeTransition.SetTrigger("Start");
         DoorTransition.SetTrigger("Start");
 
