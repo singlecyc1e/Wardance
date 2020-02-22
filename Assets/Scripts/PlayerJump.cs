@@ -30,6 +30,10 @@ public class PlayerJump : MonoBehaviour {
             LayerMask.NameToLayer("Ground"));
         if (grounded)
         {
+            //if (!AnimeC.GetBool("rageMode") && !AnimeC.GetBool("RS")):
+            Debug.Log(AnimeC.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+            if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+                AnimeC.SetBool("idle",true);
             AnimeC.ResetTrigger("Jump");
             PlayerController.instance.RunningCamera.enabled = true;
         }
