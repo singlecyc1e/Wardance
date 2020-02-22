@@ -10,8 +10,8 @@ public enum SwipeDirection {
     Right
 }
 
-enum PlayerCommand {
-    idle = 0,
+public enum PlayerCommand {
+    Idle = 0,
     Leftswing = 1,
     Rightswing = 2
 }
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip[] SwipeSound;
 
     private AudioSource audiosource;
-    private PlayerCommand LastCommand = PlayerCommand.idle;
+    private PlayerCommand LastCommand = PlayerCommand.Idle;
     private float LastCommandTime = 0f;
 
     private Vector3 OldPosition;
@@ -102,8 +102,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateTouch() {
-        if(LeanTouch.Fingers.Count == 0) return;
-        
+        if (LeanTouch.Fingers.Count == 0) return;
+        if (PlayerPrefs.GetInt(LevelController.useButtonSettingKey) == 1) return;
+
         var deltaPosition = LeanGesture.GetScreenDelta();
         var angle = Vector2.SignedAngle(Vector2.up, deltaPosition);
         var directionDetected = Direction.None;
@@ -116,17 +117,6 @@ public class PlayerController : MonoBehaviour {
         } else if (angle >= -135 && angle < -45) {
             directionDetected = Direction.Left;
         }
-        
-        //Debug.Log("Detect: " + directionDetected);
-
-        // switch (directionDetected == fingerStorage.direction) {
-        //     case true:
-        //         fingerStorage.DecreaseCounter();
-        //         break;
-        //     default:
-        //         fingerStorage = new FingerStorage(directionDetected, 5);
-        //         break;
-        // }
 
         var lastCenter = LeanGesture.GetLastScreenCenter();
 
@@ -161,7 +151,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
-        if (LastCommand != PlayerCommand.idle) {
+        if (LastCommand != PlayerCommand.Idle) {
             if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f) {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
@@ -169,7 +159,7 @@ public class PlayerController : MonoBehaviour {
                 AnimeC.ResetTrigger("RS");
                 
                 AnimeC.SetBool("idle", true);
-                LastCommand = PlayerCommand.idle;
+                LastCommand = PlayerCommand.Idle;
             }
         }
         
@@ -318,20 +308,20 @@ public class PlayerController : MonoBehaviour {
 
     public void OnDownSwipe() {
         //if (slashing || gameObject.transform.position.y < 1.0f)
-        return;
+        // return;
 
-        PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
-        gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
-
-        gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
-
-        AnimeC.SetTrigger("DS");
-
-        slashing = true;
-        startTime = Time.time;
-        targetZ = transform.position.z;
-
-        StartCoroutine(WaitForSlash());
+        // PlayerCamera.GetComponent<CameraShake>().CameraDownSwipe();
+        // gameObject.GetComponent<PlayerJump>().JumpDownSwipe();
+        //
+        // gameObject.transform.position = new Vector3(OldPosition.x, OldPosition.y, transform.position.z);
+        //
+        // AnimeC.SetTrigger("DS");
+        //
+        // slashing = true;
+        // startTime = Time.time;
+        // targetZ = transform.position.z;
+        //
+        // StartCoroutine(WaitForSlash());
     }
 
     public void OnUpSwipe() {

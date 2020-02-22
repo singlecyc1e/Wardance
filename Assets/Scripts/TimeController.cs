@@ -19,11 +19,11 @@ public class TimeController : MonoBehaviour
     private void Update()
     {
         
-        if (WeaponDMG.instance.Alive && !StartMenu.instance.STARTmenu)
-        {
-            Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-        }
+        // if (WeaponDMG.instance.Alive && !StartMenu.instance.STARTmenu)
+        // {
+        //     Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
+        //     Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        // }
 
     }
 

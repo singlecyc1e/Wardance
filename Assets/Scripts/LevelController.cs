@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelController : MonoBehaviour {
     public SwipeKillController swipeKillController;
 
+    public static string useButtonSettingKey = "USE_BUTTON";
     public static LevelController instance;
     
     private void Awake() {
@@ -20,6 +21,7 @@ public class LevelController : MonoBehaviour {
 
     private void Start() {
         RoadManager.instance.Init(5);
+        PlayerPrefs.SetInt(useButtonSettingKey, 0);
     }
 
     public void StartSwipeCounting() {
