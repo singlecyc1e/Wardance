@@ -43,36 +43,21 @@ public class RageSystem : MonoBehaviour {
         //rageSowrd2.SetActive(false);
     }
 
-    // private void Update() {
-    //     
-    //     if (!inRageMode) {
-    //         rageBarFill.color = Color.HSVToRGB(0, rageBarFill.fillAmount / 1.5f + 0.4f, .9f);
-    //         //rageBarFill.color = Color.HSVToRGB(0, rageBarFill.fillAmount * 100, 100);
-    //         if (rageBarFill.fillAmount >= 0.95) {
-    //             hasMaxRage = true;
-    //             rageBarFill.color = Color.HSVToRGB(0, 1, .9f);
-    //         }
-    //     } else {
-    //         if (rageBarFill.fillAmount <= 0) {
-    //             DeactivateRage();
-    //         }
-    //     }
-    // }
-
     private void FixedUpdate() {
-        if(hasMaxRage) return;
+        if (hasMaxRage) return;
         
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
-            // rageBarFill.fillAmount -= decreasing_rate_normal;
-        } else {
-            rageValue -= decreasing_rate_normal;
             if (rageValue <= 0) {
                 DeactivateRage();
                 rageValue = 0f;
             }
-            // rageBarFill.fillAmount -= decreasing_rate_rage;
+        } else {
+            if (rageValue > 0f) {
+                rageValue -= decreasing_rate_normal;
+            }
         }
+        
         UpdateRageDisplay();
     }
 
@@ -89,10 +74,11 @@ public class RageSystem : MonoBehaviour {
 
     public void ActivateRage() {
         if(!hasMaxRage) return;
-
-        swordAnimator.SetBool("rageMode", true);
+        
         hasMaxRage = false;
         inRageMode = true;
+
+        swordAnimator.SetBool("rageMode", true);
         Sword.SetActive(false);
         //Sword2.SetActive(false);
         rageSowrd.SetActive(true);
@@ -101,41 +87,18 @@ public class RageSystem : MonoBehaviour {
 
     private void DeactivateRage() {
         inRageMode = false;
+        hasMaxRage = false;
         
         swordAnimator.SetBool("rageMode", false);
         rageSowrd.SetActive(false);
         //rageSowrd2.SetActive(false);
         Sword.SetActive(true);
         //Sword2.SetActive(true);
-        inRageMode = false;
     }
 
     private void UpdateRageDisplay() {
         rageBarFill.fillAmount = rageValue / maxRageValue;
         rageBarFill.color = hasMaxRage ? Color.HSVToRGB(0, 1, .9f) : Color.HSVToRGB(0, rageBarFill.fillAmount / 1.5f + 0.4f, .9f);
         rageText.text = rageValue + "/" + maxRageValue + "(only for debug)";
-        
     }
-
-    // public float ShowRageValue() {
-    //     return rageValue;
-    // }
-
-    // public void Reset() {
-    //     rageValue = 0;
-    // }
-
-    // IEnumerator RageMode() {
-    //     inRageMode = true;
-    //     Sword.SetActive(false);
-    //     //Sword2.SetActive(false);
-    //     rageSowrd.SetActive(true);
-    //     //rageSowrd2.SetActive(true);
-    //     yield return new WaitForSeconds(LastingTime);
-    //     rageSowrd.SetActive(false);
-    //     //rageSowrd2.SetActive(false);
-    //     Sword.SetActive(true);
-    //     //Sword2.SetActive(true);
-    //     inRageMode = false;
-    // }
 }
