@@ -10,17 +10,20 @@ public class AudioSystem : MonoBehaviour
     public UnityEvent onGroundAudio;
     public UnityEvent JumpAudio;
     public UnityEvent EnemydieAudio;
+    private AudioSource a;
     private void Awake()
     {
         instance = this;
+        EnemydieAudio.AddListener(playenemydie);
     }
     void Start()
     {
+        a = this.GetComponent<AudioSource>();
     }
 
-    void playfootstep()
-    { 
-
+    void playenemydie()
+    {
+        a.Play();
     }
 
     // Update is called once per frame
