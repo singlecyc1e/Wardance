@@ -33,8 +33,13 @@ public class PlayerJump : MonoBehaviour {
             //if (!AnimeC.GetBool("rageMode") && !AnimeC.GetBool("RS")):
 
             if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+            {
                 AnimeC.SetBool("idle",true);
-            AnimeC.ResetTrigger("Jump");
+            }
+            else
+            {
+                AnimeC.ResetTrigger("Jump");
+            }
             PlayerController.instance.RunningCamera.enabled = true;
         }
             // Debug.DrawRay(transform.position - new Vector3(0, .55f, 0), Vector3.down * (DistanceToGround+.1f), Color.black, 1);
