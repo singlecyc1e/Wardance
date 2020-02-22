@@ -5,7 +5,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class EnemyMappingDictionary : SerializableDictionary<EnemyType, GameObject> { }
+public class EnemyMappingDictionary : SerializableDictionary<EnemyType, GameObject> {
+}
 
 [Serializable]
 public struct RoadInfo {
@@ -18,20 +19,19 @@ public class RoadManager : MonoBehaviour {
     public float speed;
     public GameObject emptyRoad;
     public EnemyMappingDictionary enemyMapping;
-    
+
     public float speedReduceDuration;
     public float speedReduceDelay;
     public int minimumSwipeCount;
-    
-    [NonSerialized]
-    public float currentSpeed;
+
+    [NonSerialized] public float currentSpeed;
 
     private bool randomRoadSpawn;
     private static List<RoadSegmentInfo> roadInfo;
     private int roadIndex;
 
     private bool willSpawnBoss;
-    
+
     public static List<EnemyType> noEnemy;
     public static RoadManager instance;
 
@@ -56,23 +56,24 @@ public class RoadManager : MonoBehaviour {
             randomRoadSpawn = false;
             roadIndex = 0;
         }
-        InvokeRepeating(nameof(ChangeRoadIndex), 0f, 2f);
     }
 
-    private void ChangeRoadIndex() {
+    private void ChangeRoadIndex(int currentIndex = -1) {
         if (randomRoadSpawn) {
             roadIndex = Random.Range(0, roadInfo.Count);
         } else {
-            ++roadIndex;
+            roadIndex = currentIndex + 1;
         }
     }
 
-    public RoadSegmentInfo GetRoadSegment() {
+    public RoadSegmentInfo GetRoadSegment(int currentIndex) {
         if (roadIndex >= roadInfo.Count) {
             roadInfo = DataUtility.GetLevelInfo(6);
             roadIndex = 0;
+            InvokeRepeating(nameof(ChangeRoadIndex), 0f, 1.5f);
         }
-        
+
+        ChangeRoadIndex(currentIndex);
         var result = roadInfo[roadIndex];
 
         if (result.GetEnemyTypesAt(1)[1] == EnemyType.Boss && !willSpawnBoss) {
@@ -80,8 +81,7 @@ public class RoadManager : MonoBehaviour {
             ++roadIndex;
             StartCoroutine(ReduceSpeed(speedReduceDelay));
         }
-//        TimeController.instance.BulletTime();
-//        Invoke(nameof(TimeController.instance.BulletTime), speedReduceDelay);
+
         return result;
     }
 
@@ -89,15 +89,11 @@ public class RoadManager : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         var fadeSpeed = currentSpeed / speedReduceDuration;
 
-        while (!Mathf.Approximately (currentSpeed, 0f))
-        {
-            currentSpeed = Mathf.MoveTowards (currentSpeed, 0f, fadeSpeed * Time.deltaTime);
-//            AudioListener.volume = Mathf.MoveTowards (AudioListener.volume, (PlayerPrefs.GetFloat ("volume") - finalAlpha), audioFadeSpeed * Time.deltaTime);
-//			Debug.Log (faderCanvasGroup.alpha);
-
+        while (!Mathf.Approximately(currentSpeed, 0f)) {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, fadeSpeed * Time.deltaTime);
             yield return null;
         }
-        
+
         LevelController.instance.StartSwipeCounting();
         yield return StartCoroutine(WaitForBossBattle());
     }
@@ -115,19 +111,11 @@ public class RoadManager : MonoBehaviour {
 
     private IEnumerator ContinueGame() {
         var fadeSpeed = speed / speedReduceDuration;
-        while (!Mathf.Approximately (currentSpeed, speed))
-        {
-            currentSpeed = Mathf.MoveTowards (currentSpeed, speed, fadeSpeed * Time.deltaTime);
+        while (!Mathf.Approximately(currentSpeed, speed)) {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, speed, fadeSpeed * Time.deltaTime);
             yield return null;
         }
 
         willSpawnBoss = false;
     }
-
-//    public void GenerateNewRoadSegment() {
-//        foreach (var roadInfo in RoadInfos) {
-//            var road = Instantiate(roads[Random.Range(0, roads.Length)], roadInfo.spawnPoint.position, Quaternion.identity);
-//            road.GetComponent<RoadSegmentController>().Init(roadInfo.endPoint.position, currentSpeed);
-//        }
-//    }
 }
