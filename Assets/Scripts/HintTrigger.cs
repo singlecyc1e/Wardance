@@ -1,34 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HintTrigger : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class HintTrigger : MonoBehaviour {
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Regular") || other.gameObject.CompareTag("HeavyArmor")) {
+            var hintEffectParticle = other.gameObject.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if(other.gameObject.tag == "Regular" || other.gameObject.tag == "HeavyArmor")
-        {
-            var HintEffectParticle = other.gameObject.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
-
-            if (!HintEffectParticle.isPlaying)
-            {
-                HintEffectParticle.Play();
+            if (!hintEffectParticle.isPlaying) {
+                hintEffectParticle.Play();
             }
-
-            //Debug.Log(other.gameObject.transform.GetChild(1).name);
         }
     }
 }
