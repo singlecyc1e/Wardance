@@ -18,7 +18,7 @@ public class DistanceDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(overallSpeed);
+
         this.transform.position = new Vector3(this.transform.position.x + overallSpeed, this.transform.position.y, this.transform.position.z);
     }
 }

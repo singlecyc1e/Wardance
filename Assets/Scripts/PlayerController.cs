@@ -13,7 +13,8 @@ public enum SwipeDirection {
 public enum PlayerCommand {
     Idle = 0,
     Leftswing = 1,
-    Rightswing = 2
+    Rightswing = 2,
+    Jump = 3
 }
 
 public enum Direction {
@@ -328,7 +329,9 @@ public class PlayerController : MonoBehaviour {
         AnimeC.ResetTrigger("Jump");
         gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
         RunningCamera.enabled = false;
-            
+        LastCommand = PlayerCommand.Jump;
+
+
     }
 
     IEnumerator WaitForSlash() {
