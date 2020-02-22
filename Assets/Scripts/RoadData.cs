@@ -66,8 +66,8 @@ public static partial class DataUtility {
         }
         
         var result = "";
-        for (var i = 0; i < 5; i++) {
-            result += ReadLevelResource(i + 1) + "\n";
+        for (var i = 0; i < 6; i++) {
+            result += ReadLevelResource(i) + "\n";
         }
         return ParseLevelInfo(result);
     }
