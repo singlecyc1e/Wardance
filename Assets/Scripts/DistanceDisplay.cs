@@ -6,6 +6,7 @@ public class DistanceDisplay : MonoBehaviour
 {
     // level 1 28 sec
     // Start is called before the first frame update
+    public Transform Endposition;
     void Start()
     {
         
