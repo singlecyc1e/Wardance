@@ -82,7 +82,7 @@ public class WeaponDMG : MonoBehaviour
                 WordDisplay();
                 killtime = Time.time;
                 killscore += 1;
-                UI_killscore.text = "x " + killscore.ToString();
+                UI_killscore.text = killscore.ToString();
                 Destroy(other.gameObject.GetComponent<MeshRenderer>());
                 other.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
