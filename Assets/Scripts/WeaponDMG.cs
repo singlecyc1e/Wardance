@@ -128,6 +128,7 @@ public class WeaponDMG : MonoBehaviour
 
     private void WordDisplay()
     {
+        AudioSystem.instance.EnemydieAudio.Invoke();
         if ((Time.time - killtime) < timecheck)
         {
             counter++;
