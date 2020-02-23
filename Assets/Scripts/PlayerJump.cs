@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerJump : MonoBehaviour {
     public float duration = 0.65f;
@@ -16,6 +17,7 @@ public class PlayerJump : MonoBehaviour {
     private float DistanceToGround;
     private Animator AnimeC;
     private Vector3 OldPosition;
+    private bool onfoot = true;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,7 +37,11 @@ public class PlayerJump : MonoBehaviour {
         if (grounded)
         {
             //if (!AnimeC.GetBool("rageMode") && !AnimeC.GetBool("RS")):
- 
+            if (onfoot == false)
+            {
+                AudioSystem.instance.onGroundAudio.Invoke();
+                onfoot = true;
+            }
             if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
             {
                 AnimeC.ResetTrigger("Jump");
@@ -67,6 +73,8 @@ public class PlayerJump : MonoBehaviour {
     private void Jump() {
 
         if (grounded) {
+            AudioSystem.instance.JumpAudio.Invoke();
+            onfoot = false;
             AnimeC.ResetTrigger("Jump");
             AnimeC.SetTrigger("Jump");
             PlayerController.instance.RunningCamera.enabled = true;

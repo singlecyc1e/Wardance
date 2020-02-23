@@ -12,8 +12,6 @@ public class Footstepaudio : MonoBehaviour
     private void Awake()
     {
         a = this.GetComponent<AudioSource>();
-        AudioSystem.instance.JumpAudio.AddListener(start_jump);
-        AudioSystem.instance.onGroundAudio.AddListener(startground);
     }
 
     void startground() {
@@ -29,7 +27,8 @@ public class Footstepaudio : MonoBehaviour
     }
     void Start()
     {
-        
+        AudioSystem.instance.JumpAudio.AddListener(start_jump);
+        AudioSystem.instance.onGroundAudio.AddListener(startground);
     }
 
     // Update is called once per frame
