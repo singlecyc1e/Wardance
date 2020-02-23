@@ -36,7 +36,7 @@ public class StartMenu : MonoBehaviour
 
     IEnumerator Fogstart()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(0f);
         this.transform.GetChild(0).gameObject.SetActive(false);
         Time.timeScale = 1;
     }

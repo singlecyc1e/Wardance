@@ -26,19 +26,24 @@ public class PlayerJump : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("LeftSwing2"))
+        {
+            Debug.Log("LeftSwing2");
+        }
         grounded = Physics.Raycast(transform.position - new Vector3(0, .55f, 0), Vector3.down, .1f,
             LayerMask.NameToLayer("Ground"));
         if (grounded)
         {
             //if (!AnimeC.GetBool("rageMode") && !AnimeC.GetBool("RS")):
-
+ 
             if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
             {
-                AnimeC.SetBool("idle",true);
-            }
-            else
-            {
                 AnimeC.ResetTrigger("Jump");
+                AnimeC.SetBool("idle",true);
+                AnimeC.ResetTrigger("RS");
+                AnimeC.ResetTrigger("Left to Right");
+                AnimeC.ResetTrigger("LS");
+                AnimeC.ResetTrigger("Right to Left");
             }
             PlayerController.instance.RunningCamera.enabled = true;
         }

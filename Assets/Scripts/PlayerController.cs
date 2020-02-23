@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
                 AnimeC.ResetTrigger("Right to Left");
                 AnimeC.ResetTrigger("LS");
                 AnimeC.ResetTrigger("RS");
-                
+                AnimeC.ResetTrigger("Jump");
                 AnimeC.SetBool("idle", true);
                 LastCommand = PlayerCommand.Idle;
             }
@@ -235,8 +235,7 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log("OnLeftSwipe");
 
 
-        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
-        audiosource.Play();
+
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
         SE.Play();
         StartCoroutine(Turnoff(SE));
@@ -252,18 +251,24 @@ public class PlayerController : MonoBehaviour {
 
         if (LastCommand == PlayerCommand.Rightswing) {
             AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("Jump");
             AnimeC.ResetTrigger("RS");
             AnimeC.ResetTrigger("Left to Right");
             AnimeC.SetTrigger("Right to Left");
             //Debug.Log("R TO L");
         } else {
             AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("Jump");
             AnimeC.ResetTrigger("Right to Left");
+            AnimeC.ResetTrigger("Left to Right");
             AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("RS");
             AnimeC.SetTrigger("LS");
         }
 
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
         LastCommand = PlayerCommand.Leftswing;
         LastCommandTime = Time.time;
         moving = true;
@@ -275,8 +280,7 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
 
-        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
-        audiosource.Play();
+
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
         SE.Play();
         StartCoroutine(Turnoff(SE));
@@ -289,17 +293,24 @@ public class PlayerController : MonoBehaviour {
 
         if (LastCommand == PlayerCommand.Leftswing) {
             AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("Jump");
             AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("Left to Right");
+            AnimeC.ResetTrigger("RS");
             AnimeC.ResetTrigger("Right to Left");
             AnimeC.SetTrigger("Left to Right");
         } else {
             AnimeC.SetBool("idle", false);
+            AnimeC.ResetTrigger("Jump");
+            AnimeC.ResetTrigger("LS");
             AnimeC.ResetTrigger("Left to Right");
             AnimeC.ResetTrigger("RS");
-            AnimeC.ResetTrigger("LS");
+            AnimeC.ResetTrigger("Right to Left");
             AnimeC.SetTrigger("RS");
         }
 
+        audiosource.clip = SwipeSound[UnityEngine.Random.Range(0, 3)];
+        audiosource.Play();
         LastCommand = PlayerCommand.Rightswing;
         LastCommandTime = Time.time;
         moving = true;
@@ -327,6 +338,7 @@ public class PlayerController : MonoBehaviour {
 
     public void OnUpSwipe() {
         AnimeC.ResetTrigger("Jump");
+        AnimeC.SetBool("idle", false);
         gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
         RunningCamera.enabled = false;
         LastCommand = PlayerCommand.Jump;
