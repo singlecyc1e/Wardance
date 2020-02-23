@@ -28,10 +28,7 @@ public class PlayerJump : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (AnimeC.GetCurrentAnimatorStateInfo(0).IsName("LeftSwing2"))
-        {
-            Debug.Log("LeftSwing2");
-        }
+
         grounded = Physics.Raycast(transform.position - new Vector3(0, .55f, 0), Vector3.down, .1f,
             LayerMask.NameToLayer("Ground"));
         if (grounded)
