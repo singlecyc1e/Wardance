@@ -22,6 +22,40 @@ MonoBehaviour:
   sampleCount:
     overrideState: 0
     value: 4
+--- !u!114 &-4896954701643695827
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 1
+  intensityX:
+    overrideState: 0
+    value: 1
+  intensityY:
+    overrideState: 0
+    value: 1
+  centerX:
+    overrideState: 0
+    value: 0
+  centerY:
+    overrideState: 0
+    value: 0
+  scale:
+    overrideState: 1
+    value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,6 +73,7 @@ MonoBehaviour:
   - {fileID: 535052807107207293}
   - {fileID: 8525373260438071436}
   - {fileID: -7381536742937136210}
+  - {fileID: -4896954701643695827}
 --- !u!114 &535052807107207293
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1415,9 +1450,9 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 0.4
+    value: 15
   aperture:
-    overrideState: 1
+    overrideState: 0
     value: 2.4
   focalLength:
     overrideState: 1
