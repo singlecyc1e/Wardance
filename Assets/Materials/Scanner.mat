@@ -35,10 +35,10 @@ Material:
     - _ScanWidth: 1
     - _SquareSize: 0.57
     m_Colors:
-    - _FillColor: {r: 0, g: 0, b: 0.02121901, a: 0.6862745}
+    - _FillColor: {r: 1, g: 0.06465518, b: 0, a: 0.49019608}
     - _FirstColor: {r: 0.89626956, g: 0.9559735, b: 1, a: 0.8039216}
     - _HBarColor: {r: 0.40482342, g: 1, b: 0, a: 1}
     - _LeadColor: {r: 0, g: 1, b: 0.10499692, a: 1}
     - _MidColor: {r: 0.8207547, g: 0, b: 0, a: 0}
-    - _SecondColor: {r: 0.18447503, g: 0.30946895, b: 0.7681514, a: 0.5176471}
+    - _SecondColor: {r: 0.5254902, g: 0.0710322, b: 0, a: 0.6862745}
     - _TrailColor: {r: 0, g: 0.362509, b: 1, a: 1}

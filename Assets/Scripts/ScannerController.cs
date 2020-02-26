@@ -15,8 +15,7 @@ public class ScannerController : MonoBehaviour{
 	public float initialScanDistance = 0;
 	public float maxScanDistance = 20;
 	public float scanThickness;
-	public GridGenerator gridGenerator;
-	
+    public static ScannerController instance;
 	[ColorUsage(true, true)]
 	public List<Color> colors;
 
@@ -27,13 +26,16 @@ public class ScannerController : MonoBehaviour{
 
 	IEnumerator scanHandler = null;
 
-	LensDistortion lensDistortion = null;
-	DepthOfField dof = null;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this; 
+        }
+    }
 
-	void Start(){
-		PostProcessVolume ppv = gameObject.GetComponent<PostProcessVolume>();
-		ppv.profile.TryGetSettings(out lensDistortion);
-		ppv.profile.TryGetSettings(out dof);
+    void Start(){
+
 	}
 
 	void OnEnable(){
@@ -116,12 +118,17 @@ public class ScannerController : MonoBehaviour{
 	}
 
     void Update(){
-        if(Input.GetKeyUp(KeyCode.Space)){
-            if(scanDistance <= 0){
-                scan();
-            }else{
-                scanBack();
-            }
+
+    }
+    public void CheckAndScan()
+    {
+        if (scanDistance <= 0)
+        {
+            scan();
+        }
+        else
+        {
+            scanBack();
         }
     }
 
@@ -144,41 +151,39 @@ public class ScannerController : MonoBehaviour{
     }
 
     IEnumerator scanCoroutine(){
-		distorsion();
         scanDistance = initialScanDistance;
 		bool startShow = false;   
         while(scanDistance <= maxScanDistance ){
 			if(scanDistance > maxScanDistance/2 && !startShow){
-				gridGenerator.show();
 				startShow = true;
 			}
             scanDistance1 = scanDistance+1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1+1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance ++;
 
         }
+        cam.clearFlags = CameraClearFlags.SolidColor;
         scanDistance = maxScanDistance;  
 		scanHandler = null;
     }
 
 	IEnumerator scanBackCoroutine(){
-		bool startHide = false;   
-        while(scanDistance > 0 ){
+		bool startHide = false;
+        cam.clearFlags = CameraClearFlags.Skybox;
+        while (scanDistance > 0 ){
 			if(scanDistance < maxScanDistance/2 && !startHide){
-				gridGenerator.hide();
 				startHide = true;
-				distorsion();
 			}
             scanDistance1 = scanDistance-1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1-1;
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return new WaitForSecondsRealtime(.001f);
             scanDistance --;
 
         }
@@ -186,25 +191,4 @@ public class ScannerController : MonoBehaviour{
 		scanHandler = null; 
     }
 
-	void distorsion(){
-		StartCoroutine(distorsionCoroutine());
-	}
-
-	IEnumerator distorsionCoroutine(){
-		if(dof != null && lensDistortion != null){
-			int distAmount = MAXDISTORSION;
-			float distance = MINDISTANCE;
-
-			while(distAmount >= MINDISTORSION ){
-				lensDistortion.intensity.value = distAmount;
-				dof.focusDistance.value = distance;
-				distAmount -=5 ;
-				distance += 0.1f;
-				yield return new WaitForSecondsRealtime(.01f);
-			}
-
-			lensDistortion.intensity.value = MINDISTORSION;
-			dof.focusDistance.value = MAXDISTANCE;
-		}
-    }
 }
