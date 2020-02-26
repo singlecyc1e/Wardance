@@ -7,6 +7,8 @@ public class StartMenuManager : MonoBehaviour
 {
     public void LoadGame()
     {
+        Time.timeScale = 1.0f;
+
         //Load next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
