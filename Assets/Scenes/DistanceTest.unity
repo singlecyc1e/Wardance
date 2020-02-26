@@ -842,7 +842,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103826586}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -22746,7 +22746,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1220885374}
+      - m_Target: {fileID: 0}
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
@@ -23308,7 +23308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &640075635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30084,7 +30084,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 79e77e36061a8af448f886e67828c7c1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -35924,7 +35924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1220885374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35932,7 +35932,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220885373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59a96a70c70af47b43536518c1a0a3, type: 3}
   m_Name: 
@@ -36204,7 +36204,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6b333110e6a589c438d9ae3491911f6b, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -50923,11 +50923,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092389956}
     m_Modifications:
-    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Fog_Particles (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5790324278763580001, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50982,6 +50977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Fog_Particles (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ee1360d134f704eaa8db2bc5cc35e7, type: 3}

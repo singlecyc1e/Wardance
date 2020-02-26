@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WeaponDMG : MonoBehaviour
 {
@@ -59,7 +60,6 @@ public class WeaponDMG : MonoBehaviour
         //    }
         //}
         GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
-
     }
 
     private void OnTriggerEnter(Collider other)
