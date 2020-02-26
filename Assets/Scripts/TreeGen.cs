@@ -12,12 +12,12 @@ public class TreeGen : MonoBehaviour
         //Debug.Log(other.tag);
         if (other.tag == "TreeGen")
         {
-                Destroy(Instantiate(treeobj, other.gameObject.transform.position + new Vector3(83f, 0,  0), Quaternion.identity),18f);
+                Destroy(Instantiate(treeobj, other.gameObject.transform.position + new Vector3(83f, 0,  0), Quaternion.identity),11f);
         }
 
         if (other.tag == "Grass")
         {
-            Destroy(Instantiate(grass, other.gameObject.transform.position + new Vector3(83f, 0, 0), Quaternion.identity), 18f);
+            Destroy(Instantiate(grass, other.gameObject.transform.position + new Vector3(83f, 0, 0), Quaternion.identity), 11f);
         }
     }
 
