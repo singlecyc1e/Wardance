@@ -51231,7 +51231,7 @@ MonoBehaviour:
   CrossfadeTransition: {fileID: 1233148864}
   DoorTransition: {fileID: 1006134425}
   TransitionTime: 1
-  TimeManager: {fileID: 54707976}
+  DeathTimeScale: 0.05
 --- !u!1 &2081583862
 GameObject:
   m_ObjectHideFlags: 0
