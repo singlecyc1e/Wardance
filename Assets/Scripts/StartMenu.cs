@@ -11,7 +11,7 @@ public class StartMenu : MonoBehaviour
 
     private void Awake()
     {
-       
+
     }
     private void Start()
     {
@@ -56,7 +56,7 @@ public class StartMenu : MonoBehaviour
         {
             myAnimationController.SetBool("move", true);
         }
-            
+
         StartCoroutine(Fogstart());
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
