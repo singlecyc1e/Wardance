@@ -36,6 +36,7 @@ public class RageSystem : MonoBehaviour {
     private void Start() {
         rageValue = 0f;
         hasMaxRage = false;
+        inRageMode = false;
         UpdateRageDisplay();
         
         Sword = GameObject.Find("swordmodel").gameObject;
@@ -75,6 +76,7 @@ public class RageSystem : MonoBehaviour {
     }
 
     public void ActivateRage() {
+        Debug.Log("1111");
         if(!hasMaxRage) return;
 
         ScannerController.instance.CheckAndScan();
@@ -94,6 +96,7 @@ public class RageSystem : MonoBehaviour {
     private void DeactivateRage() {
         inRageMode = false;
         hasMaxRage = false;
+        rageValue = 0f;
         ScannerController.instance.CheckAndScan();
         swordAnimator.SetBool("rageMode", false);
         rageSowrd.SetActive(false);
