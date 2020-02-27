@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Start() {
+        Physics.IgnoreLayerCollision(11,13);
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
         PlayerCamera = GameObject.Find("Main Camera");
         OldPosition = gameObject.transform.position;
