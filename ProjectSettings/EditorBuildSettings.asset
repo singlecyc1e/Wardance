@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SiciliaMenu.unity
     guid: d8e50fa30eafd2a48a31e577e89ffe8c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SiciliaMenuTest 1.unity
     guid: 291c650be01e2423582e4c992c881971
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SiciliaMenuTest.unity
     guid: 9d74a79f735a3044fa7923a739803e28
   - enabled: 0
