@@ -10,6 +10,7 @@ public class AudioSystem : MonoBehaviour
     public UnityEvent onGroundAudio;
     public UnityEvent JumpAudio;
     public UnityEvent EnemydieAudio;
+    public UnityEvent DeathAudio;
     private AudioSource a;
     private void Awake()
     {
