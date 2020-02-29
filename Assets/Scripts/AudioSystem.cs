@@ -11,6 +11,8 @@ public class AudioSystem : MonoBehaviour
     public UnityEvent JumpAudio;
     public UnityEvent EnemydieAudio;
     public UnityEvent DeathAudio;
+    public UnityEvent Rageon;
+    public UnityEvent Rageoff;
     private AudioSource a;
     private void Awake()
     {
