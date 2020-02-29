@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class TutorialManager : MonoBehaviour
     private bool Sng3 = true;
     private bool Sng4 = true;
     public Animator hand;
+    public Image rightimg;
+    public Image leftimg;
+    public Image upimg;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +24,9 @@ public class TutorialManager : MonoBehaviour
         time = Time.time;
         PlayerController.instance.enabled = false;
         hand.gameObject.SetActive(false);
+        rightimg.gameObject.SetActive(false);
+        leftimg.gameObject.SetActive(false);
+        upimg.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +35,7 @@ public class TutorialManager : MonoBehaviour
 
         if ((Time.time - time) >= 5.1f && Sng1)
         {
+            rightimg.gameObject.SetActive(true);
             hand.gameObject.SetActive(true);
             hand.SetTrigger("right");
             Sng1 = false;
@@ -42,6 +51,8 @@ public class TutorialManager : MonoBehaviour
         if ((Time.time - time) >= 5.6f && Sng2_2)
         {
             Sng2_2 = false;
+            rightimg.gameObject.SetActive(false);
+            leftimg.gameObject.SetActive(true);
             hand.SetTrigger("left");
         }
 
@@ -49,6 +60,7 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.backToNormal = true;
             Sng2 = false;
             hand.gameObject.SetActive(false);
+            leftimg.gameObject.SetActive(false);
         }
 
         if ((Time.time - time) >= 8.9f && Sng3)
@@ -56,6 +68,7 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.BulletTime();
             Sng3 = false;
             hand.gameObject.SetActive(true);
+            upimg.gameObject.SetActive(true);
             hand.SetTrigger("up");
         }
 
@@ -64,6 +77,7 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.backToNormal = true;
             Sng4 = false;
             hand.gameObject.SetActive(false);
+            upimg.gameObject.SetActive(false);
         }
     }
 }
