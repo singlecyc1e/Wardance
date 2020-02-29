@@ -68,8 +68,16 @@ public class WeaponDMG : MonoBehaviour
         
         if (other.gameObject.tag == "Block")
         {
-            //pause game
-            SetupDeathMenu();
+            if (RageSystem.instance.inRageMode)
+            {
+                Destroy(other.gameObject.GetComponent<MeshRenderer>());
+                //other.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
+            }
+            else
+            {
+                SetupDeathMenu();
+            }
         }
 
         if (other.gameObject.tag == "Regular")
