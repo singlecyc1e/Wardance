@@ -39,6 +39,7 @@ public class WeaponDMG : MonoBehaviour
     public void SetupDeathMenu() {
         //pause game
         //Time.timeScale = 0;
+        AudioSystem.instance.DeathAudio.Invoke();
         Alive = false;
 
         //GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
