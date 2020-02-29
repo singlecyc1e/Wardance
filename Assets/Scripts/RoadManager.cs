@@ -23,7 +23,8 @@ public class RoadManager : MonoBehaviour {
     public float speedReduceDuration;
     public float speedReduceDelay;
     public int minimumSwipeCount;
-    
+
+    private int nextCheckpoint;
     [NonSerialized] public int savedOffset;
     [NonSerialized] public float currentSpeed;
 
@@ -48,8 +49,13 @@ public class RoadManager : MonoBehaviour {
 
         currentSpeed = speed;
         willSpawnBoss = false;
+
+        nextCheckpoint = -1;
+        if (!PlayerPrefs.HasKey(ROAD_SAVE_OFFSET)) {
+            Save(0);
+        }
         
-        if(!PlayerPrefs.HasKey(ROAD_SAVE_OFFSET)) return;
+        // Save(0);  // For debug only
         savedOffset = PlayerPrefs.GetInt(ROAD_SAVE_OFFSET);
     }
 
@@ -61,6 +67,17 @@ public class RoadManager : MonoBehaviour {
             randomRoadSpawn = false;
             roadIndex = 0;
         }
+    }
+
+    public void Save(int manualOffset = -1) {
+        if (manualOffset != -1) {
+            PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, manualOffset);
+            return;
+        }
+        
+        if(nextCheckpoint == -1) return;
+        
+        PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, nextCheckpoint);
     }
 
     private void ChangeRoadIndex(int currentIndex = -1) {
@@ -86,7 +103,7 @@ public class RoadManager : MonoBehaviour {
             ++roadIndex;
             StartCoroutine(ReduceSpeed(speedReduceDelay));
         } else if (result.GetEnemyTypesAt(1)[1] == EnemyType.Save) {
-            PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, currentIndex);
+            nextCheckpoint = currentIndex;
         }
 
         return result;
