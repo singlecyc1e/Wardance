@@ -158,11 +158,9 @@ public class ScannerController : MonoBehaviour{
 				startShow = true;
 			}
             scanDistance1 = scanDistance+1;
-            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1;
-            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1+1;
-            yield return new WaitForSecondsRealtime(.001f);
+            yield return new WaitForSecondsRealtime(.0001f);
             scanDistance ++;
 
         }
@@ -179,11 +177,9 @@ public class ScannerController : MonoBehaviour{
 				startHide = true;
 			}
             scanDistance1 = scanDistance-1;
-            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1;
-            yield return new WaitForSecondsRealtime(.001f);
             scanDistance2 = scanDistance1-1;
-            yield return new WaitForSecondsRealtime(.001f);
+            yield return new WaitForSecondsRealtime(.0001f);
             scanDistance --;
 
         }
