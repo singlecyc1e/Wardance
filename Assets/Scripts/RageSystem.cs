@@ -52,8 +52,12 @@ public class RageSystem : MonoBehaviour {
         
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
-            if (rageValue <= 0) {
+            if (rageValue <= 0.5f)
+            {
                 DeactivateRage();
+            }
+
+            if (rageValue <= 0) {
                 rageValue = 0f;
             }
         } else {
