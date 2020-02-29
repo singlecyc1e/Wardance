@@ -52,7 +52,7 @@ public class RageSystem : MonoBehaviour {
         
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
-            if (rageValue <= 0.5f)
+            if (rageValue <= 1f)
             {
                 DeactivateRage();
             }
@@ -80,7 +80,6 @@ public class RageSystem : MonoBehaviour {
     }
 
     public void ActivateRage() {
-        Debug.Log("1111");
         if(!hasMaxRage) return;
 
         ScannerController.instance.CheckAndScan();
@@ -98,6 +97,7 @@ public class RageSystem : MonoBehaviour {
 
 
     private void DeactivateRage() {
+        AudioSystem.instance.Rageoff.Invoke();
         inRageMode = false;
         hasMaxRage = false;
         rageValue = 0f;

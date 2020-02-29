@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Update() {
+
         if (LastCommand != PlayerCommand.Idle) {
             if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f) {
                 AnimeC.ResetTrigger("Left to Right");
@@ -176,11 +177,11 @@ public class PlayerController : MonoBehaviour {
 
         //bullet time trigger 
         if (Input.GetKeyDown(KeyCode.B)) {
-            if (WeaponDMG.instance.BulletTime) {
-                WeaponDMG.instance.BulletTime = false;
-            } else {
-                WeaponDMG.instance.BulletTime = true;
-            }
+            //if (WeaponDMG.instance.BulletTime) {
+            //    WeaponDMG.instance.BulletTime = false;
+            //} else {
+            //    WeaponDMG.instance.BulletTime = true;
+            //}
 
             TimeManager.BulletTime();
         }
@@ -233,9 +234,6 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(OldPosition.z.ToString());
 
         if ((transform.position.z > (OldPosition.z + 0.1f))) return;
-        //Debug.Log("OnLeftSwipe");
-
-
 
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
         SE.Play();
