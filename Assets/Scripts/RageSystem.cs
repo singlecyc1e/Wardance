@@ -97,6 +97,7 @@ public class RageSystem : MonoBehaviour {
 
 
     private void DeactivateRage() {
+        AudioSystem.instance.Rageoff.Invoke();
         inRageMode = false;
         hasMaxRage = false;
         rageValue = 0f;
