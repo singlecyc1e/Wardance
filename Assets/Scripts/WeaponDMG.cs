@@ -12,7 +12,7 @@ public class WeaponDMG : MonoBehaviour
     public static WeaponDMG instance;
     public bool Alive = true;
     public TimeController timeManager;
-    public bool BulletTime = false;
+    //public bool BulletTime = false;
     public TextMeshProUGUI chineseword;
     public float displayduration = .2f;
     public float timecheck = 1.5f;
@@ -88,10 +88,10 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
-                if (BulletTime)
-                {
-                    timeManager.BulletTime();
-                }
+                //if (BulletTime)
+                //{
+                //    timeManager.BulletTime();
+                //}
             }
             else
             {
@@ -113,10 +113,10 @@ public class WeaponDMG : MonoBehaviour
                 other.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 RageSystem.instance.AddRageValue();
-                if (BulletTime)
-                {
-                    timeManager.BulletTime();
-                }
+                //if (BulletTime)
+                //{
+                //    timeManager.BulletTime();
+                //}
             }
             else
             {
