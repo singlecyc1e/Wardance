@@ -310,6 +310,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: enemyMapping.m_keys.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: enemyMapping.m_values.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: enemyMapping.m_keys.Array.data[6]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: enemyMapping.m_values.Array.data[6]
+      value: 
+      objectReference: {fileID: 1026639388978727837, guid: 00a8fab59471de74f809a17c9a8de923,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e227ce26bb94b4b4780c7b8dad2b2c64, type: 3}
 --- !u!114 &54707976 stripped
@@ -940,6 +961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 3470789804866012101, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
+        type: 3}
+      propertyPath: TimeManager
+      value: 
+      objectReference: {fileID: 54707976}
     - target: {fileID: 3470789804866012098, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
         type: 3}
       propertyPath: rageText
@@ -1005,11 +1031,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3470789804866012101, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
-        type: 3}
-      propertyPath: TimeManager
-      value: 
-      objectReference: {fileID: 54707976}
     - target: {fileID: 3470789804615680198, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
         type: 3}
       propertyPath: UI_killscore
