@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerJump : MonoBehaviour {
     public float duration = 0.65f;
-
+    public static PlayerJump instance;
     public bool moving;
     public bool falling;
     private float startTime;
@@ -21,6 +21,10 @@ public class PlayerJump : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if (instance == null)
+        {
+            instance = this;
+        }
         AnimeC = GameObject.Find("Sword").GetComponent<Animator>();
         OldPosition = gameObject.transform.position;
         DistanceToGround = GetComponent<Collider>().bounds.extents.y;

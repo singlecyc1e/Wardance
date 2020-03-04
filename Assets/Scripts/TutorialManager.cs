@@ -24,6 +24,7 @@ public class TutorialManager : MonoBehaviour
     {
         time = 0;
         PlayerController.instance.enabled = false;
+        PlayerJump.instance.enabled = false;
         hand.gameObject.SetActive(false);
         rightimg.gameObject.SetActive(false);
         leftimg.gameObject.SetActive(false);
@@ -62,7 +63,7 @@ public class TutorialManager : MonoBehaviour
 
 
 
-        if ((time) >= 6.1f && Sng2_2)
+        if ((time) >= 6.2f && Sng2_2)
         {
             PlayerController.instance.enabled = true;
             Sng2_2 = false;
@@ -83,12 +84,15 @@ public class TutorialManager : MonoBehaviour
 
         if ((time) >= 8.6f && Sng3)
         {
+            PlayerJump.instance.enabled = true;
             PlayerController.instance.enabled = true;
             TimeController.instance.BulletTime();
             Sng3 = false;
             hand.gameObject.SetActive(true);
             upimg.gameObject.SetActive(true);
+            hand.GetComponent<RectTransform>().position = new Vector3(0,0,0);
             hand.SetTrigger("up");
+
         }
 
         if ((time) >= 9.2f && Sng4)
