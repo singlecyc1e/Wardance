@@ -71,6 +71,9 @@ public class WeaponDMG : MonoBehaviour
             if (RageSystem.instance.inRageMode)
             {
                 Destroy(other.gameObject.GetComponent<MeshRenderer>());
+                other.gameObject.transform.GetComponentInChildren<ParticleSystem>().Play();
+    
+                Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
                 //other.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject, 3);// destroy the Enemy and play destroy deconstruction animation;
             }

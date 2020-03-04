@@ -34,8 +34,8 @@ public class TutorialManager : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        Debug.Log(time);
-        if ((time) >= 5.15f && Sng1)
+        
+        if ((time) >= 5.2f && Sng1)
         {
             rightimg.gameObject.SetActive(true);
             hand.gameObject.SetActive(true);
@@ -44,13 +44,13 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.BulletTime();
         }
 
-        if ((time) >= 5.2f && Sng0)
+        if ((time) >= 5.25f && Sng0)
         {
             PlayerController.instance.enabled = true;
             Sng0 = false;
         }
 
-        if ((time) >= 5.6f && Sng2_3)
+        if ((time) >= 5.65f && Sng2_3)
         {
 
             TimeController.instance.backToNormal = true;

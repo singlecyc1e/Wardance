@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         if (LastCommand != PlayerCommand.Idle) {
-            if (Time.time - LastCommandTime >= 0.6f && Time.time - LastCommandTime <= 0.7f) {
+            if (Time.time - LastCommandTime >= 1f && Time.time - LastCommandTime <= 1.1f) {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
                 AnimeC.ResetTrigger("LS");
