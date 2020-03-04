@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -246,6 +246,12 @@ MonoBehaviour:
   DeathAudio:
     m_PersistentCalls:
       m_Calls: []
+  Rageon:
+    m_PersistentCalls:
+      m_Calls: []
+  Rageoff:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &54707975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,27 +319,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: enemyMapping.m_keys.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: enemyMapping.m_values.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: enemyMapping.m_keys.Array.data[6]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: enemyMapping.m_values.Array.data[6]
-      value: 
-      objectReference: {fileID: 8782009091167489441, guid: 9fbf5ace296f5d94f807ddf58797764d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e227ce26bb94b4b4780c7b8dad2b2c64, type: 3}
 --- !u!114 &54707976 stripped
@@ -913,6 +898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnRightSwipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978633494152505651, guid: ecbd70a8932f64de1b172540a7b28b33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbd70a8932f64de1b172540a7b28b33, type: 3}

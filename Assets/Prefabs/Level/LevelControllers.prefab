@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowfactor: 0.1
   slowduration: 1
+  backToNormal: 0
 --- !u!1001 &2529368537094706191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +230,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
         type: 3}
+      propertyPath: enemyMapping.m_keys.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
+      propertyPath: enemyMapping.m_values.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
+      propertyPath: enemyMapping.m_keys.Array.data[6]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
       propertyPath: enemyMapping.m_values.Array.data[1]
       value: 
       objectReference: {fileID: 7555383789518473067, guid: 75870281fe7d86c4cad92d4b6bdb7ca8,
@@ -244,6 +260,12 @@ PrefabInstance:
       propertyPath: enemyMapping.m_values.Array.data[4]
       value: 
       objectReference: {fileID: 4380982316396408822, guid: 087ff882371361a4696db59073f740b2,
+        type: 3}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
+      propertyPath: enemyMapping.m_values.Array.data[6]
+      value: 
+      objectReference: {fileID: 8782009091167489441, guid: 9fbf5ace296f5d94f807ddf58797764d,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35cdb6dbcac460a4d83a1fedd96f94b5, type: 3}
