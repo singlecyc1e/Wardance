@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     private bool Sng1 = true;
     private bool Sng2 = true;
     private bool Sng2_2 = true;
+    private bool Sng2_3 = true;
     private bool Sng3 = true;
     private bool Sng4 = true;
     public Animator hand;
@@ -48,12 +49,26 @@ public class TutorialManager : MonoBehaviour
             Sng0 = false;
         }
 
-        if ((Time.time - time) >= 5.6f && Sng2_2)
+        if ((Time.time - time) >= 5.55f && Sng2_3)
         {
+
+            TimeController.instance.backToNormal = true;
+            Sng2_3 = false;
+            rightimg.gameObject.SetActive(false);
+            hand.gameObject.SetActive(false);
+        }
+
+
+
+        if ((Time.time - time) >= 6.05f && Sng2_2)
+        {
+            PlayerController.instance.enabled = true;
             Sng2_2 = false;
             rightimg.gameObject.SetActive(false);
             leftimg.gameObject.SetActive(true);
+            hand.gameObject.SetActive(true);
             hand.SetTrigger("left");
+            TimeController.instance.BulletTime();
         }
 
         if ((Time.time - time) >= 6.5f && Sng2) {
