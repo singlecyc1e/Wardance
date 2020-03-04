@@ -14,6 +14,6 @@ public class timedisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mytime.text = Time.time.ToString();
+        mytime.text = Time.timeSinceLevelLoad.ToString();
     }
 }
