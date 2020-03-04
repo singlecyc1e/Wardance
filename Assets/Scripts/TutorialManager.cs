@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    private float time;
     private bool Sng0 = true;
     private bool Sng1 = true;
     private bool Sng2 = true;
@@ -22,7 +21,6 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = Time.time;
         PlayerController.instance.enabled = false;
         hand.gameObject.SetActive(false);
         rightimg.gameObject.SetActive(false);
@@ -31,10 +29,10 @@ public class TutorialManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        if ((Time.time - time) >= 5.1f && Sng1)
+        Debug.Log(Time.timeSinceLevelLoad);
+        if ((Time.timeSinceLevelLoad) >= 4.5f && Sng1)
         {
             rightimg.gameObject.SetActive(true);
             hand.gameObject.SetActive(true);
@@ -43,24 +41,25 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.BulletTime();
         }
 
-        if ((Time.time - time) >= 5.18f && Sng0)
+        if ((Time.timeSinceLevelLoad) >= 4.55f && Sng0)
         {
             PlayerController.instance.enabled = true;
             Sng0 = false;
         }
 
-        if ((Time.time - time) >= 5.55f && Sng2_3)
+        if ((Time.timeSinceLevelLoad) >= 5.0f && Sng2_3)
         {
 
             TimeController.instance.backToNormal = true;
             Sng2_3 = false;
             rightimg.gameObject.SetActive(false);
             hand.gameObject.SetActive(false);
+            PlayerController.instance.enabled = false;
         }
 
 
 
-        if ((Time.time - time) >= 6.05f && Sng2_2)
+        if ((Time.timeSinceLevelLoad) >= 5.5f && Sng2_2)
         {
             PlayerController.instance.enabled = true;
             Sng2_2 = false;
@@ -71,15 +70,17 @@ public class TutorialManager : MonoBehaviour
             TimeController.instance.BulletTime();
         }
 
-        if ((Time.time - time) >= 6.5f && Sng2) {
+        if ((Time.timeSinceLevelLoad) >= 6f && Sng2) {
             TimeController.instance.backToNormal = true;
             Sng2 = false;
             hand.gameObject.SetActive(false);
             leftimg.gameObject.SetActive(false);
+            PlayerController.instance.enabled = false;
         }
 
-        if ((Time.time - time) >= 8.9f && Sng3)
+        if ((Time.timeSinceLevelLoad) >= 8f && Sng3)
         {
+            PlayerController.instance.enabled = true;
             TimeController.instance.BulletTime();
             Sng3 = false;
             hand.gameObject.SetActive(true);
@@ -87,7 +88,7 @@ public class TutorialManager : MonoBehaviour
             hand.SetTrigger("up");
         }
 
-        if ((Time.time - time) >= 9.45f && Sng4)
+        if ((Time.timeSinceLevelLoad) >= 8.6f && Sng4)
         {
             TimeController.instance.backToNormal = true;
             Sng4 = false;

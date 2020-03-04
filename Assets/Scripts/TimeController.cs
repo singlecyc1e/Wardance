@@ -28,7 +28,6 @@ public class TimeController : MonoBehaviour
     {
         if (WeaponDMG.instance.Alive && backToNormal && !puasestate)
         {
-            Debug.Log("here");
             Time.timeScale += (1 / slowduration) * Time.unscaledDeltaTime;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
