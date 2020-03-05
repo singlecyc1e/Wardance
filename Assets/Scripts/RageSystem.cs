@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class RageSystem : MonoBehaviour {
     public float maxRageValue;
     public bool inRageMode;
-    public float LastingTime = 10f;
+    // public float LastingTime = 10f;
     
     public Text rageText;
     public Image rageBarFill;
-    public float decreasing_rate_normal = .0005f;
-    public float decreasing_rate_rage = .0025f;
+    public float decreasing_rate_normal;
+    public float decreasing_rate_rage;
     public Animator swordAnimator;
     public GameObject traileffectlight;
     public GameObject traileffectheavy;

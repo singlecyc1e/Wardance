@@ -45,16 +45,16 @@ public class TimeController : MonoBehaviour
     {
         tempTime = Time.timeScale;
         Time.timeScale = 0;
-        puaseOBJ.SetActive(false);
-        ContinueOBJ.SetActive(true);
+        // puaseOBJ.SetActive(false);
+        // ContinueOBJ.SetActive(true);
         puasestate = true;
     }
 
     public void Continue()
     {
         Time.timeScale = tempTime;
-        puaseOBJ.SetActive(true);
-        ContinueOBJ.SetActive(false);
+        // puaseOBJ.SetActive(true);
+        // ContinueOBJ.SetActive(false);
         puasestate = false;
     }
 
