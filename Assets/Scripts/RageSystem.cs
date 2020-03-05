@@ -90,6 +90,7 @@ public class RageSystem : MonoBehaviour {
     public void ActivateRage() {
         if(!hasMaxRage) return;
         
+        AudioSystem.instance.Rageon.Invoke();
         hasMaxRage = false;
         inRageMode = true;
 
@@ -105,6 +106,7 @@ public class RageSystem : MonoBehaviour {
         ScannerController.instance.CheckAndScan();
         traileffectlight.SetActive(true);
         traileffectheavy.SetActive(false);
+        sig = true;
     }
 
 

@@ -1480,27 +1480,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2529368537360387778, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: enemyMapping.m_values.Array.data[4]
-      value: 
-      objectReference: {fileID: 4380982316396408822, guid: 087ff882371361a4696db59073f740b2,
-        type: 3}
-    - target: {fileID: 7892919965392587638, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: slowfactor
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
         type: 3}
       propertyPath: puaseOBJ
@@ -10506,7 +10485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37208b661d40d0458908f13cb8c73b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRageValue: 10
+  maxRageValue: 2
   inRageMode: 0
   rageText: {fileID: 1154836772}
   rageBarFill: {fileID: 1373153633}
@@ -16016,7 +15995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &352596059
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ public enum EnemyType {
     HeavyArmor,
     Block,
     Boss,
-    Save
+    Save,
+    Flag
 }
 
 public struct RoadSegmentInfo {
