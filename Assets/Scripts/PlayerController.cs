@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour {
 
     public bool moving;
     public bool slashing;
+    public float stashedInputDuration;
 
     private float startTime;
     private float targetZ;
@@ -206,18 +207,18 @@ public class PlayerController : MonoBehaviour {
         if (Mathf.Approximately(transform.position.z, targetZ)) {
             transform.position = new Vector3(position.x, position.y, targetZ);
             moving = false;
-            // switch (stashedDirection) {
-            //     case SwipeDirection.None:
-            //         return;
-            //     case SwipeDirection.Left:
-            //         OnLeftSwipe();
-            //         break;
-            //     case SwipeDirection.Right:
-            //         OnRightSwipe();
-            //         break;
-            //     default:
-            //         throw new ArgumentOutOfRangeException();
-            // }
+            switch (stashedDirection) {
+                case SwipeDirection.None:
+                    return;
+                case SwipeDirection.Left:
+                    OnLeftSwipe();
+                    break;
+                case SwipeDirection.Right:
+                    OnRightSwipe();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 
@@ -226,19 +227,15 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnLeftSwipe() {
-        //Debug.Log(OldPosition.z.ToString());
-
-        if ((transform.position.z > (OldPosition.z + 0.1f))) return;
+        if (transform.position.z > OldPosition.z + 0.1f) return;
 
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
         SE.Play();
         StartCoroutine(Turnoff(SE));
 
-
-
         if (moving) {
             stashedDirection = SwipeDirection.Left;
-            Invoke(nameof(ClearStash), 0.5f);
+            Invoke(nameof(ClearStash), stashedInputDuration);
             return;
         }
 
@@ -271,9 +268,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnRightSwipe() {
-        //Debug.Log(transform.position.z);
         if (transform.position.z < -distance) return;
-
 
         PlayerCamera.GetComponent<CameraShake>().CameraRightSwipe();
         SE.Play();
@@ -281,7 +276,7 @@ public class PlayerController : MonoBehaviour {
 
         if (moving) {
             stashedDirection = SwipeDirection.Right;
-            Invoke(nameof(ClearStash), 0.5f);
+            Invoke(nameof(ClearStash), stashedInputDuration);
             return;
         }
 
@@ -336,8 +331,6 @@ public class PlayerController : MonoBehaviour {
         gameObject.GetComponent<PlayerJump>().JumpUpSwipe();
         RunningCamera.enabled = false;
         LastCommand = PlayerCommand.Jump;
-
-
     }
 
     IEnumerator WaitForSlash() {

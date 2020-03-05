@@ -23,6 +23,7 @@ public class RageSystem : MonoBehaviour {
     private GameObject Sword2;
     private GameObject rageSowrd;
     private GameObject rageSowrd2;
+    private bool sig = true;
     
     
     public static RageSystem instance;
@@ -52,8 +53,9 @@ public class RageSystem : MonoBehaviour {
         
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
-            if (rageValue <= 1f)
+            if (rageValue <= 1f && sig)
             {
+                sig = false;
                 DeactivateEffect();
             }
 
