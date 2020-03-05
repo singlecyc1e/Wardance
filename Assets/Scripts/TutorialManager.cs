@@ -95,7 +95,7 @@ public class TutorialManager : MonoBehaviour
 
         }
 
-        if ((time) >= 9.2f && Sng4)
+        if ((time) >= 8.95f && Sng4)
         {
             TimeController.instance.backToNormal = true;
             Sng4 = false;
