@@ -78,9 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56233fba5b3815409db8b34c0437a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowfactor: 0.1
+  slowfactor: 0.2
   slowduration: 1
   backToNormal: 0
+  puaseOBJ: {fileID: 0}
+  ContinueOBJ: {fileID: 0}
 --- !u!1001 &2529368537094706191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231,17 +233,22 @@ PrefabInstance:
     - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
         type: 3}
       propertyPath: enemyMapping.m_keys.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
         type: 3}
       propertyPath: enemyMapping.m_values.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
         type: 3}
       propertyPath: enemyMapping.m_keys.Array.data[6]
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
+      propertyPath: enemyMapping.m_keys.Array.data[7]
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
         type: 3}
@@ -266,6 +273,12 @@ PrefabInstance:
       propertyPath: enemyMapping.m_values.Array.data[6]
       value: 
       objectReference: {fileID: 8782009091167489441, guid: 9fbf5ace296f5d94f807ddf58797764d,
+        type: 3}
+    - target: {fileID: 5661965549701972930, guid: 35cdb6dbcac460a4d83a1fedd96f94b5,
+        type: 3}
+      propertyPath: enemyMapping.m_values.Array.data[7]
+      value: 
+      objectReference: {fileID: 1026639388978727837, guid: d90c4c4f0c633403a9ef1bc9a475777d,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35cdb6dbcac460a4d83a1fedd96f94b5, type: 3}
