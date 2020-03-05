@@ -110,6 +110,12 @@ public class WeaponDMG : MonoBehaviour
             }
         }
 
+        else if (other.gameObject.tag == "Spear")
+        {
+            //Debug.Log("Spear");
+                SetupDeathMenu();
+        }
+
         if (other.gameObject.tag == "HeavyArmor")
         {
 

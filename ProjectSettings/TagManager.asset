@@ -17,6 +17,7 @@ TagManager:
   - Grass
   - SwipeTrigger
   - UI
+  - Spear
   layers:
   - Default
   - TransparentFX
