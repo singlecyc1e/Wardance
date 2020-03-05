@@ -243,6 +243,15 @@ MonoBehaviour:
   EnemydieAudio:
     m_PersistentCalls:
       m_Calls: []
+  DeathAudio:
+    m_PersistentCalls:
+      m_Calls: []
+  Rageon:
+    m_PersistentCalls:
+      m_Calls: []
+  Rageoff:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &54707975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,6 +899,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnRightSwipe
       objectReference: {fileID: 0}
+    - target: {fileID: 6978633494152505651, guid: ecbd70a8932f64de1b172540a7b28b33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbd70a8932f64de1b172540a7b28b33, type: 3}
 --- !u!1 &3523905570881831429 stripped
@@ -940,6 +954,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 3470789804866012101, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
+        type: 3}
+      propertyPath: TimeManager
+      value: 
+      objectReference: {fileID: 54707976}
     - target: {fileID: 3470789804866012098, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
         type: 3}
       propertyPath: rageText
@@ -1005,11 +1024,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3470789804866012101, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
-        type: 3}
-      propertyPath: TimeManager
-      value: 
-      objectReference: {fileID: 54707976}
     - target: {fileID: 3470789804615680198, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
         type: 3}
       propertyPath: UI_killscore

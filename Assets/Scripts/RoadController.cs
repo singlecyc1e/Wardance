@@ -9,7 +9,7 @@ public class RoadController : MonoBehaviour {
 
     private void Start() {
         roadManager = RoadManager.instance;
-        roadIndex = 0;
+        roadIndex = RoadManager.instance.savedOffset;
 
         for (var i = 0; i < roadInfo.preBuild.Length; ++i) {
             if (i == roadInfo.preBuild.Length - 1) {

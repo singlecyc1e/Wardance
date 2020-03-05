@@ -47,7 +47,7 @@ public struct FingerStorage {
     }
 
     public void Reset() {
-        startTime = Time.time;
+        startTime = Time.time * 1000;
     }
 }
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour {
     // private Dictionary<int, FingerStorage> storedTouches;
     private FingerStorage fingerStorage;
     private const float fingerTimeThreshold = 100f;
-    private const float fingerDistanceThreshold = 2f;
+    private const float fingerDistanceThreshold = 5f;
 
     public TimeController TimeManager;
     public static PlayerController instance;
@@ -108,6 +108,8 @@ public class PlayerController : MonoBehaviour {
         if (PlayerPrefs.GetInt(LevelController.useButtonSettingKey) == 1) return;
 
         var deltaPosition = LeanGesture.GetScreenDelta();
+        if (deltaPosition == Vector2.zero) return;
+        
         var angle = Vector2.SignedAngle(Vector2.up, deltaPosition);
         var directionDetected = Direction.None;
         if (angle >= -45 && angle < 45) {
@@ -154,7 +156,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         if (LastCommand != PlayerCommand.Idle) {
-            if (Time.time - LastCommandTime >= 1.1f && Time.time - LastCommandTime <= 1.2f) {
+            if (Time.time - LastCommandTime >= 1f && Time.time - LastCommandTime <= 1.1f) {
                 AnimeC.ResetTrigger("Left to Right");
                 AnimeC.ResetTrigger("Right to Left");
                 AnimeC.ResetTrigger("LS");
@@ -176,12 +178,6 @@ public class PlayerController : MonoBehaviour {
 
         //bullet time trigger 
         if (Input.GetKeyDown(KeyCode.B)) {
-            if (WeaponDMG.instance.BulletTime) {
-                WeaponDMG.instance.BulletTime = false;
-            } else {
-                WeaponDMG.instance.BulletTime = true;
-            }
-
             TimeManager.BulletTime();
         }
 
@@ -210,18 +206,18 @@ public class PlayerController : MonoBehaviour {
         if (Mathf.Approximately(transform.position.z, targetZ)) {
             transform.position = new Vector3(position.x, position.y, targetZ);
             moving = false;
-            switch (stashedDirection) {
-                case SwipeDirection.None:
-                    return;
-                case SwipeDirection.Left:
-                    OnLeftSwipe();
-                    break;
-                case SwipeDirection.Right:
-                    OnRightSwipe();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            // switch (stashedDirection) {
+            //     case SwipeDirection.None:
+            //         return;
+            //     case SwipeDirection.Left:
+            //         OnLeftSwipe();
+            //         break;
+            //     case SwipeDirection.Right:
+            //         OnRightSwipe();
+            //         break;
+            //     default:
+            //         throw new ArgumentOutOfRangeException();
+            // }
         }
     }
 
@@ -233,9 +229,6 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(OldPosition.z.ToString());
 
         if ((transform.position.z > (OldPosition.z + 0.1f))) return;
-        //Debug.Log("OnLeftSwipe");
-
-
 
         PlayerCamera.GetComponent<CameraShake>().CameraLeftSwipt();
         SE.Play();
