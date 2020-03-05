@@ -17,10 +17,10 @@ public class PauseMenuController : MonoBehaviour {
         });
     }
 
-    public void ToggleControlMethod(bool useButtonControl) {
-        // TODO
+    public void ClearAllData() {
+        PlayerPrefs.DeleteAll();
     }
-    
+
     public void Pause() {
         Time.timeScale = 0f;
     }
