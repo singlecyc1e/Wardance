@@ -102,5 +102,12 @@ public class TutorialManager : MonoBehaviour
             hand.gameObject.SetActive(false);
             upimg.gameObject.SetActive(false);
         }
+
+        if (time > 17f)
+        {
+            TimeController.instance.BulletTime();
+            GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
+            
+        }
     }
 }
