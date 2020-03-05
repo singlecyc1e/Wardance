@@ -54,11 +54,11 @@ public class RageSystem : MonoBehaviour {
             rageValue -= decreasing_rate_rage;
             if (rageValue <= 1f)
             {
-                DeactivateRage();
+                DeactivateEffect();
             }
 
             if (rageValue <= 0) {
-                rageValue = 0f;
+                DeactivateRage();
             }
         } else {
             if (rageValue > 0f) {
@@ -79,10 +79,15 @@ public class RageSystem : MonoBehaviour {
         UpdateRageDisplay();
     }
 
+    private void ActivateEffect() {
+        ScannerController.instance.CheckAndScan();
+        traileffectlight.SetActive(false);
+        traileffectheavy.SetActive(true);
+    }
+
     public void ActivateRage() {
         if(!hasMaxRage) return;
-
-        ScannerController.instance.CheckAndScan();
+        
         hasMaxRage = false;
         inRageMode = true;
 
@@ -91,8 +96,13 @@ public class RageSystem : MonoBehaviour {
         //Sword2.SetActive(false);
         rageSowrd.SetActive(true);
         //rageSowrd2.SetActive(true);
-        traileffectlight.SetActive(false);
-        traileffectheavy.SetActive(true);
+        ActivateEffect();
+    }
+
+    private void DeactivateEffect() {
+        ScannerController.instance.CheckAndScan();
+        traileffectlight.SetActive(true);
+        traileffectheavy.SetActive(false);
     }
 
 
@@ -101,14 +111,12 @@ public class RageSystem : MonoBehaviour {
         inRageMode = false;
         hasMaxRage = false;
         rageValue = 0f;
-        ScannerController.instance.CheckAndScan();
+        
         swordAnimator.SetBool("rageMode", false);
         rageSowrd.SetActive(false);
         //rageSowrd2.SetActive(false);
         Sword.SetActive(true);
         //Sword2.SetActive(true);
-        traileffectlight.SetActive(true);
-        traileffectheavy.SetActive(false);
     }
 
     private void UpdateRageDisplay() {
