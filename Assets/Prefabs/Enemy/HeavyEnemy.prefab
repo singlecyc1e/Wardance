@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4560906929596656954}
   m_Layer: 10
-  m_Name: PigEnemy
+  m_Name: HeavyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2419786701724519609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.017271, y: -0.41, z: -0.012736}
+  m_LocalScale: {x: 1.1417, y: 1.2396142, z: 1.1417}
   m_Children:
   - {fileID: 5441607969173831264}
   - {fileID: 5443497658764478352}
@@ -306,8 +306,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.58, y: 1, z: 2.25}
-  m_Center: {x: 0, y: 0.94, z: 0}
+  m_Size: {x: 2.58, y: 3.363131, z: 2.25}
+  m_Center: {x: 0, y: 2.1215656, z: 0}
 --- !u!1 &5444908362428365126
 GameObject:
   m_ObjectHideFlags: 0
