@@ -959,6 +959,11 @@ PrefabInstance:
       propertyPath: TimeManager
       value: 
       objectReference: {fileID: 54707976}
+    - target: {fileID: 3470789804866012101, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
+        type: 3}
+      propertyPath: stashedInputDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3470789804866012098, guid: 5b97e803f85fb47bba40e6147f9f8d7a,
         type: 3}
       propertyPath: rageText
