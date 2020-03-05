@@ -12,6 +12,12 @@ public class MenuManager : MonoBehaviour
     public float DeathTimeScale = 0.1f;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
@@ -37,5 +43,25 @@ public class MenuManager : MonoBehaviour
 
         //Load Menu
         SceneManager.LoadScene(0);
+    }
+
+
+    public void LoadNextLevel()
+    {
+        StartCoroutine(LoadNext());
+    }
+
+    IEnumerator LoadNext()
+    {
+
+        CrossfadeTransition.SetTrigger("Start");
+        DoorTransition.SetTrigger("Start");
+
+        Time.timeScale = DeathTimeScale;
+
+        yield return new WaitForSeconds(TransitionTime * DeathTimeScale);
+
+        //Load Menu
+        SceneManager.LoadScene("RealStart");
     }
 }

@@ -106,7 +106,7 @@ public class TutorialManager : MonoBehaviour
         if (time > 20f)
         {
             TimeController.instance.BulletTime();
-            GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
+            GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadNextLevel();
             
         }
     }

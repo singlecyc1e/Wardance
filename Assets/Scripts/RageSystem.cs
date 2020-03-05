@@ -53,7 +53,7 @@ public class RageSystem : MonoBehaviour {
         
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
-            if (rageValue <= 1f && sig)
+            if (rageValue <= .2f && sig)
             {
                 sig = false;
                 DeactivateEffect();
@@ -106,11 +106,11 @@ public class RageSystem : MonoBehaviour {
         ScannerController.instance.CheckAndScan();
         traileffectlight.SetActive(true);
         traileffectheavy.SetActive(false);
-        sig = true;
     }
 
 
     private void DeactivateRage() {
+        sig = true;
         AudioSystem.instance.Rageoff.Invoke();
         inRageMode = false;
         hasMaxRage = false;
