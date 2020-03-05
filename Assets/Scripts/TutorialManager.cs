@@ -103,7 +103,7 @@ public class TutorialManager : MonoBehaviour
             upimg.gameObject.SetActive(false);
         }
 
-        if (time > 17f)
+        if (time > 20f)
         {
             TimeController.instance.BulletTime();
             GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
