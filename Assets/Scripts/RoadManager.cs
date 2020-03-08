@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -15,6 +16,10 @@ public struct RoadInfo {
     public GameObject[] preBuild;
 }
 
+[Serializable]
+public class RoadIndexChangeEvent : UnityEvent<int> {
+}
+
 public class RoadManager : MonoBehaviour {
     public float speed;
     public GameObject emptyRoad;
@@ -23,6 +28,8 @@ public class RoadManager : MonoBehaviour {
     public float speedReduceDuration;
     public float speedReduceDelay;
     public int minimumSwipeCount;
+    
+    public RoadIndexChangeEvent onRoadIndexChange;
 
     private int nextCheckpoint;
     [NonSerialized] public int savedOffset;
@@ -69,6 +76,14 @@ public class RoadManager : MonoBehaviour {
         }
     }
 
+    public void InitProgressBar(ProgressBarController progressBarController) {
+        onRoadIndexChange.AddListener(progressBarController.Progress);
+    }
+
+    public int GetRoadCount() {
+        return roadInfo.Count;
+    }
+
     public void Save(int manualOffset = -1) {
         if (manualOffset != -1) {
             PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, manualOffset);
@@ -86,6 +101,7 @@ public class RoadManager : MonoBehaviour {
         } else {
             roadIndex = currentIndex + 1;
         }
+        onRoadIndexChange.Invoke(currentIndex);
     }
 
     public RoadSegmentInfo GetRoadSegment(int currentIndex) {
