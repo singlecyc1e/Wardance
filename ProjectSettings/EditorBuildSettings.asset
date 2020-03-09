@@ -11,15 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DistanceTest.unity
     guid: 9d74a79f735a3044fa7923a739803e28
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RealStart.unity
     guid: 1207dc0611b4c184ba1fa94ba9ddad8c
   - enabled: 0
-    path: Assets/Scenes/SiciliaMenuTest 1.unity
-    guid: 291c650be01e2423582e4c992c881971
-  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 102f1485f017d0e4c9d0e11a94f4c89b
+  - enabled: 1
+    path: Assets/Scenes/RespawnMenu.unity
+    guid: 857626af52acd4e3c96bfeb39cb740cf
   - enabled: 0
     path: Assets/Scenes/Wardance.unity
     guid: 3882b18d116bbd945866f10f858cec76

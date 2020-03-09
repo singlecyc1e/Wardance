@@ -30,8 +30,8 @@ Material:
     m_Floats:
     - _LeadSharp: 10
     - _ScanDistance: 2.89
-    - _ScanDistance1: 101
-    - _ScanDistance2: 102
+    - _ScanDistance1: 0
+    - _ScanDistance2: 0
     - _ScanWidth: 1
     - _SquareSize: 0.57
     m_Colors:

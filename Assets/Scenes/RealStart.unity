@@ -1480,6 +1480,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: slowfactor
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: puaseOBJ
+      value: 
+      objectReference: {fileID: 876518138}
+    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
+        type: 3}
+      propertyPath: ContinueOBJ
+      value: 
+      objectReference: {fileID: 1621072460}
     - target: {fileID: 2529368537360387778, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
         type: 3}
       propertyPath: m_IsActive
@@ -1496,21 +1511,6 @@ PrefabInstance:
       propertyPath: speed
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: slowfactor
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: puaseOBJ
-      value: 
-      objectReference: {fileID: 876518138}
-    - target: {fileID: 2529368537360387777, guid: e227ce26bb94b4b4780c7b8dad2b2c64,
-        type: 3}
-      propertyPath: ContinueOBJ
-      value: 
-      objectReference: {fileID: 1621072460}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e227ce26bb94b4b4780c7b8dad2b2c64, type: 3}
 --- !u!114 &54707976 stripped
