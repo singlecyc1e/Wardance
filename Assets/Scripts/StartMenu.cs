@@ -64,7 +64,15 @@ public class StartMenu : MonoBehaviour
 
     public void Credits()
     {
-        //display
+        GameObject credit;
+        credit = gameObject.transform.GetChild(0).GetChild(5).gameObject;
+        credit.SetActive(true);
+    }
+    public void Credit_return()
+    {
+        GameObject credit;
+        credit = gameObject.transform.GetChild(0).GetChild(5).gameObject;
+        credit.SetActive(false);
     }
 
     public void Quit()

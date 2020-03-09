@@ -29,4 +29,6 @@ public class StartMenuManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+
 }

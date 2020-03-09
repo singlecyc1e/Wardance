@@ -27,6 +27,8 @@ public class WeaponDMG : MonoBehaviour
         {
             instance = this;
         }
+
+
     }
 
 
@@ -42,12 +44,11 @@ public class WeaponDMG : MonoBehaviour
         AudioSystem.instance.DeathAudio.Invoke();
         Alive = false;
 
-        //GameObject.Find("Death Menu").transform.GetChild(0).gameObject.SetActive(true);
-        //GameObject.Find("BestScores").GetComponent<BestScores>().UpdateScoreDisplay();
 
-        //GameObject.Find("UI_Leaderboard").transform.GetChild(0).gameObject.SetActive(true);
+        //BestScore, CurrentScore
+        //BestDistance, CurrentDistance
 
-        //if (PlayerPrefs.HasKey("bestscore_9"))
+        //if (PlayerPrefs.HasKey("BestScore"))
         //{
         //    if (PlayerPrefs.GetInt("bestscore_9") < killscore)
         //    {
@@ -60,6 +61,10 @@ public class WeaponDMG : MonoBehaviour
         //        GameObject.Find("LeaderboardInput").SetActive(false);
         //    }
         //}
+
+        PlayerPrefs.SetInt("CurrentScore", (int)killscore);
+        PlayerPrefs.SetInt("CurrentDistance", (int)Time.timeSinceLevelLoad);
+
         GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
     }
 
