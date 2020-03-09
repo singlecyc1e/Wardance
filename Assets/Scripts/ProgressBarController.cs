@@ -38,12 +38,13 @@ public class ProgressBarController : MonoBehaviour {
         if (stopped) {
             if (roadIndex > savedIndex) {
                 ++counter;
-            }
-            
-            if (counter >= stopCount) {
-                counter = 0;
-                ++stopIndex;
-                stopped = false;
+                if (counter >= stopCount) {
+                    counter = 0;
+                    ++stopIndex;
+                    stopped = false;
+                } else {
+                    return;
+                }
             } else {
                 return;
             }
