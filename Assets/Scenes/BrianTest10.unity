@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -525,6 +525,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 6.3015137
       objectReference: {fileID: 0}
+    - target: {fileID: 6530298012043331561, guid: ecbd70a8932f64de1b172540a7b28b33,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 23.25586
+      objectReference: {fileID: 0}
+    - target: {fileID: 6530298012043331561, guid: ecbd70a8932f64de1b172540a7b28b33,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80.569824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570994360586730751, guid: ecbd70a8932f64de1b172540a7b28b33,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -39.309814
+      objectReference: {fileID: 0}
     - target: {fileID: 3523905571396525707, guid: ecbd70a8932f64de1b172540a7b28b33,
         type: 3}
       propertyPath: m_SortingOrder
@@ -579,21 +594,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530298012043331561, guid: ecbd70a8932f64de1b172540a7b28b33,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 23.25586
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530298012043331561, guid: ecbd70a8932f64de1b172540a7b28b33,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -80.569824
-      objectReference: {fileID: 0}
-    - target: {fileID: 5570994360586730751, guid: ecbd70a8932f64de1b172540a7b28b33,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -39.309814
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbd70a8932f64de1b172540a7b28b33, type: 3}
@@ -1476,8 +1476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643e109e9401a2e408f13abf0d04c21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stops: 0400000013000000
-  stopCount: 12
+  stops: 020000001f000000400000006b0000008d000000a7000000
+  stopCount: 8
+  flag: {fileID: 7602423901874022666, guid: c64cbf1cb236ec341893b328c1864fb1, type: 3}
 --- !u!1 &1794440418
 GameObject:
   m_ObjectHideFlags: 0

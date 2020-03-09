@@ -6,6 +6,7 @@ public class ProgressBarController : MonoBehaviour {
     [Header("Stop road indices")] 
     public int[] stops;
     public int stopCount;
+    public GameObject flag;
 
     private Slider slider;
     private int totalRoadCount;
@@ -16,6 +17,7 @@ public class ProgressBarController : MonoBehaviour {
     private int stopIndex;
     private int savedIndex;
     private bool stopped;
+    private RectTransform rectTransform;
 
     private void Start() {
         slider = GetComponent<Slider>();
@@ -25,6 +27,16 @@ public class ProgressBarController : MonoBehaviour {
         stopPercent = new List<float>();
         for (int i = 0; i < stops.Length; i++) {
             stopPercent.Add((float) stops[i] / totalRoadCount * (slider.maxValue - slider.minValue));
+        }
+
+        rectTransform = GetComponent<RectTransform>();
+        var width = rectTransform.rect.width;
+        // var left = rectTransform.anchoredPosition.x;
+        for (int i = 0; i < stops.Length; i++) {
+            var x = stopPercent[i] * width;
+            var spawned = Instantiate(flag, transform);
+            var spawnedRectTrans = spawned.GetComponent<RectTransform>();
+            spawnedRectTrans.anchoredPosition = new Vector2(x, spawnedRectTrans.anchoredPosition.y);
         }
 
         counter = 0;
