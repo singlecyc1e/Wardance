@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour
     public Image rightimg;
     public Image leftimg;
     public Image upimg;
-
+    private Vector3 handposition;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,7 @@ public class TutorialManager : MonoBehaviour
         rightimg.gameObject.SetActive(false);
         leftimg.gameObject.SetActive(false);
         upimg.gameObject.SetActive(false);
+        handposition = hand.gameObject.GetComponent<Transform>().localPosition;
     }
 
     // Update is called once per frame
@@ -52,6 +53,7 @@ public class TutorialManager : MonoBehaviour
         {
             PlayerController.instance.enabled = true;
             Sng0 = false;
+            
         }
 
         if ((time) >= 5.65f && Sng2_3)
@@ -59,6 +61,7 @@ public class TutorialManager : MonoBehaviour
 
             TimeController.instance.backToNormal = true;
             Sng2_3 = false;
+            
             rightimg.gameObject.SetActive(false);
             hand.gameObject.SetActive(false);
             PlayerController.instance.enabled = false;
@@ -73,6 +76,7 @@ public class TutorialManager : MonoBehaviour
             rightimg.gameObject.SetActive(false);
             leftimg.gameObject.SetActive(true);
             hand.gameObject.SetActive(true);
+            //hand.gameObject.GetComponent<Transform>().localPosition = handposition; 
             hand.SetTrigger("left");
             TimeController.instance.BulletTime();
         }
@@ -93,7 +97,7 @@ public class TutorialManager : MonoBehaviour
             Sng3 = false;
             hand.gameObject.SetActive(true);
             upimg.gameObject.SetActive(true);
-            hand.GetComponent<RectTransform>().position = new Vector3(0,0,0);
+            //hand.GetComponent<RectTransform>().localPosition = new Vector3(-30,0,0);
             hand.SetTrigger("up");
 
         }
@@ -110,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         {
             
             hand.gameObject.SetActive(true);
-            hand.gameObject.GetComponent<Transform>().position = new Vector3(30.1f, 185.9f, 0f);
+            //hand.gameObject.GetComponent<Transform>().localPosition = new Vector3(30.1f, 185.9f, 0f);
             hand.SetTrigger("click");
             TimeController.instance.BulletTime();
             Sng5 = false;
