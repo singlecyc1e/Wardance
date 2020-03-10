@@ -96,7 +96,7 @@ public class RoadManager : MonoBehaviour {
         
         if(nextCheckpoint == -1) return;
         
-        PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, nextCheckpoint);
+        PlayerPrefs.SetInt(ROAD_SAVE_OFFSET, nextCheckpoint + 1);
     }
 
     private void ChangeRoadIndex(int currentIndex = -1) {
