@@ -13,6 +13,8 @@ public class TutorialManager : MonoBehaviour
     private bool Sng2_3 = true;
     private bool Sng3 = true;
     private bool Sng4 = true;
+    private bool Sng5 = true;
+    private bool Sng6 = true;
     public Animator hand;
     public Image rightimg;
     public Image leftimg;
@@ -103,11 +105,29 @@ public class TutorialManager : MonoBehaviour
             upimg.gameObject.SetActive(false);
         }
 
+        if ((time) >= 10f && Sng5)
+        {
+            TimeController.instance.BulletTime();
+            hand.gameObject.SetActive(true);
+            hand.gameObject.GetComponent<Transform>().localPosition = new Vector3(30.1f, 185.9f, 0f);
+            hand.SetTrigger("click");
+            Sng5 = false;
+        }
+
+        if ((time) >= 11f && Sng6)
+        {
+            TimeController.instance.backToNormal = true;
+            hand.gameObject.SetActive(false);
+            Sng6 = false;
+        }
+
         if (time > 20f)
         {
             TimeController.instance.BulletTime();
             GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadNextLevel();
             
         }
+
+
     }
 }
