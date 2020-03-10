@@ -62,13 +62,13 @@ public static partial class DataUtility {
         return result;
     }
 
-    public static List<RoadSegmentInfo> GetLevelInfo(int level = -1, bool isTutorial = false) {
-        if (level == 6) {
+    public static List<RoadSegmentInfo> GetLevelInfo(bool getLastLevel = false, bool includeTutorial = false) {
+        if (getLastLevel) {
             return ParseLevelInfo(ReadLevelResource(6));
         }
         
         var result = "";
-        if(isTutorial) {
+        if(includeTutorial) {
             result += ReadLevelResource(0) + "\n";
         } else {
             for (var i = 1; i < 6; i++) {

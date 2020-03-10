@@ -28,6 +28,8 @@ public class RoadManager : MonoBehaviour {
     public float speedReduceDuration;
     public float speedReduceDelay;
     public int minimumSwipeCount;
+
+    public bool isTutorial;
     
     public RoadIndexChangeEvent onRoadIndexChange;
 
@@ -66,14 +68,16 @@ public class RoadManager : MonoBehaviour {
         savedOffset = PlayerPrefs.GetInt(ROAD_SAVE_OFFSET);
     }
 
-    public void Init(int level) {
-        roadInfo = DataUtility.GetLevelInfo();
-        if (level >= 6) {
-            randomRoadSpawn = true;
-        } else {
-            randomRoadSpawn = false;
-            roadIndex = 0;
-        }
+    public void Init() {
+        roadInfo = DataUtility.GetLevelInfo(false, isTutorial);
+        randomRoadSpawn = false;
+        roadIndex = 0;
+        // if (level >= 6) {
+        //     randomRoadSpawn = true;
+        // } else {
+        //     randomRoadSpawn = false;
+        //     roadIndex = 0;
+        // }
     }
 
     public void InitProgressBar(ProgressBarController progressBarController) {
@@ -106,7 +110,7 @@ public class RoadManager : MonoBehaviour {
 
     public RoadSegmentInfo GetRoadSegment(int currentIndex) {
         if (roadIndex >= roadInfo.Count) {
-            roadInfo = DataUtility.GetLevelInfo(6);
+            roadInfo = DataUtility.GetLevelInfo(true);
             roadIndex = 0;
             InvokeRepeating(nameof(ChangeRoadIndex), 0f, 1.5f);
         }

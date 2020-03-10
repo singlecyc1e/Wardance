@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelController : MonoBehaviour {
     public SwipeKillController swipeKillController;
@@ -21,7 +18,7 @@ public class LevelController : MonoBehaviour {
     }
 
     private void Start() {
-        RoadManager.instance.Init(5);
+        RoadManager.instance.Init();
         PlayerPrefs.SetInt(useButtonSettingKey, 0);
         if(!PlayerPrefs.HasKey(playerLifeKey)) {
             PlayerPrefs.SetInt(playerLifeKey, 3);
@@ -30,7 +27,7 @@ public class LevelController : MonoBehaviour {
 
     public static void DecrementLife() {
         var lifeRemain = PlayerPrefs.GetInt(playerLifeKey);
-        Debug.Log("decrement " + lifeRemain);
+        // Debug.Log("decrement " + lifeRemain);
         if(lifeRemain <= 1) {
             WeaponDMG.instance.SetupDeathMenu();
             PlayerPrefs.SetInt(playerLifeKey, 3);
