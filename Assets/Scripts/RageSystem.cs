@@ -15,6 +15,8 @@ public class RageSystem : MonoBehaviour {
     public Animator swordAnimator;
     public GameObject traileffectlight;
     public GameObject traileffectheavy;
+    public ParticleSystem topeff;
+    public ParticleSystem downeff;
 
     private float rageValue;
     private bool hasMaxRage;
@@ -32,6 +34,8 @@ public class RageSystem : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
+        topeff.gameObject.SetActive(false);
+        downeff.gameObject.SetActive(false);
     }
 
     private void Start() {
@@ -50,7 +54,7 @@ public class RageSystem : MonoBehaviour {
 
     private void FixedUpdate() {
         if (hasMaxRage) return;
-        
+
         if (inRageMode) {
             rageValue -= decreasing_rate_rage;
             if (rageValue <= .2f && sig)
@@ -77,6 +81,10 @@ public class RageSystem : MonoBehaviour {
         if (rageValue >= maxRageValue || Mathf.Abs(rageValue - maxRageValue) <= 0.2) {
             hasMaxRage = true;
             rageValue = maxRageValue;
+            topeff.gameObject.SetActive(true);
+            downeff.gameObject.SetActive(true);
+            topeff.Play();
+            downeff.Play();
         }
         UpdateRageDisplay();
     }
@@ -89,7 +97,9 @@ public class RageSystem : MonoBehaviour {
 
     public void ActivateRage() {
         if(!hasMaxRage) return;
-        
+
+        topeff.Stop();
+        downeff.Stop();
         AudioSystem.instance.Rageon.Invoke();
         hasMaxRage = false;
         inRageMode = true;
