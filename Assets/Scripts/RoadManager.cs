@@ -60,10 +60,10 @@ public class RoadManager : MonoBehaviour {
         willSpawnBoss = false;
 
         nextCheckpoint = -1;
+        
         if (!PlayerPrefs.HasKey(ROAD_SAVE_OFFSET)) {
             Save(0);
         }
-        
         // Save(0);  // For debug only
         savedOffset = PlayerPrefs.GetInt(ROAD_SAVE_OFFSET);
     }

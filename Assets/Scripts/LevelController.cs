@@ -19,7 +19,10 @@ public class LevelController : MonoBehaviour {
 
     private void Start() {
         RoadManager.instance.Init();
-        PlayerPrefs.SetInt(useButtonSettingKey, 0);
+        if(!PlayerPrefs.HasKey(useButtonSettingKey)) {
+            PlayerPrefs.SetInt(useButtonSettingKey, 0);
+        }
+        // PlayerPrefs.SetInt(useButtonSettingKey, 0);
         if(!PlayerPrefs.HasKey(playerLifeKey)) {
             PlayerPrefs.SetInt(playerLifeKey, 3);
         }
@@ -31,6 +34,7 @@ public class LevelController : MonoBehaviour {
         if(lifeRemain <= 1) {
             WeaponDMG.instance.SetupDeathMenu();
             PlayerPrefs.SetInt(playerLifeKey, 3);
+            RoadManager.instance.Save(0);
         } else {
             PlayerPrefs.SetInt(playerLifeKey, lifeRemain - 1);
             WeaponDMG.instance.SetupResponseMenu();
