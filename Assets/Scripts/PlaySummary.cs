@@ -9,6 +9,7 @@ public class PlaySummary : MonoBehaviour
     public GameObject DistanceText;
     public GameObject TitleCanvas;
     public GameObject SummaryCanvas;
+    public Animator GameOverFade;
     public static bool IsStartMenu = true;
 
     private void Awake()
@@ -93,6 +94,7 @@ public class PlaySummary : MonoBehaviour
     {
         KillText.GetComponent<Animator>().SetTrigger("Play");
         DistanceText.GetComponent<Animator>().SetTrigger("Play");
+        GameOverFade.SetTrigger("Play");
         yield return new WaitForSeconds(.3f);
         SummaryCanvas.SetActive(false);
 

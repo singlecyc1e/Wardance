@@ -12,7 +12,10 @@ public class StartMenuManager : MonoBehaviour
     public Text t1;
     public GameObject TitleCanvas;
     public GameObject CreditsCanvas;
+
     public Animator Sword;
+    public AudioSource SwordDraw;
+
 
     private void Start()
     {
@@ -36,7 +39,11 @@ public class StartMenuManager : MonoBehaviour
         sub1_left.SetTrigger("goleft");
         sub1_right.SetTrigger("goright");
         sub2.SetTrigger("fading");
+
+        SwordDraw.Play();
+
         yield return new WaitForSeconds(1f);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
