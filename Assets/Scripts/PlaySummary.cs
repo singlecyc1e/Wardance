@@ -8,13 +8,12 @@ public class PlaySummary : MonoBehaviour
     public GameObject KillText;
     public GameObject DistanceText;
     public GameObject TitleCanvas;
-    public GameObject SummaryButtom;
+    public GameObject SummaryCanvas;
     public static bool IsStartMenu = true;
 
     private void Awake()
     {
-        KillText.gameObject.SetActive(false);
-        DistanceText.SetActive(false);
+        SummaryCanvas.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -54,8 +53,7 @@ public class PlaySummary : MonoBehaviour
     {
         TitleCanvas.SetActive(false);
 
-        KillText.gameObject.SetActive(true);
-        DistanceText.SetActive(true);
+        SummaryCanvas.SetActive(true);
 
         KillText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentScore").ToString() + " Kills";
         DistanceText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentDistance").ToString() + "m";
@@ -94,8 +92,8 @@ public class PlaySummary : MonoBehaviour
         KillText.GetComponent<Animator>().SetTrigger("Play");
         DistanceText.GetComponent<Animator>().SetTrigger("Play");
         yield return new WaitForSeconds(.3f);
-        KillText.SetActive(false);
-        DistanceText.SetActive(false);
+        SummaryCanvas.SetActive(false);
+
         TitleCanvas.SetActive(true);
     }
 }

@@ -9,10 +9,13 @@ public class StartMenuManager : MonoBehaviour
     public Animator sub1;
     public Animator sub2;
     public Text t1;
+    public GameObject TitleCanvas;
+    public GameObject CreditsCanvas;
 
     private void Start()
     {
         Time.timeScale = 1.0f;
+        HideCredits();
     }
 
     public void LoadGame()
@@ -30,5 +33,15 @@ public class StartMenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void ShowCredits()
+    {
+        TitleCanvas.SetActive(false);
+        CreditsCanvas.SetActive(true);
+    }
 
+    public void HideCredits()
+    {
+        TitleCanvas.SetActive(true);
+        CreditsCanvas.SetActive(false);
+    }
 }
