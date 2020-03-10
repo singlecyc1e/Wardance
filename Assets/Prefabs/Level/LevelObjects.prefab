@@ -1913,7 +1913,6 @@ MonoBehaviour:
   killscore: 0
   Alive: 1
   timeManager: {fileID: 0}
-  BulletTime: 0
   chineseword: {fileID: 0}
   displayduration: 0.3
   timecheck: 1.4
@@ -1940,7 +1939,7 @@ GameObject:
   - component: {fileID: 3470789804866012103}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1978,6 +1977,7 @@ MonoBehaviour:
   duration: 0.8
   moving: 0
   slashing: 0
+  stashedInputDuration: 0
   distance: 4
   idleTimeup: 0
   SE: {fileID: 8969838343495581692}
@@ -2030,12 +2030,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRageValue: 2
   inRageMode: 0
-  LastingTime: 6
   rageText: {fileID: 0}
   rageBarFill: {fileID: 0}
   decreasing_rate_normal: 0.0003
   decreasing_rate_rage: 0.0033
   swordAnimator: {fileID: 3470789805355455891}
+  traileffectlight: {fileID: 0}
+  traileffectheavy: {fileID: 0}
+  topeff: {fileID: 0}
+  downeff: {fileID: 0}
 --- !u!114 &3470789804866012097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15857,8 +15860,7 @@ ParticleSystemRenderer:
 --- !u!1 &8969838341615524220
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8382606599865751673, guid: f041244e101003a40aa9d77c36f9188d,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -15874,8 +15876,7 @@ GameObject:
 --- !u!4 &8969838341615524223
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8382606599865751674, guid: f041244e101003a40aa9d77c36f9188d,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8969838341615524220}
@@ -26110,6 +26111,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   EnemydieAudio:
+    m_PersistentCalls:
+      m_Calls: []
+  DeathAudio:
+    m_PersistentCalls:
+      m_Calls: []
+  Rageon:
+    m_PersistentCalls:
+      m_Calls: []
+  Rageoff:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8969838343495581691
