@@ -11,6 +11,7 @@ public class StartMenuManager : MonoBehaviour
     public Text t1;
     public GameObject TitleCanvas;
     public GameObject CreditsCanvas;
+    public AudioSource SwordDraw;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class StartMenuManager : MonoBehaviour
         t1.enabled = false;
         sub1.SetTrigger("fading");
         sub2.SetTrigger("fading");
+        SwordDraw.Play();
         yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

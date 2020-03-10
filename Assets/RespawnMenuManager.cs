@@ -14,6 +14,7 @@ public class RespawnMenuManager : MonoBehaviour
     public GameObject Life1;
     public GameObject Life2;
     public GameObject Life3;
+    public AudioSource SwordDraw;
 
     private void Start()
     {
@@ -32,12 +33,14 @@ public class RespawnMenuManager : MonoBehaviour
 
         sub1.SetTrigger("fading");
         sub2.SetTrigger("fading");
+        SwordDraw.Play();
+
         yield return new WaitForSeconds(.5f);
 
         Life1.SetActive(false);
         Life2.SetActive(false);
         Life3.SetActive(false);
 
-        SceneManager.LoadScene("RealStart");
+        SceneManager.LoadScene("DistanceTest");
     }
 }
