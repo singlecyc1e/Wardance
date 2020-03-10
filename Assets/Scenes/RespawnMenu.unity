@@ -1038,8 +1038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6006c0c150544280eca7377b2e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeCount: {fileID: 0}
-  LifeText: {fileID: 0}
+  LifeCount: {fileID: 1968472213}
+  LifeText: {fileID: 36829316}
   Life2: {fileID: 2145316530}
   Life3: {fileID: 579855693}
 --- !u!4 &979443170

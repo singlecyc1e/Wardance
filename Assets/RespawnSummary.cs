@@ -27,7 +27,7 @@ public class RespawnSummary : MonoBehaviour
     private void EnterScene()
     {
         LifeRemain = PlayerPrefs.GetInt(LevelController.playerLifeKey);
-        Debug.Log(LifeRemain);
+        //Debug.Log(LifeRemain);
 
         LifeCount.text = LifeRemain.ToString() + "             ";
 

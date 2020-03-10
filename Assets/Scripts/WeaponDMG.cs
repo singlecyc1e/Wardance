@@ -82,9 +82,6 @@ public class WeaponDMG : MonoBehaviour
 
         if (other.gameObject.tag == "Regular")
         {
-
-
-           
             //if "move" in playercontroller is True
             if (PlayerController.instance.moving | RageSystem.instance.inRageMode | PlayerController.instance.slashing)
             {
@@ -108,7 +105,7 @@ public class WeaponDMG : MonoBehaviour
             }
         }
 
-        else if (other.gameObject.tag == "Spear")
+        else if (other.gameObject.tag == "Spear" && !RageSystem.instance.inRageMode && !PlayerController.instance.slashing)
         {
             //Debug.Log("Spear");
                 // SetupDeathMenu();
