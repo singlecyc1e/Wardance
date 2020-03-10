@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class resultsound : MonoBehaviour
 {
-    private AudioSource mysource;
+    public AudioSource mysource;
 
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    public void PlayResultSound()
     {
         StartCoroutine(coroutineA());
     }

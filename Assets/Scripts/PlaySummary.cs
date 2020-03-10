@@ -55,6 +55,8 @@ public class PlaySummary : MonoBehaviour
 
         SummaryCanvas.SetActive(true);
 
+        gameObject.GetComponent<resultsound>().PlayResultSound();
+
         KillText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentScore").ToString() + " Kills";
         DistanceText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentDistance").ToString() + "m";
 

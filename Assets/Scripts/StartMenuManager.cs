@@ -15,7 +15,7 @@ public class StartMenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
-        HideCredits();
+        CreditsCanvas.SetActive(false);
     }
 
     public void LoadGame()
