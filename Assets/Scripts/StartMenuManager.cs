@@ -6,15 +6,12 @@ using UnityEngine.UI;
 
 public class StartMenuManager : MonoBehaviour
 {
-    public Animator sub1_left;
-    public Animator sub1_right;
+    public Animator sub1;
     public Animator sub2;
     public Text t1;
     public GameObject TitleCanvas;
     public GameObject CreditsCanvas;
-
-    public Animator Sword;
-
+    public AudioSource SwordDraw;
 
     private void Start()
     {
@@ -24,10 +21,6 @@ public class StartMenuManager : MonoBehaviour
 
     public void LoadGame()
     {
-        if (Sword != null)
-        {
-            Sword.SetTrigger("Open");
-        }
         //Load next scene
         StartCoroutine(Startgame());
     }
@@ -35,12 +28,10 @@ public class StartMenuManager : MonoBehaviour
     IEnumerator Startgame()
     {
         t1.enabled = false;
-        sub1_left.SetTrigger("goleft");
-        sub1_right.SetTrigger("goright");
+        sub1.SetTrigger("fading");
         sub2.SetTrigger("fading");
-
-        yield return new WaitForSeconds(1f);
-
+        SwordDraw.Play();
+        yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
