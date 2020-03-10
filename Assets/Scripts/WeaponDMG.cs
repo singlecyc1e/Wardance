@@ -39,33 +39,24 @@ public class WeaponDMG : MonoBehaviour
     }
 
     public void SetupDeathMenu() {
-        //pause game
-        //Time.timeScale = 0;
         AudioSystem.instance.DeathAudio.Invoke();
         Alive = false;
-
-
-        //BestScore, CurrentScore
-        //BestDistance, CurrentDistance
-
-        //if (PlayerPrefs.HasKey("BestScore"))
-        //{
-        //    if (PlayerPrefs.GetInt("bestscore_9") < killscore)
-        //    {
-        //        GameObject.Find("SubmitScore").SetActive(true);
-        //        GameObject.Find("LeaderboardInput").SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        GameObject.Find("SubmitScore").SetActive(false);
-        //        GameObject.Find("LeaderboardInput").SetActive(false);
-        //    }
-        //}
 
         PlayerPrefs.SetInt("CurrentScore", (int)killscore);
         PlayerPrefs.SetInt("CurrentDistance", (int)Time.timeSinceLevelLoad);
 
-        GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu();
+        GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu("SiciliaMenu");
+    }
+
+    public void SetupResponseMenu()
+    {
+        AudioSystem.instance.DeathAudio.Invoke();
+        Alive = false;
+
+        PlayerPrefs.SetInt("CurrentScore", (int)killscore);
+        PlayerPrefs.SetInt("CurrentDistance", (int)Time.timeSinceLevelLoad);
+
+        GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadMenu("RespawnMenu");
     }
 
     private void OnTriggerEnter(Collider other)

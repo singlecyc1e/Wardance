@@ -18,20 +18,13 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
         Time.fixedDeltaTime = Time.timeScale * .02f;
     }
-    void Update()
+
+    public void LoadMenu(string SceneName)
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadMenu();
-        }
+        StartCoroutine(CoroutineLoadMenu(SceneName));
     }
 
-    public void LoadMenu()
-    {
-        StartCoroutine(CoroutineLoadMenu());
-    }
-
-    IEnumerator CoroutineLoadMenu()
+    IEnumerator CoroutineLoadMenu(string SceneName)
     {
 
         CrossfadeTransition.SetTrigger("Start");
@@ -42,7 +35,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(TransitionTime * DeathTimeScale);
 
         //Load Menu
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneName);
     }
 
 
