@@ -7,9 +7,15 @@ public class PlaySummary : MonoBehaviour
 {
     public GameObject KillText;
     public GameObject DistanceText;
-    public GameObject StartButtom;
+    public GameObject TitleCanvas;
     public GameObject SummaryButtom;
     public static bool IsStartMenu = true;
+
+    private void Awake()
+    {
+        KillText.gameObject.SetActive(false);
+        DistanceText.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +52,10 @@ public class PlaySummary : MonoBehaviour
 
     void DisplayPlaySummary()
     {
-        StartButtom.SetActive(false);
+        TitleCanvas.SetActive(false);
+
+        KillText.gameObject.SetActive(true);
+        DistanceText.SetActive(true);
 
         KillText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentScore").ToString() + " Kills";
         DistanceText.GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentDistance").ToString() + "m";
@@ -77,9 +86,17 @@ public class PlaySummary : MonoBehaviour
 
     public void SummaryButtomCall()
     {
+        StartCoroutine(ReturnToStart());
+    }
+
+    IEnumerator ReturnToStart()
+    {
+        KillText.GetComponent<Animator>().SetTrigger("Play");
+        DistanceText.GetComponent<Animator>().SetTrigger("Play");
+        yield return new WaitForSeconds(.3f);
         KillText.SetActive(false);
         DistanceText.SetActive(false);
-        StartButtom.SetActive(true);
+        TitleCanvas.SetActive(true);
     }
 }
     
