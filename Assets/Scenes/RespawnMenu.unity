@@ -1447,6 +1447,7 @@ MonoBehaviour:
   Life1: {fileID: 1133945491}
   Life2: {fileID: 2145316530}
   Life3: {fileID: 579855693}
+  Buttom: {fileID: 1785914534}
   SwordDraw: {fileID: 1119930153}
 --- !u!1 &1126415702
 GameObject:

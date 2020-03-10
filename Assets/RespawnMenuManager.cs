@@ -14,6 +14,9 @@ public class RespawnMenuManager : MonoBehaviour
     public GameObject Life1;
     public GameObject Life2;
     public GameObject Life3;
+
+    public GameObject Buttom;
+
     public AudioSource SwordDraw;
 
     private void Start()
@@ -23,6 +26,8 @@ public class RespawnMenuManager : MonoBehaviour
 
     public void LoadGame()
     {
+        Buttom.SetActive(false);
+
         //Load next scene
         StartCoroutine(Startgame());
     }
