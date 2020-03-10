@@ -24,6 +24,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         time = 0;
         PlayerController.instance.enabled = false;
         PlayerJump.instance.enabled = false;
@@ -107,14 +108,15 @@ public class TutorialManager : MonoBehaviour
 
         if ((time) >= 10f && Sng5)
         {
-            TimeController.instance.BulletTime();
+            
             hand.gameObject.SetActive(true);
-            hand.gameObject.GetComponent<Transform>().localPosition = new Vector3(30.1f, 185.9f, 0f);
+            hand.gameObject.GetComponent<Transform>().position = new Vector3(30.1f, 185.9f, 0f);
             hand.SetTrigger("click");
+            TimeController.instance.BulletTime();
             Sng5 = false;
         }
 
-        if ((time) >= 11f && Sng6)
+        if ((time) >= 10.7f && Sng6)
         {
             TimeController.instance.backToNormal = true;
             hand.gameObject.SetActive(false);
