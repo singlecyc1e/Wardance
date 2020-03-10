@@ -75,7 +75,8 @@ public class WeaponDMG : MonoBehaviour
             }
             else
             {
-                SetupDeathMenu();
+                //SetupDeathMenu();
+                LevelController.DecrementLife();
             }
         }
 
@@ -102,14 +103,16 @@ public class WeaponDMG : MonoBehaviour
             }
             else
             {
-                SetupDeathMenu();
+                // SetupDeathMenu();
+                LevelController.DecrementLife();
             }
         }
 
         else if (other.gameObject.tag == "Spear")
         {
             //Debug.Log("Spear");
-                SetupDeathMenu();
+                // SetupDeathMenu();
+                LevelController.DecrementLife();
         }
 
         if (other.gameObject.tag == "HeavyArmor")
@@ -133,7 +136,8 @@ public class WeaponDMG : MonoBehaviour
             }
             else
             {
-                SetupDeathMenu();
+                // SetupDeathMenu();
+                LevelController.DecrementLife();
             }
         }
         //if "move" in playercontroller is False

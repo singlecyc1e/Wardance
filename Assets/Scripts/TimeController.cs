@@ -10,8 +10,8 @@ public class TimeController : MonoBehaviour
     public bool backToNormal = false;
     public static TimeController instance;
     private float tempTime;
-    public GameObject puaseOBJ;
-    public GameObject ContinueOBJ;
+    // public GameObject puaseOBJ;
+    // public GameObject ContinueOBJ;
     private bool puasestate = false;
 
     private void Awake() {
@@ -21,8 +21,8 @@ public class TimeController : MonoBehaviour
     }
     private void Start()
     {
-        puaseOBJ.SetActive(true);
-        ContinueOBJ.SetActive(false);
+        // puaseOBJ.SetActive(true);
+        // ContinueOBJ.SetActive(false);
     }
     private void Update()
     {
