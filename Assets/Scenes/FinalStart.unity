@@ -15302,12 +15302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37208b661d40d0458908f13cb8c73b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRageValue: 2
+  maxRageValue: 10
   inRageMode: 0
   rageText: {fileID: 1347279995}
   rageBarFill: {fileID: 525883421}
   decreasing_rate_normal: 0
-  decreasing_rate_rage: 0.005
+  decreasing_rate_rage: 0.05
   swordAnimator: {fileID: 1424519280}
   traileffectlight: {fileID: 1195500342}
   traileffectheavy: {fileID: 503428629}
@@ -84848,11 +84848,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092389956}
     m_Modifications:
-    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Fog_Particles (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5790324278763580001, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -84907,6 +84902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Fog_Particles (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ee1360d134f704eaa8db2bc5cc35e7, type: 3}
