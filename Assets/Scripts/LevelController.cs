@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour {
             WeaponDMG.instance.SetupDeathMenu();
             PlayerPrefs.SetInt(playerLifeKey, 3);
             RoadManager.instance.Save(0);
-            PlayerPrefs.SetInt(finishTutorialKey, 0);
+            // PlayerPrefs.SetInt(finishTutorialKey, 0);
         } else {
             PlayerPrefs.SetInt(playerLifeKey, lifeRemain - 1);
             WeaponDMG.instance.SetupResponseMenu();
