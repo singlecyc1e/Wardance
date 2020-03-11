@@ -103,7 +103,9 @@ public class RoadManager : MonoBehaviour {
         if (randomRoadSpawn) {
             roadIndex = Random.Range(0, roadInfo.Count);
         } else {
-            roadIndex = currentIndex + 1;
+            if (currentIndex < roadInfo.Count) {
+                roadIndex = currentIndex;
+            }
         }
         onRoadIndexChange.Invoke(currentIndex);
     }
