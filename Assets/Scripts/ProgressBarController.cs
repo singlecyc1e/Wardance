@@ -18,6 +18,7 @@ public class ProgressBarController : MonoBehaviour {
     private int savedIndex;
     private bool stopped;
     private RectTransform rectTransform;
+    private List<GameObject> flags;
 
     private void Start() {
         slider = GetComponent<Slider>();
@@ -32,11 +33,13 @@ public class ProgressBarController : MonoBehaviour {
         rectTransform = GetComponent<RectTransform>();
         var width = rectTransform.rect.width;
         // var left = rectTransform.anchoredPosition.x;
+        flags = new List<GameObject>();
         for (int i = 0; i < stops.Length; i++) {
             var x = stopPercent[i] * width;
             var spawned = Instantiate(flag, transform);
             var spawnedRectTrans = spawned.GetComponent<RectTransform>();
             spawnedRectTrans.anchoredPosition = new Vector2(x, spawnedRectTrans.anchoredPosition.y);
+            flags.Add(spawned);
         }
 
         counter = 0;
@@ -52,6 +55,7 @@ public class ProgressBarController : MonoBehaviour {
                 ++counter;
                 if (counter >= stopCount) {
                     counter = 0;
+                    flags[stopIndex].GetComponent<Image>().color = Color.red;
                     ++stopIndex;
                     stopped = false;
                 } else {
@@ -70,9 +74,11 @@ public class ProgressBarController : MonoBehaviour {
         
         if (!initialized) {
             slider.value = progress;
+            Debug.Log(slider.value);
             int i;
             for (i = 0; i < stopPercent.Count; i++) {
-                if (stopPercent[i] > progress) break;
+                if (stopPercent[i] - progress > Mathf.Epsilon) break;
+                flags[i].GetComponent<Image>().color = Color.red;
             }
 
             stopIndex = i;
