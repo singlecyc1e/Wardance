@@ -46,6 +46,11 @@ public class RespawnMenuManager : MonoBehaviour
         Life2.SetActive(false);
         Life3.SetActive(false);
 
-        SceneManager.LoadScene("DistanceTest");
+        // SceneManager.LoadScene("DistanceTest");
+        if (PlayerPrefs.GetInt(LevelController.finishTutorialKey) == 0) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        } else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 }
