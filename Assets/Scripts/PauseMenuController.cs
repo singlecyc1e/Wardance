@@ -14,6 +14,10 @@ public class PauseMenuController : MonoBehaviour {
         });
     }
 
+    private void Start() {
+        buttonControlCanvas.SetActive(PlayerPrefs.GetInt(LevelController.useButtonSettingKey) == 1);
+    }
+
     public void ClearAllData() {
         PlayerPrefs.DeleteAll();
     }
