@@ -77,7 +77,7 @@ public class ProgressBarController : MonoBehaviour {
             Debug.Log(slider.value);
             int i;
             for (i = 0; i < stopPercent.Count; i++) {
-                if (stopPercent[i] - progress > Mathf.Epsilon) break;
+                if (stopPercent[i] - progress > 0.1f) break;
                 flags[i].GetComponent<Image>().color = Color.red;
             }
 
