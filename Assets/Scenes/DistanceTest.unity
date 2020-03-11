@@ -15141,7 +15141,7 @@ GameObject:
   - component: {fileID: 288025445}
   m_Layer: 13
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84858,11 +84858,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092389956}
     m_Modifications:
-    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Fog_Particles (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5790324278763580001, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -84917,6 +84912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Fog_Particles (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ee1360d134f704eaa8db2bc5cc35e7, type: 3}
