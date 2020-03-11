@@ -55,6 +55,6 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(TransitionTime * DeathTimeScale);
 
         //Load Menu
-        SceneManager.LoadScene("RealStart");
+        SceneManager.LoadScene("FinalStart");
     }
 }
