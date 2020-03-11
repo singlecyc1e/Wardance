@@ -66,6 +66,7 @@ public class WeaponDMG : MonoBehaviour
         {
             if (RageSystem.instance.inRageMode)
             {
+                AudioSystem.instance.wooddie.Invoke();
                 Destroy(other.gameObject.GetComponent<MeshRenderer>());
                 other.gameObject.transform.GetComponentInChildren<ParticleSystem>().Play();
     
@@ -85,6 +86,7 @@ public class WeaponDMG : MonoBehaviour
             //if "move" in playercontroller is True
             if (PlayerController.instance.moving | RageSystem.instance.inRageMode | PlayerController.instance.slashing)
             {
+                AudioSystem.instance.EnemydieAudio.Invoke();
                 WordDisplay();
                 killtime = Time.time;
                 killscore += 1;
@@ -118,6 +120,7 @@ public class WeaponDMG : MonoBehaviour
             //if "move" in playercontroller is True
             if (RageSystem.instance.inRageMode)
             {
+                AudioSystem.instance.rockdie.Invoke();
                 WordDisplay();
                 killtime = Time.time;
                 killscore += 1;
@@ -143,7 +146,7 @@ public class WeaponDMG : MonoBehaviour
 
     private void WordDisplay()
     {
-        AudioSystem.instance.EnemydieAudio.Invoke();
+
         if ((Time.time - killtime) < timecheck)
         {
             counter++;

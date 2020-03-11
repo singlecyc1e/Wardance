@@ -63537,7 +63537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -39.350006}
+  m_AnchoredPosition: {x: 0, y: -39.350098}
   m_SizeDelta: {x: 220, y: 86.140015}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1347279995
@@ -84587,12 +84587,22 @@ MonoBehaviour:
   DeathAudio:
     m_PersistentCalls:
       m_Calls: []
+  wooddie:
+    m_PersistentCalls:
+      m_Calls: []
+  rockdie:
+    m_PersistentCalls:
+      m_Calls: []
   Rageon:
     m_PersistentCalls:
       m_Calls: []
   Rageoff:
     m_PersistentCalls:
       m_Calls: []
+  x:
+  - {fileID: 8300000, guid: a67669b18bd354844bac980b74760d6c, type: 3}
+  - {fileID: 8300000, guid: 002cc47d7ad314d41bf5915b05fb7ab1, type: 3}
+  - {fileID: 8300000, guid: 4739b90f2d0df3d498e2395068af44fa, type: 3}
 --- !u!95 &2031074867
 Animator:
   serializedVersion: 3
