@@ -131,7 +131,7 @@ public class TutorialManager : MonoBehaviour
         {
             TimeController.instance.BulletTime();
             GameObject.Find("MenuManager").GetComponent<MenuManager>().LoadNextLevel();
-            
+            PlayerPrefs.SetInt(LevelController.finishTutorialKey, 1);
         }
 
 

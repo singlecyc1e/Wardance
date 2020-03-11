@@ -5,6 +5,7 @@ public class LevelController : MonoBehaviour {
 
     public static string useButtonSettingKey = "USE_BUTTON";
     public static string playerLifeKey = "PLAYER_LIFE";
+    public static string finishTutorialKey = "FINISH_TUTORIAL";
     public static LevelController instance;
     
     private void Awake() {
@@ -25,6 +26,10 @@ public class LevelController : MonoBehaviour {
         // PlayerPrefs.SetInt(useButtonSettingKey, 0);
         if(!PlayerPrefs.HasKey(playerLifeKey)) {
             PlayerPrefs.SetInt(playerLifeKey, 3);
+        }
+        
+        if(!PlayerPrefs.HasKey(finishTutorialKey)) {
+            PlayerPrefs.SetInt(finishTutorialKey, 0);
         }
     }
 
