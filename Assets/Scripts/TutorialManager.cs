@@ -64,14 +64,14 @@ public class TutorialManager : MonoBehaviour
             
             rightimg.gameObject.SetActive(false);
             hand.gameObject.SetActive(false);
-            PlayerController.instance.enabled = false;
+            //PlayerController.instance.enabled = false;
         }
 
 
 
         if ((time) >= 6.2f && Sng2_2)
         {
-            PlayerController.instance.enabled = true;
+            //PlayerController.instance.enabled = true;
             Sng2_2 = false;
             rightimg.gameObject.SetActive(false);
             leftimg.gameObject.SetActive(true);
@@ -86,7 +86,7 @@ public class TutorialManager : MonoBehaviour
             Sng2 = false;
             hand.gameObject.SetActive(false);
             leftimg.gameObject.SetActive(false);
-            PlayerController.instance.enabled = false;
+            //PlayerController.instance.enabled = false;
         }
 
         if ((time) >= 8.6f && Sng3)
