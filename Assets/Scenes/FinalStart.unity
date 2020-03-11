@@ -15307,7 +15307,7 @@ MonoBehaviour:
   rageText: {fileID: 1347279995}
   rageBarFill: {fileID: 525883421}
   decreasing_rate_normal: 0
-  decreasing_rate_rage: 0.05
+  decreasing_rate_rage: 0.025
   swordAnimator: {fileID: 1424519280}
   traileffectlight: {fileID: 1195500342}
   traileffectheavy: {fileID: 503428629}
