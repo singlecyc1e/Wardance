@@ -69,6 +69,7 @@ public class ProgressBarController : MonoBehaviour {
         progress = (float) roadIndex / totalRoadCount * (slider.maxValue - slider.minValue);
         for (int i = 0; i < stops.Length; i++) {
             if (progress >= stopPercent[i]) {
+                stopIndex = i;
                 flags[stopIndex].GetComponent<Image>().color = Color.red;
             }
         }
@@ -86,7 +87,7 @@ public class ProgressBarController : MonoBehaviour {
                 flags[i].GetComponent<Image>().color = Color.red;
             }
 
-            stopIndex = i - 1;
+            stopIndex = i;
             initialized = true;
         }
     }
