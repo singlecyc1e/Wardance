@@ -192,6 +192,11 @@ PrefabInstance:
       propertyPath: TitleCanvas
       value: 
       objectReference: {fileID: 1126415702}
+    - target: {fileID: 8434269135575732617, guid: 2cd0ab691c1513c4e852fbc05d4e1d2c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 32359e5e0c6928d4aadd9092519cde8e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cd0ab691c1513c4e852fbc05d4e1d2c, type: 3}
 --- !u!1 &80108356
@@ -2476,7 +2481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1499156269
 RectTransform:
   m_ObjectHideFlags: 0

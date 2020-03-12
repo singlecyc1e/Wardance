@@ -5,7 +5,7 @@ using UnityEngine;
 public class ragesound : MonoBehaviour
 {
     private AudioSource mysource;
-    public AudioClip myclip;
+    public AudioClip [] myclip;
 
     private void Awake()
     {
@@ -15,11 +15,18 @@ public class ragesound : MonoBehaviour
     void Start()
     {
         AudioSystem.instance.Rageon.AddListener(rageeffect);
+        AudioSystem.instance.Rageoff.AddListener(rageoffeffect);
     }
 
     void rageeffect()
     {
-        mysource.clip = myclip;
+        mysource.clip = myclip[0];
+        mysource.Play();
+    }
+
+    void rageoffeffect()
+    {
+        mysource.clip = myclip[1];
         mysource.Play();
     }
     // Update is called once per frame

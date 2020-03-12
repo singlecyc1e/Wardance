@@ -13080,7 +13080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5f1725eb0f84daf8a93fe7a0243c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myclip: {fileID: 8300000, guid: 740bad1006291421a92ce7d43de150b6, type: 3}
+  myclip:
+  - {fileID: 8300000, guid: 740bad1006291421a92ce7d43de150b6, type: 3}
+  - {fileID: 8300000, guid: d51a87da44456f843a73127dd9462996, type: 3}
 --- !u!82 &181274587
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14762,7 +14764,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280354030}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -42460,7 +42462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stops: 0c000000
-  stopCount: 0
   flag: {fileID: 7602423901874022666, guid: c64cbf1cb236ec341893b328c1864fb1, type: 3}
 --- !u!114 &771215687
 MonoBehaviour:
@@ -84858,6 +84859,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092389956}
     m_Modifications:
+    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Fog_Particles (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 5790324278763580001, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -84912,11 +84918,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790324278763580006, guid: 73ee1360d134f704eaa8db2bc5cc35e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Fog_Particles (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ee1360d134f704eaa8db2bc5cc35e7, type: 3}
